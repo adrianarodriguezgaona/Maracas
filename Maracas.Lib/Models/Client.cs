@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    class Client
+    public class Client
     {
         public long Id { get; set; }
 
@@ -14,6 +14,9 @@ namespace Maracas.Lib.Models
 
         public string City { get; set; }
         public string Email { get; set; }
+
+        public List<Order> Orders { get; set; }
+
 
     }
    
