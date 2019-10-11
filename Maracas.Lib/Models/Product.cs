@@ -11,6 +11,8 @@ namespace Maracas.Lib.Models
         public string Description { get; set; }
         public Decimal Price { get; set; }
 
+        public string Foto { get; set; }
+
         public long OrderId { get; set; }
         public Order Order { get; set; }
 
