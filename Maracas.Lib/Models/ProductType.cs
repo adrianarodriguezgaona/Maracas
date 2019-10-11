@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    class Product
+    public class ProductType
     {
         public long Id { get; set; }
         public string Type { get; set; }

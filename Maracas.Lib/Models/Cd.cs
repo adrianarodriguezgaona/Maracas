@@ -4,13 +4,23 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    class Cd
+    public class Cd
     {
         public long Id { get; set; }
         public string Name { get; set; }
         public long ProductId { get; set; }
+
+
+
+        public Artist Artist { get; set; }
         public long ArtistId { get; set; }
+        public Type Type { get; set; }
         public long TypeId { get; set; }
+        public Genre Genre { get; set; }
+        public long GenreId { get; set; }
+
+
+
 
     }
 }
