@@ -12,7 +12,7 @@ namespace Maracas.Lib.Models
 
         public List<Artist> Artists { get; set; }
 
-        public List <Cd> Cds  { get; set; }
+        public List<Cd> Cds  { get; set; }
 
         public List <Score> Scores { get; set; }
 

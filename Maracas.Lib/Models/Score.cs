@@ -16,12 +16,10 @@ namespace Maracas.Lib.Models
         public long ArtistId { get; set; }
         public Artist Artist { get; set; }
 
-        public long GenreId { get; set; }
+        public long? GenreId { get; set; }
         public Genre Genre { get; set; }
 
 
-
-        p
 
 
     }
