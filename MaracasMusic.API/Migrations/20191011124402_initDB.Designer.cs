@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaracasMusic.API.Migrations
 {
     [DbContext(typeof(MaracasContext))]
-    [Migration("20191011123017_initDB")]
+    [Migration("20191011124402_initDB")]
     partial class initDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -257,7 +257,7 @@ namespace MaracasMusic.API.Migrations
             modelBuilder.Entity("Maracas.Lib.Models.Product", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

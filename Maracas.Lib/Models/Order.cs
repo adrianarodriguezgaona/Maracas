@@ -12,7 +12,7 @@ namespace Maracas.Lib.Models
 
         public Client Client { get; set; }
 
-        //public List <Product> Products { get; set; }
+        public List <Product> Products { get; set; }
 
 
 

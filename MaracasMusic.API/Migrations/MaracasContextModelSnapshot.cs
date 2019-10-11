@@ -255,7 +255,7 @@ namespace MaracasMusic.API.Migrations
             modelBuilder.Entity("Maracas.Lib.Models.Product", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
