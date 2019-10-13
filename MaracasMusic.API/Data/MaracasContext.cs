@@ -28,7 +28,12 @@ namespace MaracasMusic.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelbuilder)
         {
-
+            modelbuilder.Entity<InstrumentType>()
+                .HasData(
+                    new InstrumentType { Id = 1, Name = "Percussion" },
+                    new InstrumentType { Id = 2, Name = "Stringed" },
+                    new InstrumentType { Id = 3, Name = "Wind" });
+                   
         }
 
 
