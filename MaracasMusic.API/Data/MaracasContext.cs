@@ -26,10 +26,7 @@ namespace MaracasMusic.API.Data
         public DbSet<ProductType> ProductTypes { get; set; }
         public DbSet<Score> Scores { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelbuilder)
-        {
-
-        }
+     
 
 
     }
