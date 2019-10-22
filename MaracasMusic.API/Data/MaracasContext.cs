@@ -139,22 +139,22 @@ namespace MaracasMusic.API.Data
             modelbuilder.Entity<Score>()
                 .ToTable("Score")
                 .HasData(
-                    new Score { Id = 1,  ArtistId = 1, ProductTypeId = 3 },
-                    new Score { Id = 2, ArtistId = 1, ProductTypeId = 3 },
-                    new Score { Id = 3, ArtistId = 2, ProductTypeId = 3 },
-                    new Score { Id = 4, ArtistId = 2, ProductTypeId = 3 },
-                    new Score { Id = 5, ArtistId = 3, ProductTypeId = 3 },
-                    new Score { Id = 6, ArtistId = 3, ProductTypeId = 3 },
-                    new Score { Id = 7, ArtistId = 4, ProductTypeId = 3 },
-                    new Score { Id = 8, ArtistId = 4, ProductTypeId = 3 },
-                    new Score { Id = 9, ArtistId = 5, ProductTypeId = 3 },
-                    new Score { Id = 10, ArtistId = 5, ProductTypeId = 3 },
-                    new Score { Id = 11, ArtistId = 6, ProductTypeId = 3 },
-                    new Score { Id = 12, ArtistId = 6, ProductTypeId = 3 },
-                    new Score { Id = 13, ArtistId = 7, ProductTypeId = 3 },
-                    new Score { Id = 14, ArtistId = 7, ProductTypeId = 3 },
-                    new Score { Id = 15, ArtistId = 8, ProductTypeId = 3 },
-                    new Score { Id = 16, ArtistId = 8, ProductTypeId = 3 }
+                    new Score { Id = 1,  ArtistId = 1, ProductTypeId = 3, GenreId = 1   },
+                    new Score { Id = 2, ArtistId = 1, ProductTypeId = 3, GenreId = 1 },
+                    new Score { Id = 3, ArtistId = 2, ProductTypeId = 3, GenreId = 1 },
+                    new Score { Id = 4, ArtistId = 2, ProductTypeId = 3, GenreId = 1 },
+                    new Score { Id = 5, ArtistId = 3, ProductTypeId = 3, GenreId = 2 },
+                    new Score { Id = 6, ArtistId = 3, ProductTypeId = 3, GenreId = 2 },
+                    new Score { Id = 7, ArtistId = 4, ProductTypeId = 3, GenreId = 2 },
+                    new Score { Id = 8, ArtistId = 4, ProductTypeId = 3, GenreId = 2 },
+                    new Score { Id = 9, ArtistId = 5, ProductTypeId = 3, GenreId = 3 },
+                    new Score { Id = 10, ArtistId = 5, ProductTypeId = 3, GenreId = 3 },
+                    new Score { Id = 11, ArtistId = 6, ProductTypeId = 3, GenreId = 3 },
+                    new Score { Id = 12, ArtistId = 6, ProductTypeId = 3, GenreId = 3 },
+                    new Score { Id = 13, ArtistId = 7, ProductTypeId = 3, GenreId = 4 },
+                    new Score { Id = 14, ArtistId = 7, ProductTypeId = 3, GenreId = 4 },
+                    new Score { Id = 15, ArtistId = 8, ProductTypeId = 3, GenreId = 5 },
+                    new Score { Id = 16, ArtistId = 8, ProductTypeId = 3, GenreId = 5 }
                 );
 
 
