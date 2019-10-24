@@ -157,9 +157,28 @@ namespace MaracasMusic.API.Data
                     new Score { Id = 16, ArtistId = 8, ProductTypeId = 3, GenreId = 5, Name = "Pintame" }
                 );
 
+            modelbuilder.Entity<Cd>()
+               .ToTable("Cds")
+               .HasData(
+               new Cd { Id = 1, ProductId = 1, ArtistId = 1, GenreId = 1 },
+               new Cd { Id = 2, ProductId = 2, ArtistId = 1, GenreId = 1 },
+               new Cd { Id = 3, ProductId = 3, ArtistId = 2, GenreId = 1 },
+               new Cd { Id = 4, ProductId = 4, ArtistId = 2, GenreId = 1 },
+               new Cd { Id = 5, ProductId = 5, ArtistId = 3, GenreId = 2 },
+               new Cd { Id = 6, ProductId = 6, ArtistId = 3, GenreId = 2 },
+               new Cd { Id = 7, ProductId = 7, ArtistId = 4, GenreId = 2 },
+               new Cd { Id = 8, ProductId = 8, ArtistId = 4, GenreId = 2 },
+               new Cd { Id = 9, ProductId = 9, ArtistId = 5, GenreId = 3 },
+               new Cd { Id = 10, ProductId = 10, ArtistId = 5, GenreId = 3 },
+               new Cd { Id = 11, ProductId = 11, ArtistId = 6, GenreId = 3 },
+               new Cd { Id = 12, ProductId = 12, ArtistId = 6, GenreId = 3 },
+               new Cd { Id = 13, ProductId = 13, ArtistId = 7, GenreId = 4 },
+               new Cd { Id = 14, ProductId = 14, ArtistId = 7, GenreId = 4 },
+               new Cd { Id = 15, ProductId = 15, ArtistId = 8, GenreId = 5 },
+               new Cd { Id = 16, ProductId = 16, ArtistId = 8, GenreId = 5 });
 
         }
-    
+
 
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Genre> Genre { get; set; }

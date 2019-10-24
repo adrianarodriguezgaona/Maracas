@@ -17,6 +17,10 @@ namespace Maracas.Lib.Models
         public long? GenreId { get; set; }
 
 
+        public Cd()
+        {
+            ProductTypeId = 1;
+        }
 
 
     }
