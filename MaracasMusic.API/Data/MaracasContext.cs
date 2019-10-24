@@ -127,34 +127,34 @@ namespace MaracasMusic.API.Data
             modelbuilder.Entity<Instrument>()
                 .ToTable("Instrument")
                 .HasData(
-                    new Instrument { Id = 1, Name = "Conga", InstrumentTypeId = 1, ProductTypeId = 2 },
-                    new Instrument { Id = 2, Name = "Maracas", InstrumentTypeId = 1, ProductTypeId = 2 },
-                    new Instrument { Id = 3, Name = "Vera Cruz Harp", InstrumentTypeId = 2, ProductTypeId = 2 },
-                    new Instrument { Id = 4, Name = "Baja Sexto", InstrumentTypeId = 2, ProductTypeId = 2 },
-                    new Instrument { Id = 5, Name = "Pan Flute", InstrumentTypeId = 3, ProductTypeId = 2 },
-                    new Instrument { Id = 6, Name = "Quena Flute", InstrumentTypeId = 4, ProductTypeId = 2 }
+                    new Instrument { Id = 1, ProductId = 17, Name = "LPM198 Mini Tuneable Conga", InstrumentTypeId = 1, ProductTypeId = 2 },
+                    new Instrument { Id = 2, ProductId = 18, Name = "Large Wooden Maracas", InstrumentTypeId = 1, ProductTypeId = 2 },
+                    new Instrument { Id = 3, ProductId = 19, Name = "Vera Cruz Harp", InstrumentTypeId = 2, ProductTypeId = 2 },
+                    new Instrument { Id = 4, ProductId = 20, Name = "Baja Sexto", InstrumentTypeId = 2, ProductTypeId = 2 },
+                    new Instrument { Id = 5, ProductId = 21, Name = "Gewa Pan Pipe", InstrumentTypeId = 3, ProductTypeId = 2 },
+                    new Instrument { Id = 6, ProductId = 22, Name = "Quena Flute", InstrumentTypeId = 4, ProductTypeId = 2 }
                     );
 
 
             modelbuilder.Entity<Score>()
                 .ToTable("Score")
                 .HasData(
-                    new Score { Id = 1, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Whenever, wherever" },
-                    new Score { Id = 2, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Hips don't Lie" },
-                    new Score { Id = 3, ArtistId = 2, ProductTypeId = 3, GenreId = 1, Name =  "La Camisa Negra" },
-                    new Score { Id = 4, ArtistId = 2, ProductTypeId = 3, GenreId = 1, Name = "Juntos" },
-                    new Score { Id = 5, ArtistId = 3, ProductTypeId = 3, GenreId = 2, Name = "Vivir mi Vida" },
-                    new Score { Id = 6, ArtistId = 3, ProductTypeId = 3, GenreId = 2, Name = "Te Conozco Bien" },
-                    new Score { Id = 7, ArtistId = 4, ProductTypeId = 3, GenreId = 2, Name = "Tapanco El Hueco"},
-                    new Score { Id = 8, ArtistId = 4, ProductTypeId = 3, GenreId = 2, Name = "El Amor Vendra" },
-                    new Score { Id = 9, ArtistId = 5, ProductTypeId = 3, GenreId = 3, Name = "Felices Los 4" },
-                    new Score { Id = 10, ArtistId = 5, ProductTypeId = 3, GenreId = 3, Name = "Corazòn" },
-                    new Score { Id = 11, ArtistId = 6, ProductTypeId = 3, GenreId = 3, Name =  "Andas en mi Cabeza" },
-                    new Score { Id = 12, ArtistId = 6, ProductTypeId = 3, GenreId = 3, Name = "Mi Niña Bonita" },
-                    new Score { Id = 13, ArtistId = 7, ProductTypeId = 3, GenreId = 4, Name = "Déjame Entrar" },
-                    new Score { Id = 14, ArtistId = 7, ProductTypeId = 3, GenreId = 4, Name = "Carito" },
-                    new Score { Id = 15, ArtistId = 8, ProductTypeId = 3, GenreId = 5, Name = "Suavemente" },
-                    new Score { Id = 16, ArtistId = 8, ProductTypeId = 3, GenreId = 5, Name = "Pintame" }
+                    new Score { Id = 1, ProductId = 23, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Whenever, wherever" },
+                    new Score { Id = 2, ProductId = 24, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Hips don't Lie" },
+                    new Score { Id = 3, ProductId = 25, ArtistId = 2, ProductTypeId = 3, GenreId = 1, Name =  "La Camisa Negra" },
+                    new Score { Id = 4, ProductId = 26, ArtistId = 2, ProductTypeId = 3, GenreId = 1, Name = "Juntos" },
+                    new Score { Id = 5, ProductId = 27, ArtistId = 3, ProductTypeId = 3, GenreId = 2, Name = "Vivir mi Vida" },
+                    new Score { Id = 6, ProductId = 28, ArtistId = 3, ProductTypeId = 3, GenreId = 2, Name = "Te Conozco Bien" },
+                    new Score { Id = 7, ProductId = 29, ArtistId = 4, ProductTypeId = 3, GenreId = 2, Name = "Tapanco El Hueco"},
+                    new Score { Id = 8, ProductId = 30, ArtistId = 4, ProductTypeId = 3, GenreId = 2, Name = "El Amor Vendra" },
+                    new Score { Id = 9, ProductId = 31, ArtistId = 5, ProductTypeId = 3, GenreId = 3, Name = "Felices Los 4" },
+                    new Score { Id = 10, ProductId = 32, ArtistId = 5, ProductTypeId = 3, GenreId = 3, Name = "Corazòn" },
+                    new Score { Id = 11, ProductId = 33, ArtistId = 6, ProductTypeId = 3, GenreId = 3, Name =  "Andas en mi Cabeza" },
+                    new Score { Id = 12, ProductId = 34, ArtistId = 6, ProductTypeId = 3, GenreId = 3, Name = "Mi Niña Bonita" },
+                    new Score { Id = 13, ProductId = 35, ArtistId = 7, ProductTypeId = 3, GenreId = 4, Name = "Déjame Entrar" },
+                    new Score { Id = 14, ProductId = 36, ArtistId = 7, ProductTypeId = 3, GenreId = 4, Name = "Carito" },
+                    new Score { Id = 15, ProductId = 37, ArtistId = 8, ProductTypeId = 3, GenreId = 5, Name = "Suavemente" },
+                    new Score { Id = 16, ProductId = 38, ArtistId = 8, ProductTypeId = 3, GenreId = 5, Name = "Pintame" }
                 );
 
             modelbuilder.Entity<Cd>()
