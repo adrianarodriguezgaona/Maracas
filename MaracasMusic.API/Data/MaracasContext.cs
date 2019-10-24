@@ -19,7 +19,7 @@ namespace MaracasMusic.API.Data
         {
 
             modelbuilder.Entity<Genre>()
-                .ToTable("Genre")
+                .ToTable("Genres")
                 .HasData(
                 new Genre
                 {
@@ -108,7 +108,7 @@ namespace MaracasMusic.API.Data
               );
 
             modelbuilder.Entity<InstrumentType>()
-             .ToTable("InstrumentType")
+             .ToTable("InstrumentTypes")
              .HasData(
                  new InstrumentType { Id = 1, Name = "Percussion" },
                  new InstrumentType { Id = 2, Name = "Strings" },
@@ -125,19 +125,19 @@ namespace MaracasMusic.API.Data
 
 
             modelbuilder.Entity<Instrument>()
-                .ToTable("Instrument")
+                .ToTable("Instruments")
                 .HasData(
                     new Instrument { Id = 1, ProductId = 17, Name = "LPM198 Mini Tuneable Conga", InstrumentTypeId = 1, ProductTypeId = 2 },
                     new Instrument { Id = 2, ProductId = 18, Name = "Large Wooden Maracas", InstrumentTypeId = 1, ProductTypeId = 2 },
                     new Instrument { Id = 3, ProductId = 19, Name = "Vera Cruz Harp", InstrumentTypeId = 2, ProductTypeId = 2 },
                     new Instrument { Id = 4, ProductId = 20, Name = "Baja Sexto", InstrumentTypeId = 2, ProductTypeId = 2 },
                     new Instrument { Id = 5, ProductId = 21, Name = "Gewa Pan Pipe", InstrumentTypeId = 3, ProductTypeId = 2 },
-                    new Instrument { Id = 6, ProductId = 22, Name = "Quena Flute", InstrumentTypeId = 4, ProductTypeId = 2 }
+                    new Instrument { Id = 6, ProductId = 22, Name = "Quena Flute", InstrumentTypeId = 3, ProductTypeId = 2 }
                     );
 
 
             modelbuilder.Entity<Score>()
-                .ToTable("Score")
+                .ToTable("Scores")
                 .HasData(
                     new Score { Id = 1, ProductId = 23, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Whenever, wherever" },
                     new Score { Id = 2, ProductId = 24, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Hips don't Lie" },
@@ -422,7 +422,7 @@ namespace MaracasMusic.API.Data
 
 
         public DbSet<Artist> Artists { get; set; }
-        public DbSet<Genre> Genre { get; set; }
+        public DbSet<Genre> Genres { get; set; }
         public DbSet<Cd> Cds { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Instrument> Instruments { get; set; }
