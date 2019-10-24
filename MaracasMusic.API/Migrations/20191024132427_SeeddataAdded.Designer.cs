@@ -4,14 +4,16 @@ using MaracasMusic.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MaracasMusic.API.Migrations
 {
     [DbContext(typeof(MaracasContext))]
-    partial class MaracasContextModelSnapshot : ModelSnapshot
+    [Migration("20191024132427_SeeddataAdded")]
+    partial class SeeddataAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

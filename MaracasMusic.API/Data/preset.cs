@@ -10,25 +10,5 @@ namespace MaracasMusic.API.Data
 
     // klasse gemaakt voor gemakkelijk te kunnen push'n en pull'n wanneer we even in hetzelfde document moeten werken.
 
-    public class preset : DbContext
-    {
-
-
-        protected override void OnModelCreating(ModelBuilder modelbuilder)
-        {
-
-        
-          
-
-
-
-
-        }
-            
-            
-
-
-
-
-        }
+   
 }
