@@ -128,7 +128,7 @@ namespace MaracasMusic.API.Data
                 .ToTable("Instrument")
                 .HasData(
                     new Instrument { Id = 1, Name = "Conga", InstrumentTypeId = 1, ProductTypeId = 2 },
-                    new Instrument { Id = 2, Name = "Pandeiro", InstrumentTypeId = 1, ProductTypeId = 2 },
+                    new Instrument { Id = 2, Name = "Maracas", InstrumentTypeId = 1, ProductTypeId = 2 },
                     new Instrument { Id = 3, Name = "Vera Cruz Harp", InstrumentTypeId = 2, ProductTypeId = 2 },
                     new Instrument { Id = 4, Name = "Baja Sexto", InstrumentTypeId = 2, ProductTypeId = 2 },
                     new Instrument { Id = 5, Name = "Pan Flute", InstrumentTypeId = 3, ProductTypeId = 2 },
@@ -139,7 +139,7 @@ namespace MaracasMusic.API.Data
             modelbuilder.Entity<Score>()
                 .ToTable("Score")
                 .HasData(
-                    new Score { Id = 1,  ArtistId = 1, ProductTypeId = 3, GenreId = 1   },
+                    new Score { Id = 1, ArtistId = 1, ProductTypeId = 3, GenreId = 1 },
                     new Score { Id = 2, ArtistId = 1, ProductTypeId = 3, GenreId = 1 },
                     new Score { Id = 3, ArtistId = 2, ProductTypeId = 3, GenreId = 1 },
                     new Score { Id = 4, ArtistId = 2, ProductTypeId = 3, GenreId = 1 },
