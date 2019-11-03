@@ -13,7 +13,6 @@ namespace Maracas.Lib.Models
 
         public string Foto { get; set; }
 
-        public long OrderId { get; set; }
         public Order Order { get; set; }
 
     }

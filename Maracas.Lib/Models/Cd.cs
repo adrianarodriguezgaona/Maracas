@@ -7,7 +7,7 @@ namespace Maracas.Lib.Models
     public class Cd
     {
         public long Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; }        
         public long ProductId { get; set; }
         public Artist Artist { get; set; }
         public long ArtistId { get; set; }
@@ -17,6 +17,10 @@ namespace Maracas.Lib.Models
         public long? GenreId { get; set; }
 
 
+        public Cd()
+        {
+            ProductTypeId = 1;
+        }
 
 
     }
