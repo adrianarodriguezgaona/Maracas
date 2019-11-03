@@ -430,7 +430,7 @@ namespace MaracasMusic.API.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<InstrumentType> InstrumentTypes { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
-        public DbSet<Score> Scores { get; set; }
+        public DbSet<Score> Score { get; set; }
 
        
 
