@@ -19,12 +19,21 @@ namespace MaracasMusic.API.Controllers
             repository = instrumentRepository;
         }
 
-        // api/instruments
+        // api/instrument
         [HttpGet]
-        public IActionResult GetScores()
+        public IActionResult GetInstruments()
 
         {
             return Ok(repository.List());
+        }
+
+        //GET : api/Instrument/Basic
+
+        [HttpGet]
+        [Route ("Basic")]
+        public IActionResult GetInstrumentsBasic()
+        {
+            return Ok(repository.ListBasic());
         }
     }
 }
