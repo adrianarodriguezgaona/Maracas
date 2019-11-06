@@ -1,5 +1,7 @@
-﻿using Maracas.Lib.Models;
+﻿using Maracas.Lib.DTO;
+using Maracas.Lib.Models;
 using MaracasMusic.API.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +20,37 @@ namespace MaracasMusic.API.Repositories
 
         public List<Instrument> List()
         {
-            return _context.Instruments.ToList();
+            return _context.Instruments
+                .Include(i => i.Product)
+                .ToList();
         }
 
-         //  waiting for instrumentBasic DTO
+        public List<InstrumentBasicDto> ListBasic ()
+        {
+            return _context.Instruments.Select(i => new InstrumentBasicDto
+            {
+                Id = i.Id,
+                Name = i.Name
+            }).ToList();
         }
+
+        public InstrumentDetail GetDetailById(int id)
+        {
+            return (
+                 _context.Instruments.Select(i => new InstrumentDetail
+                 {
+                     Id = i.Id,
+                     Name = i.Name,
+                     ProductId = i.Product.Id,
+                     ProductPrice = i.Product.Price,
+                     Description = i.Product.Description,
+                     Foto = i.Product.Foto
+
+                 })
+                .FirstOrDefault(i => i.Id == id));
+        }
+
 
     }
-
 
 }

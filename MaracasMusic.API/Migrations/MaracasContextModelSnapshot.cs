@@ -15,72 +15,74 @@ namespace MaracasMusic.API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Maracas.Lib.Models.Artist", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<long?>("GenreId");
 
+                    b.Property<int?>("GenreId1");
+
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GenreId");
+                    b.HasIndex("GenreId1");
 
                     b.ToTable("Artists");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             GenreId = 1L,
                             Name = "Shakira"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             GenreId = 1L,
                             Name = "Juanes"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             GenreId = 2L,
                             Name = "Marc Anthony"
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             GenreId = 2L,
                             Name = "Grupo Niche"
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             GenreId = 3L,
                             Name = "Maluma"
                         },
                         new
                         {
-                            Id = 6L,
+                            Id = 6,
                             GenreId = 3L,
                             Name = "Chino y Nacho"
                         },
                         new
                         {
-                            Id = 7L,
+                            Id = 7,
                             GenreId = 4L,
                             Name = "Carlos Vives"
                         },
                         new
                         {
-                            Id = 8L,
+                            Id = 8,
                             GenreId = 5L,
                             Name = "Elvis Crespo"
                         });
@@ -88,19 +90,17 @@ namespace MaracasMusic.API.Migrations
 
             modelBuilder.Entity("Maracas.Lib.Models.Cd", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("ArtistId");
+                    b.Property<int?>("ArtistId");
 
-                    b.Property<long?>("GenreId");
+                    b.Property<int?>("GenreId");
 
                     b.Property<string>("Name");
 
-                    b.Property<long>("ProductId");
-
-                    b.Property<long>("ProductTypeId");
+                    b.Property<int?>("ProductId");
 
                     b.HasKey("Id");
 
@@ -108,160 +108,144 @@ namespace MaracasMusic.API.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.HasIndex("ProductTypeId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Cds");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
-                            ArtistId = 1L,
-                            GenreId = 1L,
+                            Id = 1,
+                            ArtistId = 1,
+                            GenreId = 1,
                             Name = "Shakira",
-                            ProductId = 1L,
-                            ProductTypeId = 1L
+                            ProductId = 1
                         },
                         new
                         {
-                            Id = 2L,
-                            ArtistId = 1L,
-                            GenreId = 1L,
+                            Id = 2,
+                            ArtistId = 1,
+                            GenreId = 1,
                             Name = "El Dorado",
-                            ProductId = 2L,
-                            ProductTypeId = 1L
+                            ProductId = 2
                         },
                         new
                         {
-                            Id = 3L,
-                            ArtistId = 2L,
-                            GenreId = 1L,
+                            Id = 3,
+                            ArtistId = 2,
+                            GenreId = 1,
                             Name = "Mi sangre",
-                            ProductId = 3L,
-                            ProductTypeId = 1L
+                            ProductId = 3
                         },
                         new
                         {
-                            Id = 4L,
-                            ArtistId = 2L,
-                            GenreId = 1L,
+                            Id = 4,
+                            ArtistId = 2,
+                            GenreId = 1,
                             Name = "Un dia normal",
-                            ProductId = 4L,
-                            ProductTypeId = 1L
+                            ProductId = 4
                         },
                         new
                         {
-                            Id = 5L,
-                            ArtistId = 3L,
-                            GenreId = 2L,
+                            Id = 5,
+                            ArtistId = 3,
+                            GenreId = 2,
                             Name = "3.0",
-                            ProductId = 5L,
-                            ProductTypeId = 1L
+                            ProductId = 5
                         },
                         new
                         {
-                            Id = 6L,
-                            ArtistId = 3L,
-                            GenreId = 2L,
+                            Id = 6,
+                            ArtistId = 3,
+                            GenreId = 2,
                             Name = "Sigo siendo yo",
-                            ProductId = 6L,
-                            ProductTypeId = 1L
+                            ProductId = 6
                         },
                         new
                         {
-                            Id = 7L,
-                            ArtistId = 4L,
-                            GenreId = 2L,
+                            Id = 7,
+                            ArtistId = 4,
+                            GenreId = 2,
                             Name = "Brillantes",
-                            ProductId = 7L,
-                            ProductTypeId = 1L
+                            ProductId = 7
                         },
                         new
                         {
-                            Id = 8L,
-                            ArtistId = 4L,
-                            GenreId = 2L,
+                            Id = 8,
+                            ArtistId = 4,
+                            GenreId = 2,
                             Name = "Bonitas y hermosas",
-                            ProductId = 8L,
-                            ProductTypeId = 1L
+                            ProductId = 8
                         },
                         new
                         {
-                            Id = 9L,
-                            ArtistId = 5L,
-                            GenreId = 3L,
+                            Id = 9,
+                            ArtistId = 5,
+                            GenreId = 3,
                             Name = "11:11",
-                            ProductId = 9L,
-                            ProductTypeId = 1L
+                            ProductId = 9
                         },
                         new
                         {
-                            Id = 10L,
-                            ArtistId = 5L,
-                            GenreId = 3L,
+                            Id = 10,
+                            ArtistId = 5,
+                            GenreId = 3,
                             Name = "F.A.M.E",
-                            ProductId = 10L,
-                            ProductTypeId = 1L
+                            ProductId = 10
                         },
                         new
                         {
-                            Id = 11L,
-                            ArtistId = 6L,
-                            GenreId = 3L,
+                            Id = 11,
+                            ArtistId = 6,
+                            GenreId = 3,
                             Name = "Supremo",
-                            ProductId = 11L,
-                            ProductTypeId = 1L
+                            ProductId = 11
                         },
                         new
                         {
-                            Id = 12L,
-                            ArtistId = 6L,
-                            GenreId = 3L,
+                            Id = 12,
+                            ArtistId = 6,
+                            GenreId = 3,
                             Name = "Radio universo",
-                            ProductId = 12L,
-                            ProductTypeId = 1L
+                            ProductId = 12
                         },
                         new
                         {
-                            Id = 13L,
-                            ArtistId = 7L,
-                            GenreId = 4L,
+                            Id = 13,
+                            ArtistId = 7,
+                            GenreId = 4,
                             Name = "VIVES",
-                            ProductId = 13L,
-                            ProductTypeId = 1L
+                            ProductId = 13
                         },
                         new
                         {
-                            Id = 14L,
-                            ArtistId = 7L,
-                            GenreId = 4L,
+                            Id = 14,
+                            ArtistId = 7,
+                            GenreId = 4,
                             Name = "Más + Corazón Profundo",
-                            ProductId = 14L,
-                            ProductTypeId = 1L
+                            ProductId = 14
                         },
                         new
                         {
-                            Id = 15L,
-                            ArtistId = 8L,
-                            GenreId = 5L,
+                            Id = 15,
+                            ArtistId = 8,
+                            GenreId = 5,
                             Name = "Suavemente",
-                            ProductId = 15L,
-                            ProductTypeId = 1L
+                            ProductId = 15
                         },
                         new
                         {
-                            Id = 16L,
-                            ArtistId = 8L,
-                            GenreId = 5L,
+                            Id = 16,
+                            ArtistId = 8,
+                            GenreId = 5,
                             Name = "Los Monsters",
-                            ProductId = 16L,
-                            ProductTypeId = 1L
+                            ProductId = 16
                         });
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Client", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -280,7 +264,7 @@ namespace MaracasMusic.API.Migrations
 
             modelBuilder.Entity("Maracas.Lib.Models.Genre", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -293,107 +277,99 @@ namespace MaracasMusic.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Name = "Pop Muziek"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Name = "Salsa"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Name = "Regueton"
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             Name = "Cumbia"
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             Name = "Cumbia"
                         });
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Instrument", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("InstrumentTypeId");
+                    b.Property<int?>("InstrumentTypeId");
 
                     b.Property<string>("Name");
 
-                    b.Property<long>("ProductId");
-
-                    b.Property<long>("ProductTypeId");
+                    b.Property<int?>("ProductId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("InstrumentTypeId");
 
-                    b.HasIndex("ProductTypeId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Instruments");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
-                            InstrumentTypeId = 1L,
+                            Id = 1,
+                            InstrumentTypeId = 1,
                             Name = "LPM198 Mini Tuneable Conga",
-                            ProductId = 17L,
-                            ProductTypeId = 2L
+                            ProductId = 17
                         },
                         new
                         {
-                            Id = 2L,
-                            InstrumentTypeId = 1L,
+                            Id = 2,
+                            InstrumentTypeId = 1,
                             Name = "Large Wooden Maracas",
-                            ProductId = 18L,
-                            ProductTypeId = 2L
+                            ProductId = 18
                         },
                         new
                         {
-                            Id = 3L,
-                            InstrumentTypeId = 2L,
+                            Id = 3,
+                            InstrumentTypeId = 2,
                             Name = "Vera Cruz Harp",
-                            ProductId = 19L,
-                            ProductTypeId = 2L
+                            ProductId = 19
                         },
                         new
                         {
-                            Id = 4L,
-                            InstrumentTypeId = 2L,
+                            Id = 4,
+                            InstrumentTypeId = 2,
                             Name = "Baja Sexto",
-                            ProductId = 20L,
-                            ProductTypeId = 2L
+                            ProductId = 20
                         },
                         new
                         {
-                            Id = 5L,
-                            InstrumentTypeId = 3L,
+                            Id = 5,
+                            InstrumentTypeId = 3,
                             Name = "Gewa Pan Pipe",
-                            ProductId = 21L,
-                            ProductTypeId = 2L
+                            ProductId = 21
                         },
                         new
                         {
-                            Id = 6L,
-                            InstrumentTypeId = 3L,
+                            Id = 6,
+                            InstrumentTypeId = 3,
                             Name = "Quena Flute",
-                            ProductId = 22L,
-                            ProductTypeId = 2L
+                            ProductId = 22
                         });
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.InstrumentType", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -406,28 +382,28 @@ namespace MaracasMusic.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Name = "Percussion"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Name = "Strings"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Name = "Winds"
                         });
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Order", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("ClientId");
+                    b.Property<int>("ClientId");
 
                     b.HasKey("Id");
 
@@ -438,7 +414,7 @@ namespace MaracasMusic.API.Migrations
 
             modelBuilder.Entity("Maracas.Lib.Models.Product", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -446,152 +422,330 @@ namespace MaracasMusic.API.Migrations
 
                     b.Property<string>("Foto");
 
-                    b.Property<long?>("OrderId");
+                    b.Property<int?>("OrderId");
 
                     b.Property<decimal>("Price");
 
-                    b.Property<long>("ProductTypeId");
+                    b.Property<int>("ProductTypeId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Description = "CD (ALBUM) |1 disk |Engels|maart 2014",
                             Foto = "CdShakira1",
                             Price = 11m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Description = "CD (ALBUM) |1 disk |Engels|mei 2017",
                             Foto = "CdShakira2",
                             Price = 10m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Description = "CD (ALBUM) |1 disk |Spaans|september 2004",
                             Foto = "CdJuanes1",
                             Price = 11m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 4L,
+                            Id = 4,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2002",
                             Foto = "CdJuanes1",
                             Price = 9m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 5L,
+                            Id = 5,
                             Description = "CD (ALBUM) |1 disk |Spaans|juli 2013",
                             Foto = "CdMarcA1",
                             Price = 11m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 6L,
+                            Id = 6,
                             Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum",
                             Foto = "CdMarcA2",
                             Price = 11m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 7L,
+                            Id = 7,
                             Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum",
                             Foto = "CdGrupoN1",
                             Price = 15m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 8L,
+                            Id = 8,
                             Description = "CD (ALBUM) |1 disk |Spaans|november 2015 ",
                             Foto = "CdGrupoN2",
                             Price = 20m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 9L,
+                            Id = 9,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 ",
                             Foto = "CdMaluma1",
                             Price = 22m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 10L,
+                            Id = 10,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 ",
                             Foto = "CdMaluma2",
                             Price = 22m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 11L,
+                            Id = 11,
                             Description = "CD (ALBUM) |1 disk |Spaans|October 2011",
                             Foto = "CdChino1",
                             Price = 20m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 12L,
+                            Id = 12,
                             Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015",
                             Foto = "CdChino2",
                             Price = 18m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 13L,
+                            Id = 13,
                             Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017",
                             Foto = "CdVives1",
                             Price = 18m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 14L,
+                            Id = 14,
                             Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014",
                             Foto = "CdVives2",
                             Price = 18m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 15L,
+                            Id = 15,
                             Description = "CD (ALBUM) |1 disk |Spaans|april 1998",
                             Foto = "CdElvisC1",
                             Price = 18m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
                         },
                         new
                         {
-                            Id = 16L,
+                            Id = 16,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2012",
                             Foto = "CdElvisC2",
                             Price = 20m,
-                            ProductTypeId = 1L
+                            ProductTypeId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Description = "Finish: Natural - Siam Oak drum shell with natural head - Head: Ø 4.5' - Approx. 28 cm high - Mini Comfort Curve II Rims",
+                            Foto = "instrumentPerc1.jpg",
+                            Price = 60m,
+                            ProductTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Description = "Simple wooden percussion instrument, deliverd in pairs",
+                            Foto = "instrumentPerc2.jpg",
+                            Price = 20m,
+                            ProductTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Description = "",
+                            Foto = "instrumentString1.jpg",
+                            Price = 50m,
+                            ProductTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Description = "RoseWood back, glossy finish, hand crafted",
+                            Foto = "instrumentString2.jpg",
+                            Price = 470m,
+                            ProductTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Description = "Hand crafted, made of Bamboo, pure tuning",
+                            Foto = "instrumentWind1",
+                            Price = 20m,
+                            ProductTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Description = "Hand crafted, made of plum wood",
+                            Foto = "instrumentWind2",
+                            Price = 45m,
+                            ProductTypeId = 2
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Description = "Shakira sheet music - Song: Whenever, Wherever",
+                            Foto = "scoreSha1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Description = "Shakira sheet music - Song: Hips don't Lie",
+                            Foto = "scoreSha2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Description = "Juanes sheet music - Song: La Camisa Negra",
+                            Foto = "scoreJua1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Description = "Juanes sheet music - Song: Juentos",
+                            Foto = "scoreJua2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Description = "Marc Anthony sheet music - Song: Vivir mi Vida",
+                            Foto = "scoreMar1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Description = "Marc Anthony sheet music - Song: Te Conozco Bien",
+                            Foto = "scoreMar2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Description = "Grupo Niche sheet music - Song: Tapanco El Hueco",
+                            Foto = "scoreGru1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Description = "Grupo Niche - Song: El Amor Vendra",
+                            Foto = "scoreGru2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Description = "Maluma sheet music - Song: Felices los 4",
+                            Foto = "scoreMal1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Description = "Maluma sheet music - Song: Corazòn",
+                            Foto = "scoreMal2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Description = "Chino y Nacho sheet music - Song: Andas en mi Cabeza",
+                            Foto = "scoreChi1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Description = "Chino y Nacho sheet music - Song: Mi Niña Bonita",
+                            Foto = "scoreChi2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Description = "Carlos Vives - Song: Déjame Entrar",
+                            Foto = "scoreCar1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Description = "Carlos Vives sheet music - Song: Carito",
+                            Foto = "scoreCar2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Description = "Elvis Crespo sheet music - Song: Suavemente",
+                            Foto = "scoreElv1.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Description = "Elvis Crespo sheet music - Song: Pintame",
+                            Foto = "scoreElv2.jpg",
+                            Price = 9.99m,
+                            ProductTypeId = 3
                         });
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.ProductType", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -599,41 +753,39 @@ namespace MaracasMusic.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductType");
+                    b.ToTable("ProductTypes");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
+                            Id = 1,
                             Type = "Cd"
                         },
                         new
                         {
-                            Id = 2L,
+                            Id = 2,
                             Type = "Instrument"
                         },
                         new
                         {
-                            Id = 3L,
+                            Id = 3,
                             Type = "Score"
                         });
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Score", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("ArtistId");
+                    b.Property<int?>("ArtistId");
 
-                    b.Property<long?>("GenreId");
+                    b.Property<int?>("GenreId");
 
                     b.Property<string>("Name");
 
-                    b.Property<long>("ProductId");
-
-                    b.Property<long>("ProductTypeId");
+                    b.Property<int?>("ProductId");
 
                     b.HasKey("Id");
 
@@ -641,154 +793,138 @@ namespace MaracasMusic.API.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.HasIndex("ProductTypeId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Scores");
 
                     b.HasData(
                         new
                         {
-                            Id = 1L,
-                            ArtistId = 1L,
-                            GenreId = 1L,
+                            Id = 1,
+                            ArtistId = 1,
+                            GenreId = 1,
                             Name = "Whenever, wherever",
-                            ProductId = 23L,
-                            ProductTypeId = 3L
+                            ProductId = 23
                         },
                         new
                         {
-                            Id = 2L,
-                            ArtistId = 1L,
-                            GenreId = 1L,
+                            Id = 2,
+                            ArtistId = 1,
+                            GenreId = 1,
                             Name = "Hips don't Lie",
-                            ProductId = 24L,
-                            ProductTypeId = 3L
+                            ProductId = 24
                         },
                         new
                         {
-                            Id = 3L,
-                            ArtistId = 2L,
-                            GenreId = 1L,
+                            Id = 3,
+                            ArtistId = 2,
+                            GenreId = 1,
                             Name = "La Camisa Negra",
-                            ProductId = 25L,
-                            ProductTypeId = 3L
+                            ProductId = 25
                         },
                         new
                         {
-                            Id = 4L,
-                            ArtistId = 2L,
-                            GenreId = 1L,
+                            Id = 4,
+                            ArtistId = 2,
+                            GenreId = 1,
                             Name = "Juntos",
-                            ProductId = 26L,
-                            ProductTypeId = 3L
+                            ProductId = 26
                         },
                         new
                         {
-                            Id = 5L,
-                            ArtistId = 3L,
-                            GenreId = 2L,
+                            Id = 5,
+                            ArtistId = 3,
+                            GenreId = 2,
                             Name = "Vivir mi Vida",
-                            ProductId = 27L,
-                            ProductTypeId = 3L
+                            ProductId = 27
                         },
                         new
                         {
-                            Id = 6L,
-                            ArtistId = 3L,
-                            GenreId = 2L,
+                            Id = 6,
+                            ArtistId = 3,
+                            GenreId = 2,
                             Name = "Te Conozco Bien",
-                            ProductId = 28L,
-                            ProductTypeId = 3L
+                            ProductId = 28
                         },
                         new
                         {
-                            Id = 7L,
-                            ArtistId = 4L,
-                            GenreId = 2L,
+                            Id = 7,
+                            ArtistId = 4,
+                            GenreId = 2,
                             Name = "Tapanco El Hueco",
-                            ProductId = 29L,
-                            ProductTypeId = 3L
+                            ProductId = 29
                         },
                         new
                         {
-                            Id = 8L,
-                            ArtistId = 4L,
-                            GenreId = 2L,
+                            Id = 8,
+                            ArtistId = 4,
+                            GenreId = 2,
                             Name = "El Amor Vendra",
-                            ProductId = 30L,
-                            ProductTypeId = 3L
+                            ProductId = 30
                         },
                         new
                         {
-                            Id = 9L,
-                            ArtistId = 5L,
-                            GenreId = 3L,
+                            Id = 9,
+                            ArtistId = 5,
+                            GenreId = 3,
                             Name = "Felices Los 4",
-                            ProductId = 31L,
-                            ProductTypeId = 3L
+                            ProductId = 31
                         },
                         new
                         {
-                            Id = 10L,
-                            ArtistId = 5L,
-                            GenreId = 3L,
+                            Id = 10,
+                            ArtistId = 5,
+                            GenreId = 3,
                             Name = "Corazòn",
-                            ProductId = 32L,
-                            ProductTypeId = 3L
+                            ProductId = 32
                         },
                         new
                         {
-                            Id = 11L,
-                            ArtistId = 6L,
-                            GenreId = 3L,
+                            Id = 11,
+                            ArtistId = 6,
+                            GenreId = 3,
                             Name = "Andas en mi Cabeza",
-                            ProductId = 33L,
-                            ProductTypeId = 3L
+                            ProductId = 33
                         },
                         new
                         {
-                            Id = 12L,
-                            ArtistId = 6L,
-                            GenreId = 3L,
+                            Id = 12,
+                            ArtistId = 6,
+                            GenreId = 3,
                             Name = "Mi Niña Bonita",
-                            ProductId = 34L,
-                            ProductTypeId = 3L
+                            ProductId = 34
                         },
                         new
                         {
-                            Id = 13L,
-                            ArtistId = 7L,
-                            GenreId = 4L,
+                            Id = 13,
+                            ArtistId = 7,
+                            GenreId = 4,
                             Name = "Déjame Entrar",
-                            ProductId = 35L,
-                            ProductTypeId = 3L
+                            ProductId = 35
                         },
                         new
                         {
-                            Id = 14L,
-                            ArtistId = 7L,
-                            GenreId = 4L,
+                            Id = 14,
+                            ArtistId = 7,
+                            GenreId = 4,
                             Name = "Carito",
-                            ProductId = 36L,
-                            ProductTypeId = 3L
+                            ProductId = 36
                         },
                         new
                         {
-                            Id = 15L,
-                            ArtistId = 8L,
-                            GenreId = 5L,
+                            Id = 15,
+                            ArtistId = 8,
+                            GenreId = 5,
                             Name = "Suavemente",
-                            ProductId = 37L,
-                            ProductTypeId = 3L
+                            ProductId = 37
                         },
                         new
                         {
-                            Id = 16L,
-                            ArtistId = 8L,
-                            GenreId = 5L,
+                            Id = 16,
+                            ArtistId = 8,
+                            GenreId = 5,
                             Name = "Pintame",
-                            ProductId = 38L,
-                            ProductTypeId = 3L
+                            ProductId = 38
                         });
                 });
 
@@ -796,37 +932,33 @@ namespace MaracasMusic.API.Migrations
                 {
                     b.HasOne("Maracas.Lib.Models.Genre", "Genre")
                         .WithMany("Artists")
-                        .HasForeignKey("GenreId");
+                        .HasForeignKey("GenreId1");
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Cd", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Artist", "Artist")
                         .WithMany("Cds")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ArtistId");
 
                     b.HasOne("Maracas.Lib.Models.Genre", "Genre")
                         .WithMany("Cds")
                         .HasForeignKey("GenreId");
 
-                    b.HasOne("Maracas.Lib.Models.ProductType", "ProductType")
+                    b.HasOne("Maracas.Lib.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Instrument", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.InstrumentType", "InstrumentType")
                         .WithMany("Instruments")
-                        .HasForeignKey("InstrumentTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("InstrumentTypeId");
 
-                    b.HasOne("Maracas.Lib.Models.ProductType", "ProductType")
+                    b.HasOne("Maracas.Lib.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Order", b =>
@@ -842,23 +974,26 @@ namespace MaracasMusic.API.Migrations
                     b.HasOne("Maracas.Lib.Models.Order", "Order")
                         .WithMany("Products")
                         .HasForeignKey("OrderId");
+
+                    b.HasOne("Maracas.Lib.Models.ProductType", "ProductType")
+                        .WithMany()
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Maracas.Lib.Models.Score", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Artist", "Artist")
                         .WithMany("Scores")
-                        .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ArtistId");
 
                     b.HasOne("Maracas.Lib.Models.Genre", "Genre")
                         .WithMany("Scores")
                         .HasForeignKey("GenreId");
 
-                    b.HasOne("Maracas.Lib.Models.ProductType", "ProductType")
+                    b.HasOne("Maracas.Lib.Models.Product", "Product")
                         .WithMany()
-                        .HasForeignKey("ProductTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProductId");
                 });
 #pragma warning restore 612, 618
         }

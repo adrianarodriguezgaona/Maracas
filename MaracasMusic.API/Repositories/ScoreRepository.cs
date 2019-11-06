@@ -19,13 +19,13 @@ namespace MaracasMusic.API.Repositories
 
         public List<Score> List()
         {
-            return _context.Score.ToList();
+            return _context.Scores.ToList();
         }
 
         public List<ScoreBasicDTO> ListBasic()
 
             {
-            return _context.Score.Select(s => new ScoreBasicDTO
+            return _context.Scores.Select(s => new ScoreBasicDTO
             {
                 Id = s.Id,
                 Name = s.Name

@@ -31,6 +31,9 @@ namespace MaracasMusic.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<MaracasContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Maracas")));
             services.AddScoped<ScoreRepository>();
+            services.AddScoped<CdRepository>();
+            services.AddScoped<InstrumentRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

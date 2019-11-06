@@ -116,66 +116,13 @@ namespace MaracasMusic.API.Data
                  );
 
             modelbuilder.Entity<ProductType>()
-                .ToTable("ProductType")
+                .ToTable("ProductTypes")
                 .HasData(
                      new ProductType { Id = 1, Type = "Cd" },
                      new ProductType { Id = 2, Type = "Instrument" },
                      new ProductType { Id = 3, Type = "Score" }
                 );
 
-
-            modelbuilder.Entity<Instrument>()
-                .ToTable("Instruments")
-                .HasData(
-                    new Instrument { Id = 1, ProductId = 17, Name = "LPM198 Mini Tuneable Conga", InstrumentTypeId = 1, ProductTypeId = 2 },
-                    new Instrument { Id = 2, ProductId = 18, Name = "Large Wooden Maracas", InstrumentTypeId = 1, ProductTypeId = 2 },
-                    new Instrument { Id = 3, ProductId = 19, Name = "Vera Cruz Harp", InstrumentTypeId = 2, ProductTypeId = 2 },
-                    new Instrument { Id = 4, ProductId = 20, Name = "Baja Sexto", InstrumentTypeId = 2, ProductTypeId = 2 },
-                    new Instrument { Id = 5, ProductId = 21, Name = "Gewa Pan Pipe", InstrumentTypeId = 3, ProductTypeId = 2 },
-                    new Instrument { Id = 6, ProductId = 22, Name = "Quena Flute", InstrumentTypeId = 3, ProductTypeId = 2 }
-                    );
-
-
-            modelbuilder.Entity<Score>()
-                .ToTable("Scores")
-                .HasData(
-                    new Score { Id = 1, ProductId = 23, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Whenever, wherever" },
-                    new Score { Id = 2, ProductId = 24, ArtistId = 1, ProductTypeId = 3, GenreId = 1, Name = "Hips don't Lie" },
-                    new Score { Id = 3, ProductId = 25, ArtistId = 2, ProductTypeId = 3, GenreId = 1, Name =  "La Camisa Negra" },
-                    new Score { Id = 4, ProductId = 26, ArtistId = 2, ProductTypeId = 3, GenreId = 1, Name = "Juntos" },
-                    new Score { Id = 5, ProductId = 27, ArtistId = 3, ProductTypeId = 3, GenreId = 2, Name = "Vivir mi Vida" },
-                    new Score { Id = 6, ProductId = 28, ArtistId = 3, ProductTypeId = 3, GenreId = 2, Name = "Te Conozco Bien" },
-                    new Score { Id = 7, ProductId = 29, ArtistId = 4, ProductTypeId = 3, GenreId = 2, Name = "Tapanco El Hueco"},
-                    new Score { Id = 8, ProductId = 30, ArtistId = 4, ProductTypeId = 3, GenreId = 2, Name = "El Amor Vendra" },
-                    new Score { Id = 9, ProductId = 31, ArtistId = 5, ProductTypeId = 3, GenreId = 3, Name = "Felices Los 4" },
-                    new Score { Id = 10, ProductId = 32, ArtistId = 5, ProductTypeId = 3, GenreId = 3, Name = "Corazòn" },
-                    new Score { Id = 11, ProductId = 33, ArtistId = 6, ProductTypeId = 3, GenreId = 3, Name =  "Andas en mi Cabeza" },
-                    new Score { Id = 12, ProductId = 34, ArtistId = 6, ProductTypeId = 3, GenreId = 3, Name = "Mi Niña Bonita" },
-                    new Score { Id = 13, ProductId = 35, ArtistId = 7, ProductTypeId = 3, GenreId = 4, Name = "Déjame Entrar" },
-                    new Score { Id = 14, ProductId = 36, ArtistId = 7, ProductTypeId = 3, GenreId = 4, Name = "Carito" },
-                    new Score { Id = 15, ProductId = 37, ArtistId = 8, ProductTypeId = 3, GenreId = 5, Name = "Suavemente" },
-                    new Score { Id = 16, ProductId = 38, ArtistId = 8, ProductTypeId = 3, GenreId = 5, Name = "Pintame" }
-                );
-
-            modelbuilder.Entity<Cd>()
-               .ToTable("Cds")
-               .HasData(
-               new Cd { Id = 1, Name = "Shakira", ProductId = 1, ArtistId = 1, GenreId = 1 },
-               new Cd { Id = 2, Name= "El Dorado", ProductId = 2, ArtistId = 1, GenreId = 1 },
-               new Cd { Id = 3, Name ="Mi sangre",ProductId = 3, ArtistId = 2, GenreId = 1 },
-               new Cd { Id = 4, Name="Un dia normal", ProductId = 4, ArtistId = 2, GenreId = 1 },
-               new Cd { Id = 5, Name="3.0", ProductId = 5, ArtistId = 3, GenreId = 2 },
-               new Cd { Id = 6, Name = "Sigo siendo yo",ProductId = 6, ArtistId = 3, GenreId = 2 },
-               new Cd { Id = 7, Name= "Brillantes",ProductId = 7, ArtistId = 4, GenreId = 2 },
-               new Cd { Id = 8, Name = "Bonitas y hermosas",ProductId = 8, ArtistId = 4, GenreId = 2 },
-               new Cd { Id = 9, Name = "11:11",ProductId = 9, ArtistId = 5, GenreId = 3 },
-               new Cd { Id = 10, Name="F.A.M.E", ProductId = 10, ArtistId = 5, GenreId = 3 },
-               new Cd { Id = 11, Name= "Supremo", ProductId = 11, ArtistId = 6, GenreId = 3 },
-               new Cd { Id = 12, Name = "Radio universo",ProductId = 12, ArtistId = 6, GenreId = 3 },
-               new Cd { Id = 13, Name= "VIVES",ProductId = 13, ArtistId = 7, GenreId = 4 },
-               new Cd { Id = 14, Name= "Más + Corazón Profundo", ProductId = 14, ArtistId = 7, GenreId = 4 },
-               new Cd { Id = 15, Name= "Suavemente",ProductId = 15, ArtistId = 8, GenreId = 5 },
-               new Cd { Id = 16, Name= "Los Monsters",ProductId = 16, ArtistId = 8, GenreId = 5 });
 
 
             modelbuilder.Entity<Product>()
@@ -196,7 +143,7 @@ namespace MaracasMusic.API.Data
                     new Product { Id = 13, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017", Price = 18, Foto = "CdVives1" },
                     new Product { Id = 14, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014", Price = 18, Foto = "CdVives2" },
                     new Product { Id = 15, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|april 1998", Price = 18, Foto = "CdElvisC1" },
-                    new Product { Id = 16, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012", Price = 20, Foto = "CdElvisC2" });
+                    new Product { Id = 16, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012", Price = 20, Foto = "CdElvisC2" },
 
 
             new Product
@@ -206,7 +153,7 @@ namespace MaracasMusic.API.Data
                 Price = 60,
                 Description = "Finish: Natural - Siam Oak drum shell with natural head - Head: Ø 4.5' - Approx. 28 cm high - Mini Comfort Curve II Rims",
                 Foto = "instrumentPerc1.jpg"
-            };
+            },
 
             new Product
             {
@@ -215,17 +162,17 @@ namespace MaracasMusic.API.Data
                 Price = 20,
                 Description = "Simple wooden percussion instrument, deliverd in pairs",
                 Foto = "instrumentPerc2.jpg"
-            };
+            },
 
             new Product
             {
                 Id = 19,
                 ProductTypeId = 2,
-                Price = 0,
+                Price = 50,
                 Description = "",
                 Foto = "instrumentString1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -234,7 +181,7 @@ namespace MaracasMusic.API.Data
                 Price = 470,
                 Description = "RoseWood back, glossy finish, hand crafted",
                 Foto = "instrumentString2.jpg"
-            };
+            },
 
             new Product
             {
@@ -243,7 +190,8 @@ namespace MaracasMusic.API.Data
                 Price = 20,
                 Description = "Hand crafted, made of Bamboo, pure tuning",
                 Foto = "instrumentWind1"
-            };
+            },
+
 
             new Product
             {
@@ -252,7 +200,7 @@ namespace MaracasMusic.API.Data
                 Price = 45,
                 Description = "Hand crafted, made of plum wood",
                 Foto = "instrumentWind2"
-            };
+            },
 
             new Product
             {
@@ -262,7 +210,7 @@ namespace MaracasMusic.API.Data
                 Description = "Shakira sheet music - Song: Whenever, Wherever",
                 Foto = "scoreSha1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -273,7 +221,7 @@ namespace MaracasMusic.API.Data
                 Foto = "scoreSha2.jpg"
 
 
-            };
+            },
 
             new Product
             {
@@ -283,7 +231,7 @@ namespace MaracasMusic.API.Data
                 Description = "Juanes sheet music - Song: La Camisa Negra",
                 Foto = "scoreJua1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -293,7 +241,7 @@ namespace MaracasMusic.API.Data
                 Description = "Juanes sheet music - Song: Juentos",
                 Foto = "scoreJua2.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -303,7 +251,7 @@ namespace MaracasMusic.API.Data
                 Description = "Marc Anthony sheet music - Song: Vivir mi Vida",
                 Foto = "scoreMar1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -313,7 +261,7 @@ namespace MaracasMusic.API.Data
                 Description = "Marc Anthony sheet music - Song: Te Conozco Bien",
                 Foto = "scoreMar2.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -324,7 +272,7 @@ namespace MaracasMusic.API.Data
                 Foto = "scoreGru1.jpg"
 
 
-            };
+            },
 
             new Product
             {
@@ -334,7 +282,7 @@ namespace MaracasMusic.API.Data
                 Description = "Grupo Niche - Song: El Amor Vendra",
                 Foto = "scoreGru2.jpg"
 
-            };
+            },
 
 
 
@@ -346,7 +294,7 @@ namespace MaracasMusic.API.Data
                 Description = "Maluma sheet music - Song: Felices los 4",
                 Foto = "scoreMal1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -356,7 +304,7 @@ namespace MaracasMusic.API.Data
                 Description = "Maluma sheet music - Song: Corazòn",
                 Foto = "scoreMal2.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -366,7 +314,7 @@ namespace MaracasMusic.API.Data
                 Description = "Chino y Nacho sheet music - Song: Andas en mi Cabeza",
                 Foto = "scoreChi1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -376,7 +324,7 @@ namespace MaracasMusic.API.Data
                 Description = "Chino y Nacho sheet music - Song: Mi Niña Bonita",
                 Foto = "scoreChi2.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -386,7 +334,7 @@ namespace MaracasMusic.API.Data
                 Description = "Carlos Vives - Song: Déjame Entrar",
                 Foto = "scoreCar1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -396,7 +344,7 @@ namespace MaracasMusic.API.Data
                 Description = "Carlos Vives sheet music - Song: Carito",
                 Foto = "scoreCar2.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -406,7 +354,7 @@ namespace MaracasMusic.API.Data
                 Description = "Elvis Crespo sheet music - Song: Suavemente",
                 Foto = "scoreElv1.jpg"
 
-            };
+            },
 
             new Product
             {
@@ -416,7 +364,63 @@ namespace MaracasMusic.API.Data
                 Description = "Elvis Crespo sheet music - Song: Pintame",
                 Foto = "scoreElv2.jpg"
 
-            };
+            });
+
+
+
+            modelbuilder.Entity<Instrument>()
+               .ToTable("Instruments")
+               .HasData(
+                   new { Id = 1, Name = "LPM198 Mini Tuneable Conga", InstrumentTypeId = 1, ProductId = 17 },
+                   new { Id = 2, Name = "Large Wooden Maracas", InstrumentTypeId = 1, ProductId = 18 },
+                   new { Id = 3, Name = "Vera Cruz Harp", InstrumentTypeId = 2, ProductId = 19 },
+                   new { Id = 4, Name = "Baja Sexto", InstrumentTypeId = 2, ProductId = 20 },
+                   new { Id = 5, Name = "Gewa Pan Pipe", InstrumentTypeId = 3, ProductId = 21 },
+                   new { Id = 6, Name = "Quena Flute", InstrumentTypeId = 3, ProductId = 22 }
+                   );
+
+
+            modelbuilder.Entity<Score>()
+                .ToTable("Scores")
+                .HasData(
+                    new { Id = 1, ProductId = 23, ArtistId = 1, GenreId = 1, Name = "Whenever, wherever" },
+                    new { Id = 2, ProductId = 24, ArtistId = 1, GenreId = 1, Name = "Hips don't Lie" },
+                    new { Id = 3, ProductId = 25, ArtistId = 2, GenreId = 1, Name = "La Camisa Negra" },
+                    new { Id = 4, ProductId = 26, ArtistId = 2, GenreId = 1, Name = "Juntos" },
+                    new { Id = 5, ProductId = 27, ArtistId = 3, GenreId = 2, Name = "Vivir mi Vida" },
+                    new { Id = 6, ProductId = 28, ArtistId = 3, GenreId = 2, Name = "Te Conozco Bien" },
+                    new { Id = 7, ProductId = 29, ArtistId = 4, GenreId = 2, Name = "Tapanco El Hueco" },
+                    new { Id = 8, ProductId = 30, ArtistId = 4, GenreId = 2, Name = "El Amor Vendra" },
+                    new { Id = 9, ProductId = 31, ArtistId = 5, GenreId = 3, Name = "Felices Los 4" },
+                    new { Id = 10, ProductId = 32, ArtistId = 5, GenreId = 3, Name = "Corazòn" },
+                    new { Id = 11, ProductId = 33, ArtistId = 6, GenreId = 3, Name = "Andas en mi Cabeza" },
+                    new { Id = 12, ProductId = 34, ArtistId = 6, GenreId = 3, Name = "Mi Niña Bonita" },
+                    new { Id = 13, ProductId = 35, ArtistId = 7, GenreId = 4, Name = "Déjame Entrar" },
+                    new { Id = 14, ProductId = 36, ArtistId = 7, GenreId = 4, Name = "Carito" },
+                    new { Id = 15, ProductId = 37, ArtistId = 8, GenreId = 5, Name = "Suavemente" },
+                    new { Id = 16, ProductId = 38, ArtistId = 8, GenreId = 5, Name = "Pintame" }
+                );
+
+            modelbuilder.Entity<Cd>()
+              .ToTable("Cds")
+              .HasData(
+              new { Id = 1, Name = "Shakira", ProductId = 1, ArtistId = 1, GenreId = 1 },
+              new { Id = 2, Name = "El Dorado", ProductId = 2, ArtistId = 1, GenreId = 1 },
+              new { Id = 3, Name = "Mi sangre", ProductId = 3, ArtistId = 2, GenreId = 1 },
+              new { Id = 4, Name = "Un dia normal", ProductId = 4, ArtistId = 2, GenreId = 1 },
+              new { Id = 5, Name = "3.0", ProductId = 5, ArtistId = 3, GenreId = 2 },
+              new { Id = 6, Name = "Sigo siendo yo", ProductId = 6, ArtistId = 3, GenreId = 2 },
+              new { Id = 7, Name = "Brillantes", ProductId = 7, ArtistId = 4, GenreId = 2 },
+              new { Id = 8, Name = "Bonitas y hermosas", ProductId = 8, ArtistId = 4, GenreId = 2 },
+              new { Id = 9, Name = "11:11", ProductId = 9, ArtistId = 5, GenreId = 3 },
+              new { Id = 10, Name = "F.A.M.E", ProductId = 10, ArtistId = 5, GenreId = 3 },
+              new { Id = 11, Name = "Supremo", ProductId = 11, ArtistId = 6, GenreId = 3 },
+              new { Id = 12, Name = "Radio universo", ProductId = 12, ArtistId = 6, GenreId = 3 },
+              new { Id = 13, Name = "VIVES", ProductId = 13, ArtistId = 7, GenreId = 4 },
+              new { Id = 14, Name = "Más + Corazón Profundo", ProductId = 14, ArtistId = 7, GenreId = 4 },
+              new { Id = 15, Name = "Suavemente", ProductId = 15, ArtistId = 8, GenreId = 5 },
+              new { Id = 16, Name = "Los Monsters", ProductId = 16, ArtistId = 8, GenreId = 5 });
+
 
         }
 
@@ -430,12 +434,8 @@ namespace MaracasMusic.API.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<InstrumentType> InstrumentTypes { get; set; }
         public DbSet<ProductType> ProductTypes { get; set; }
-        public DbSet<Score> Score { get; set; }
-
-       
-
+        public DbSet<Score> Scores { get; set; }
 
     }
-
 
 }
