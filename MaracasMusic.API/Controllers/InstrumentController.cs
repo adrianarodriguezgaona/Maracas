@@ -35,5 +35,13 @@ namespace MaracasMusic.API.Controllers
         {
             return Ok(repository.ListBasic());
         }
+
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetInstrumentDetail(int id)
+        {
+            return Ok(repository.GetDetailById(id));
+        }
     }
 }

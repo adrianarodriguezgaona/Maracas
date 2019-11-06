@@ -32,5 +32,12 @@ namespace MaracasMusic.API.Controllers
         {
             return Ok(_cdRepository.ListBasic());
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetCdDetail(int id)
+        {
+            return Ok(_cdRepository.GetDetailById(id));
+        }
     }
 }
