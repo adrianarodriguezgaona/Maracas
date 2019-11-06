@@ -6,9 +6,12 @@ namespace Maracas.Lib.Models
 {
     public class InstrumentDetail
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public long ProductId { get; set; }
+        public int ProductId { get; set; }
         public decimal ProductPrice { get; set; }
+        public string Description { get; set; }
+        public string Foto { get; set; }
+
     }
 }

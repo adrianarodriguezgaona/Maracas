@@ -6,13 +6,15 @@ namespace Maracas.Lib.Models
 {
     public class CdDetail
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
-        public long ProductId { get; set; }
+        public int ProductId { get; set; }
         public decimal ProductPrice { get; set; }
-        public long ArtistId { get; set; }
+        public string CdDescription { get; set; }
+        public string CdFoto { get; set; }
+        public int ArtistId { get; set; }
         public string ArtistName { get; set; }
-        public long? GenreId { get; set; }
+        public int GenreId { get; set; }
         public string GenreName { get; set; }
 
     }

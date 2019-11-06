@@ -6,7 +6,7 @@ namespace Maracas.Lib.Models
 {
    public class InstrumentType
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public List<Instrument> Instruments { get; set; }
     }
