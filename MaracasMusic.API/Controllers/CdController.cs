@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using MaracasMusic.API.Data;
@@ -38,6 +39,22 @@ namespace MaracasMusic.API.Controllers
         public IActionResult GetCdDetail(int id)
         {
             return Ok(_cdRepository.GetDetailById(id));
+        }
+
+        [HttpGet]
+        [Route("ImageByName/{filename}")]
+        public IActionResult GetImageByFileName(string filename)
+        {
+            var pathOfImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", filename);
+            return PhysicalFile(pathOfImage, "image/jpeg");
+        }
+
+        // GET: api/cd/imagebyid/6
+        [HttpGet]
+        [Route("ImageById/{cdid}")]
+        public IActionResult GetImageByBookId(int cdId)
+        {
+            return GetImageByFileName(_cdRepository.GetDetailById(cdId).CdFoto);
         }
     }
 }
