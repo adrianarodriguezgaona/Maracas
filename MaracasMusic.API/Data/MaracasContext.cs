@@ -128,22 +128,22 @@ namespace MaracasMusic.API.Data
             modelbuilder.Entity<Product>()
                 .ToTable("Products")
                 .HasData(
-                    new Product { Id = 1, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|maart 2014", Price = 11, Foto = "CdShakira1" },
-                    new Product { Id = 2, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|mei 2017", Price = 10, Foto = "CdShakira2" },
-                    new Product { Id = 3, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|september 2004", Price = 11, Foto = "CdJuanes1" },
-                    new Product { Id = 4, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2002", Price = 9, Foto = "CdJuanes1" },
-                    new Product { Id = 5, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2013", Price = 11, Foto = "CdMarcA1" },
-                    new Product { Id = 6, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum", Price = 11, Foto = "CdMarcA2" },
-                    new Product { Id = 7, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum", Price = 15, Foto = "CdGrupoN1" },
-                    new Product { Id = 8, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|november 2015 ", Price = 20, Foto = "CdGrupoN2" },
-                    new Product { Id = 9, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 ", Price = 22, Foto = "CdMaluma1" },
-                    new Product { Id = 10, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 ", Price = 22, Foto = "CdMaluma2" },
-                    new Product { Id = 11, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|October 2011", Price = 20, Foto = "CdChino1" },
-                    new Product { Id = 12, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015", Price = 18, Foto = "CdChino2" },
-                    new Product { Id = 13, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017", Price = 18, Foto = "CdVives1" },
-                    new Product { Id = 14, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014", Price = 18, Foto = "CdVives2" },
-                    new Product { Id = 15, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|april 1998", Price = 18, Foto = "CdElvisC1" },
-                    new Product { Id = 16, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012", Price = 20, Foto = "CdElvisC2" },
+                    new Product { Id = 1, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|maart 2014", Price = 11, Foto = "CdShakira1.jpg" },
+                    new Product { Id = 2, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|mei 2017", Price = 10, Foto = "CdShakira2.jpg" },
+                    new Product { Id = 3, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|september 2004", Price = 11, Foto = "CdJuanes1.jpg" },
+                    new Product { Id = 4, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2002", Price = 9, Foto = "CdJuanes2.jpg" },
+                    new Product { Id = 5, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2013", Price = 11, Foto = "CdMarcA1.jpg" },
+                    new Product { Id = 6, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum", Price = 11, Foto = "CdMarcA2.jpg" },
+                    new Product { Id = 7, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum", Price = 15, Foto = "CdGrupoN1.jpg" },
+                    new Product { Id = 8, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|november 2015 ", Price = 20, Foto = "CdGrupoN2.jpg" },
+                    new Product { Id = 9, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 ", Price = 22, Foto = "CdMaluma1.jpg" },
+                    new Product { Id = 10, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 ", Price = 22, Foto = "CdMaluma2.jpg" },
+                    new Product { Id = 11, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|October 2011", Price = 20, Foto = "CdChino1.jpg" },
+                    new Product { Id = 12, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015", Price = 18, Foto = "CdChino2.jpg" },
+                    new Product { Id = 13, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017", Price = 18, Foto = "CdVives1.jpg" },
+                    new Product { Id = 14, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014", Price = 18, Foto = "CdVives2.jpg" },
+                    new Product { Id = 15, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|april 1998", Price = 18, Foto = "CdElvisC1.jpg" },
+                    new Product { Id = 16, ProductTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012", Price = 20, Foto = "CdElvisC2.jpg" },
 
 
             new Product
