@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    class ScoreDetail
+   public class ScoreDetail
     {
         public int Id { get; set; }
         public string Name { get; set; }
