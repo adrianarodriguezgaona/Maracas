@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Maracas.Lib.Models;
 using MaracasMusic.API.Data;
 using MaracasMusic.API.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -56,5 +57,26 @@ namespace MaracasMusic.API.Controllers
         {
             return GetImageByFileName(_cdRepository.GetDetailById(cdId).CdFoto);
         }
+
+        ////PUT: api/Cd/5
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutCd ([FromRoute] int id, [FromBody] Cd cd)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    if (id != cd.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    Cd updatedCd = await _cdRepository.Update(cd);
+        //    if (updatedCd == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(updatedCd);
+        //}
     }
 }
