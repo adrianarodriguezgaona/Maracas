@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,8 +11,7 @@ namespace Maracas.Lib.Models
 
         public string Name { get; set; }
 
-        public long? GenreId { get; set; }
-
+        public long? GenreId { get; set; }      
         public Genre Genre { get; set; }
 
         public List<Cd> Cds { get; set; }
