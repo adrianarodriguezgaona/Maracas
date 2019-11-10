@@ -20,11 +20,7 @@ namespace MaracasMusic.API.Repositories
 
         public List <Cd> List()
         {
-            return _maracasContext.Cds
-                .Include( cd => cd.Product)
-                .Include( cd => cd.Artist)
-                .Include( cd => cd.Genre)
-                .ToList();
+            return _maracasContext.Cds.ToList();
         }
 
         public List <CdBasicDto> ListBasic()
@@ -40,7 +36,11 @@ namespace MaracasMusic.API.Repositories
         public CdDetail GetDetailById(int id)
         {
             return (
-                 _maracasContext.Cds.Select(cd => new CdDetail
+                 _maracasContext.Cds
+                .Include(cd => cd.Product)
+                .Include(cd => cd.Artist)
+                .Include(cd => cd.Genre)
+                .Select(cd => new CdDetail
                 {
                     Id = cd.Id,
                     Name = cd.Name,
@@ -50,12 +50,37 @@ namespace MaracasMusic.API.Repositories
                     CdFoto = cd.Product.Foto,
                     ArtistId = cd.Artist.Id,
                     ArtistName = cd.Artist.Name,
-                    GenreId = cd.Genre.Id,
-                    GenreName = cd.Genre.Name
-                })               
+                     GenreId = cd.Genre.Id,
+                     GenreName = cd.Genre.Name
+                 })               
                 .FirstOrDefault(cd => cd.Id == id));
         }
 
+        //public async Task<Cd>Update (Cd cd)
+        //{
+        //    try
+        //    {
+        //        _maracasContext.Entry(cd).State = EntityState.Modified;
+        //        await _maracasContext.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!CdExists(cd.Id))
+        //        {
+        //            return null;
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+        //    return cd;
+        //}
+
+        //private bool CdExists(int id)
+        //{
+        //    return _maracasContext.Cds.Any(e => e.Id == id);
+        //}
 
 
     }
