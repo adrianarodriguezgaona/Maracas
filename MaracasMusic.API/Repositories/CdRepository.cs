@@ -18,16 +18,17 @@ namespace MaracasMusic.API.Repositories
             _maracasContext = maracasContext;
         }
 
-        public List <Cd> List()
+        public List<Cd> List()
         {
             return _maracasContext.Cds
-                .Include( cd => cd.Product)
-                .Include( cd => cd.Artist)
-                .Include( cd => cd.Genre)
+             
+                .Include(cd => cd.Artist)
+                .Include(cd => cd.Product)
+                .Include(cd => cd.Genre)
                 .ToList();
         }
 
-        public List <CdBasicDto> ListBasic()
+        public List<CdBasicDto> ListBasic()
         {
             return _maracasContext.Cds.Select(cd => new CdBasicDto
             {

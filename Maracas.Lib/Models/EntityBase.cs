@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    public class ProductType : EntityBase
+    public abstract class EntityBase
     {
-        public string Type { get; set; }
-
-    }
+        public int Id { get; set; }
+    }   
 }

@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-   public class ScoreDetail
+   public class ScoreDetail : EntityBase
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int ProductId { get; set; }
         public decimal ProductPrice { get; set; }

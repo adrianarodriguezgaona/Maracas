@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Maracas.Lib.DTO;
+using Microsoft.EntityFrameworkCore;
 
 namespace MaracasMusic.API.Repositories
 {
@@ -19,7 +20,10 @@ namespace MaracasMusic.API.Repositories
 
         public List<Score> List()
         {
-            return _context.Scores.ToList();
+            return _context.Scores
+                .ToList();
+                
+                
         }
 
         public List<ScoreBasicDTO> ListBasic()
