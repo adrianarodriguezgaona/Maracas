@@ -4,9 +4,8 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    public class Order
+    public class Order : EntityBase
     {
-        public int Id { get; set; }
         public int ClientId { get; set; }
         public Client Client { get; set; }
         public DateTime DateOrder { get; set; }

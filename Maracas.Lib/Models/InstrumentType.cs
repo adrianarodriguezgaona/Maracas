@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-   public class InstrumentType
+   public class InstrumentType : EntityBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public List<Instrument> Instruments { get; set; }
     }
 }

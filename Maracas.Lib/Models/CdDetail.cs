@@ -4,10 +4,8 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    public class CdDetail
+    public class CdDetail : EntityBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
         public int ProductId { get; set; }
         public decimal ProductPrice { get; set; }
         public string CdDescription { get; set; }
