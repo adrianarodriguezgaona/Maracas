@@ -9,35 +9,28 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MaracasMusic.API.Repositories
 {
-    public class ScoreRepository
+    public class ScoreRepository : RepositoryBase<Score>
     {
-        private MaracasContext _context;
-
-        public ScoreRepository(MaracasContext context)
+       
+        
+        public ScoreRepository(MaracasContext maracasContext) : base (maracasContext)
         {
-            _context = context;
+           
         }
 
-        public List<Score> List()
-        {
-            return _context.Scores
-                .ToList();
-                
-                
-        }
 
-        public List<ScoreBasicDTO> ListBasic()
+        public async Task<List<ScoreBasicDTO>> ListBasic()
         {
-            return _context.Scores.Select(s => new ScoreBasicDTO
+            return await _maracasContext.Scores.Select(s => new ScoreBasicDTO
             {
                 Id = s.Id,
                 Name = s.Name
-            }).ToList();
+            }).ToListAsync();
         }
 
-        public ScoreDetail GetDetailsById(int id)
+        public async Task <ScoreDetail> GetDetailsById(int id)
         {
-            return _context.Scores.Select(s => new ScoreDetail
+            return await _maracasContext.Scores.Select(s => new ScoreDetail
             {
                 Id = s.Id,
                 Name = s.Name,
@@ -45,7 +38,7 @@ namespace MaracasMusic.API.Repositories
                 Description = s.Product.Description,
                 Foto = s.Product.Foto
 
-            }).FirstOrDefault(s => s.Id == id);
+            }).FirstOrDefaultAsync(s => s.Id == id);
                                 
         }
     }

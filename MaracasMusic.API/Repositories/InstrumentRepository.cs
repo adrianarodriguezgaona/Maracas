@@ -9,35 +9,28 @@ using System.Threading.Tasks;
 
 namespace MaracasMusic.API.Repositories
 {
-    public class InstrumentRepository
+    public class InstrumentRepository : RepositoryBase<Instrument>
     {
-        private MaracasContext _context;
-
-        public InstrumentRepository( MaracasContext context)
+       
+        public InstrumentRepository( MaracasContext maracasContext) : base (maracasContext)
         {
-            _context = context;
+          
         }
 
-        public List<Instrument> List()
+       
+        public async Task<List<InstrumentBasicDto>> ListBasic ()
         {
-            return _context.Instruments
-                .Include(i => i.Product)
-                .ToList();
-        }
-
-        public List<InstrumentBasicDto> ListBasic ()
-        {
-            return _context.Instruments.Select(i => new InstrumentBasicDto
+            return await _maracasContext.Instruments.Select(i => new InstrumentBasicDto
             {
                 Id = i.Id,
                 Name = i.Name
-            }).ToList();
+            }).ToListAsync();
         }
 
-        public InstrumentDetail GetDetailById(int id)
+        public async Task<InstrumentDetail> GetDetailById(int id)
         {
             return (
-                 _context.Instruments.Select(i => new InstrumentDetail
+                await  _maracasContext.Instruments.Select(i => new InstrumentDetail
                  {
                      Id = i.Id,
                      Name = i.Name,
@@ -47,7 +40,7 @@ namespace MaracasMusic.API.Repositories
                      Foto = i.Product.Foto
 
                  })
-                .FirstOrDefault(i => i.Id == id));
+                .FirstOrDefaultAsync(i => i.Id == id));
         }
 
 

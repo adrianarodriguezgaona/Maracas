@@ -9,34 +9,27 @@ using System.Threading.Tasks;
 
 namespace MaracasMusic.API.Repositories
 {
-    public class CdRepository
+    public class CdRepository : RepositoryBase<Cd>
     {
-        private MaracasContext _maracasContext;
-
-        public CdRepository( MaracasContext maracasContext)
+      
+        public CdRepository( MaracasContext maracasContext) : base (maracasContext)
         {
-            _maracasContext = maracasContext;
+           
         }
-
-        public List <Cd> List()
+        public async Task<List <CdBasicDto>> ListBasic()
         {
-            return _maracasContext.Cds.ToList();
-        }
-
-        public List <CdBasicDto> ListBasic()
-        {
-            return _maracasContext.Cds.Select(cd => new CdBasicDto
+            return  await _maracasContext.Cds.Select(cd => new CdBasicDto
             {
                 Id = cd.Id,
                 Name = cd.Name
-            }).ToList();
+            }).ToListAsync();
                 
         }
 
-        public CdDetail GetDetailById(int id)
+        public async Task<CdDetail> GetDetailById(int id)
         {
             return (
-                 _maracasContext.Cds              
+                 await _maracasContext.Cds              
                 .Select(cd => new CdDetail
                 {
                     Id = cd.Id,
@@ -50,35 +43,9 @@ namespace MaracasMusic.API.Repositories
                     GenreId = cd.Genre.Id,
                     GenreName = cd.Genre.Name
                  })               
-                .FirstOrDefault(cd => cd.Id == id));
+                .FirstOrDefaultAsync(cd => cd.Id == id));
         }
-
-        //public async Task<Cd>Update (Cd cd)
-        //{
-        //    try
-        //    {
-        //        _maracasContext.Entry(cd).State = EntityState.Modified;
-        //        await _maracasContext.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!CdExists(cd.Id))
-        //        {
-        //            return null;
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-        //    return cd;
-        //}
-
-        //private bool CdExists(int id)
-        //{
-        //    return _maracasContext.Cds.Any(e => e.Id == id);
-        //}
-
+      
 
     }
 }

@@ -33,6 +33,8 @@ namespace MaracasMusic.API
             services.AddScoped<ScoreRepository>();
             services.AddScoped<CdRepository>();
             services.AddScoped<InstrumentRepository>();
+            services.AddScoped<ArtistRepository>();
+            services.AddScoped<ProductRepository>();
             services.AddMvc().AddJsonOptions(ConfigureJson);
 
         }
