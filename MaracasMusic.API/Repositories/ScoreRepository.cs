@@ -23,15 +23,33 @@ namespace MaracasMusic.API.Repositories
         }
 
         public List<ScoreBasicDTO> ListBasic()
-
-            {
+        {
             return _context.Scores.Select(s => new ScoreBasicDTO
             {
                 Id = s.Id,
                 Name = s.Name
-
             }).ToList();
-            }
+        }
 
+
+
+
+
+        public ScoreDetail GetDetailsById(int id)
+        {
+            return _context.Scores.Select(s => new ScoreDetail
+            {
+                Id = s.Id,
+                Name = s.Name,
+                ProductId = s.Product.Id,
+                Description = s.Product.Description,
+                Foto = s.Product.Foto
+
+            }).FirstOrDefault(s => s.Id == id);
+                
+                
+
+
+        }
     }
 }

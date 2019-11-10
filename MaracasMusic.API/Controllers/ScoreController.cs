@@ -21,8 +21,8 @@ namespace MaracasMusic.API.Controllers
 
         // GET api/scores
 
-            [HttpGet]
-            public IActionResult GetScores()
+        [HttpGet]
+        public IActionResult GetScores()
 
         {
             return Ok(repository.List());
@@ -33,6 +33,15 @@ namespace MaracasMusic.API.Controllers
         public IActionResult GetScoresBasic()
         {
             return Ok(repository.ListBasic());
+        }
+
+
+        [HttpGet]
+        [Route("{Id}")]
+        public IActionResult GetScoreDetailById(int id)
+
+        {
+            return Ok(repository.GetDetailsById(id));
         }
     }
 }
