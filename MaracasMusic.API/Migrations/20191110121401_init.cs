@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MaracasMusic.API.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,6 +56,7 @@ namespace MaracasMusic.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
                     Type = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -68,7 +70,9 @@ namespace MaracasMusic.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClientId = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    ClientId = table.Column<int>(nullable: false),
+                    DateOrder = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,6 +112,7 @@ namespace MaracasMusic.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
                     Foto = table.Column<string>(nullable: true),
@@ -265,57 +270,57 @@ namespace MaracasMusic.API.Migrations
 
             migrationBuilder.InsertData(
                 table: "ProductTypes",
-                columns: new[] { "Id", "Type" },
+                columns: new[] { "Id", "Name", "Type" },
                 values: new object[,]
                 {
-                    { 2, "Instrument" },
-                    { 1, "Cd" },
-                    { 3, "Score" }
+                    { 2, null, "Instrument" },
+                    { 1, null, "Cd" },
+                    { 3, null, "Score" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Description", "Foto", "OrderId", "Price", "ProductTypeId" },
+                columns: new[] { "Id", "Description", "Foto", "Name", "OrderId", "Price", "ProductTypeId" },
                 values: new object[,]
                 {
-                    { 1, "CD (ALBUM) |1 disk |Engels|maart 2014", "CdShakira1", null, 11m, 1 },
-                    { 22, "Hand crafted, made of plum wood", "instrumentWind2", null, 45m, 2 },
-                    { 23, "Shakira sheet music - Song: Whenever, Wherever", "scoreSha1.jpg", null, 9.99m, 3 },
-                    { 24, "Shakira sheet music - Song: Hips don't Lie", "scoreSha2.jpg", null, 9.99m, 3 },
-                    { 25, "Juanes sheet music - Song: La Camisa Negra", "scoreJua1.jpg", null, 9.99m, 3 },
-                    { 26, "Juanes sheet music - Song: Juentos", "scoreJua2.jpg", null, 9.99m, 3 },
-                    { 27, "Marc Anthony sheet music - Song: Vivir mi Vida", "scoreMar1.jpg", null, 9.99m, 3 },
-                    { 28, "Marc Anthony sheet music - Song: Te Conozco Bien", "scoreMar2.jpg", null, 9.99m, 3 },
-                    { 29, "Grupo Niche sheet music - Song: Tapanco El Hueco", "scoreGru1.jpg", null, 9.99m, 3 },
-                    { 30, "Grupo Niche - Song: El Amor Vendra", "scoreGru2.jpg", null, 9.99m, 3 },
-                    { 31, "Maluma sheet music - Song: Felices los 4", "scoreMal1.jpg", null, 9.99m, 3 },
-                    { 32, "Maluma sheet music - Song: Corazòn", "scoreMal2.jpg", null, 9.99m, 3 },
-                    { 33, "Chino y Nacho sheet music - Song: Andas en mi Cabeza", "scoreChi1.jpg", null, 9.99m, 3 },
-                    { 34, "Chino y Nacho sheet music - Song: Mi Niña Bonita", "scoreChi2.jpg", null, 9.99m, 3 },
-                    { 35, "Carlos Vives - Song: Déjame Entrar", "scoreCar1.jpg", null, 9.99m, 3 },
-                    { 36, "Carlos Vives sheet music - Song: Carito", "scoreCar2.jpg", null, 9.99m, 3 },
-                    { 21, "Hand crafted, made of Bamboo, pure tuning", "instrumentWind1", null, 20m, 2 },
-                    { 20, "RoseWood back, glossy finish, hand crafted", "instrumentString2.jpg", null, 470m, 2 },
-                    { 19, "", "instrumentString1.jpg", null, 50m, 2 },
-                    { 18, "Simple wooden percussion instrument, deliverd in pairs", "instrumentPerc2.jpg", null, 20m, 2 },
-                    { 2, "CD (ALBUM) |1 disk |Engels|mei 2017", "CdShakira2", null, 10m, 1 },
-                    { 3, "CD (ALBUM) |1 disk |Spaans|september 2004", "CdJuanes1", null, 11m, 1 },
-                    { 4, "CD (ALBUM) |1 disk |Spaans|mei 2002", "CdJuanes1", null, 9m, 1 },
-                    { 5, "CD (ALBUM) |1 disk |Spaans|juli 2013", "CdMarcA1", null, 11m, 1 },
-                    { 6, "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum", "CdMarcA2", null, 11m, 1 },
-                    { 7, "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum", "CdGrupoN1", null, 15m, 1 },
-                    { 8, "CD (ALBUM) |1 disk |Spaans|november 2015 ", "CdGrupoN2", null, 20m, 1 },
-                    { 37, "Elvis Crespo sheet music - Song: Suavemente", "scoreElv1.jpg", null, 9.99m, 3 },
-                    { 9, "CD (ALBUM) |1 disk |Spaans|mei 2019 ", "CdMaluma1", null, 22m, 1 },
-                    { 11, "CD (ALBUM) |1 disk |Spaans|October 2011", "CdChino1", null, 20m, 1 },
-                    { 12, "CD (ALBUM) |1 disk |Spaans|June 23, 2015", "CdChino2", null, 18m, 1 },
-                    { 13, "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017", "CdVives1", null, 18m, 1 },
-                    { 14, "CD (ALBUM) |1 disk |Spaans|May 13, 2014", "CdVives2", null, 18m, 1 },
-                    { 15, "CD (ALBUM) |1 disk |Spaans|april 1998", "CdElvisC1", null, 18m, 1 },
-                    { 16, "CD (ALBUM) |1 disk |Spaans|mei 2012", "CdElvisC2", null, 20m, 1 },
-                    { 17, "Finish: Natural - Siam Oak drum shell with natural head - Head: Ø 4.5' - Approx. 28 cm high - Mini Comfort Curve II Rims", "instrumentPerc1.jpg", null, 60m, 2 },
-                    { 10, "CD (ALBUM) |1 disk |Spaans|mei 2018 ", "CdMaluma2", null, 22m, 1 },
-                    { 38, "Elvis Crespo sheet music - Song: Pintame", "scoreElv2.jpg", null, 9.99m, 3 }
+                    { 1, "CD (ALBUM) |1 disk |Engels|maart 2014", "CdShakira1.jpg", null, null, 11m, 1 },
+                    { 22, "Hand crafted, made of plum wood", "instrumentWind2", null, null, 45m, 2 },
+                    { 23, "Shakira sheet music - Song: Whenever, Wherever", "scoreSha1.jpg", null, null, 9.99m, 3 },
+                    { 24, "Shakira sheet music - Song: Hips don't Lie", "scoreSha2.jpg", null, null, 9.99m, 3 },
+                    { 25, "Juanes sheet music - Song: La Camisa Negra", "scoreJua1.jpg", null, null, 9.99m, 3 },
+                    { 26, "Juanes sheet music - Song: Juentos", "scoreJua2.jpg", null, null, 9.99m, 3 },
+                    { 27, "Marc Anthony sheet music - Song: Vivir mi Vida", "scoreMar1.jpg", null, null, 9.99m, 3 },
+                    { 28, "Marc Anthony sheet music - Song: Te Conozco Bien", "scoreMar2.jpg", null, null, 9.99m, 3 },
+                    { 29, "Grupo Niche sheet music - Song: Tapanco El Hueco", "scoreGru1.jpg", null, null, 9.99m, 3 },
+                    { 30, "Grupo Niche - Song: El Amor Vendra", "scoreGru2.jpg", null, null, 9.99m, 3 },
+                    { 31, "Maluma sheet music - Song: Felices los 4", "scoreMal1.jpg", null, null, 9.99m, 3 },
+                    { 32, "Maluma sheet music - Song: Corazòn", "scoreMal2.jpg", null, null, 9.99m, 3 },
+                    { 33, "Chino y Nacho sheet music - Song: Andas en mi Cabeza", "scoreChi1.jpg", null, null, 9.99m, 3 },
+                    { 34, "Chino y Nacho sheet music - Song: Mi Niña Bonita", "scoreChi2.jpg", null, null, 9.99m, 3 },
+                    { 35, "Carlos Vives - Song: Déjame Entrar", "scoreCar1.jpg", null, null, 9.99m, 3 },
+                    { 36, "Carlos Vives sheet music - Song: Carito", "scoreCar2.jpg", null, null, 9.99m, 3 },
+                    { 21, "Hand crafted, made of Bamboo, pure tuning", "instrumentWind1", null, null, 20m, 2 },
+                    { 20, "RoseWood back, glossy finish, hand crafted", "instrumentString2.jpg", null, null, 470m, 2 },
+                    { 19, "", "instrumentString1.jpg", null, null, 50m, 2 },
+                    { 18, "Simple wooden percussion instrument, deliverd in pairs", "instrumentPerc2.jpg", null, null, 20m, 2 },
+                    { 2, "CD (ALBUM) |1 disk |Engels|mei 2017", "CdShakira2.jpg", null, null, 10m, 1 },
+                    { 3, "CD (ALBUM) |1 disk |Spaans|september 2004", "CdJuanes1.jpg", null, null, 11m, 1 },
+                    { 4, "CD (ALBUM) |1 disk |Spaans|mei 2002", "CdJuanes2.jpg", null, null, 9m, 1 },
+                    { 5, "CD (ALBUM) |1 disk |Spaans|juli 2013", "CdMarcA1.jpg", null, null, 11m, 1 },
+                    { 6, "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum", "CdMarcA2.jpg", null, null, 11m, 1 },
+                    { 7, "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum", "CdGrupoN1.jpg", null, null, 15m, 1 },
+                    { 8, "CD (ALBUM) |1 disk |Spaans|november 2015 ", "CdGrupoN2.jpg", null, null, 20m, 1 },
+                    { 37, "Elvis Crespo sheet music - Song: Suavemente", "scoreElv1.jpg", null, null, 9.99m, 3 },
+                    { 9, "CD (ALBUM) |1 disk |Spaans|mei 2019 ", "CdMaluma1.jpg", null, null, 22m, 1 },
+                    { 11, "CD (ALBUM) |1 disk |Spaans|October 2011", "CdChino1.jpg", null, null, 20m, 1 },
+                    { 12, "CD (ALBUM) |1 disk |Spaans|June 23, 2015", "CdChino2.jpg", null, null, 18m, 1 },
+                    { 13, "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017", "CdVives1.jpg", null, null, 18m, 1 },
+                    { 14, "CD (ALBUM) |1 disk |Spaans|May 13, 2014", "CdVives2.jpg", null, null, 18m, 1 },
+                    { 15, "CD (ALBUM) |1 disk |Spaans|april 1998", "CdElvisC1.jpg", null, null, 18m, 1 },
+                    { 16, "CD (ALBUM) |1 disk |Spaans|mei 2012", "CdElvisC2.jpg", null, null, 20m, 1 },
+                    { 17, "Finish: Natural - Siam Oak drum shell with natural head - Head: Ø 4.5' - Approx. 28 cm high - Mini Comfort Curve II Rims", "instrumentPerc1.jpg", null, null, 60m, 2 },
+                    { 10, "CD (ALBUM) |1 disk |Spaans|mei 2018 ", "CdMaluma2.jpg", null, null, 22m, 1 },
+                    { 38, "Elvis Crespo sheet music - Song: Pintame", "scoreElv2.jpg", null, null, 9.99m, 3 }
                 });
 
             migrationBuilder.InsertData(

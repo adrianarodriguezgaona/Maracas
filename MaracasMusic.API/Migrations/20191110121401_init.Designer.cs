@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaracasMusic.API.Migrations
 {
     [DbContext(typeof(MaracasContext))]
-    [Migration("20191106075727_Init")]
-    partial class Init
+    [Migration("20191110121401_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -407,6 +407,10 @@ namespace MaracasMusic.API.Migrations
 
                     b.Property<int>("ClientId");
 
+                    b.Property<DateTime>("DateOrder");
+
+                    b.Property<string>("Name");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
@@ -423,6 +427,8 @@ namespace MaracasMusic.API.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("Foto");
+
+                    b.Property<string>("Name");
 
                     b.Property<int?>("OrderId");
 
@@ -443,7 +449,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 1,
                             Description = "CD (ALBUM) |1 disk |Engels|maart 2014",
-                            Foto = "CdShakira1",
+                            Foto = "CdShakira1.jpg",
                             Price = 11m,
                             ProductTypeId = 1
                         },
@@ -451,7 +457,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 2,
                             Description = "CD (ALBUM) |1 disk |Engels|mei 2017",
-                            Foto = "CdShakira2",
+                            Foto = "CdShakira2.jpg",
                             Price = 10m,
                             ProductTypeId = 1
                         },
@@ -459,7 +465,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 3,
                             Description = "CD (ALBUM) |1 disk |Spaans|september 2004",
-                            Foto = "CdJuanes1",
+                            Foto = "CdJuanes1.jpg",
                             Price = 11m,
                             ProductTypeId = 1
                         },
@@ -467,7 +473,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 4,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2002",
-                            Foto = "CdJuanes1",
+                            Foto = "CdJuanes2.jpg",
                             Price = 9m,
                             ProductTypeId = 1
                         },
@@ -475,7 +481,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 5,
                             Description = "CD (ALBUM) |1 disk |Spaans|juli 2013",
-                            Foto = "CdMarcA1",
+                            Foto = "CdMarcA1.jpg",
                             Price = 11m,
                             ProductTypeId = 1
                         },
@@ -483,7 +489,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 6,
                             Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum",
-                            Foto = "CdMarcA2",
+                            Foto = "CdMarcA2.jpg",
                             Price = 11m,
                             ProductTypeId = 1
                         },
@@ -491,7 +497,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 7,
                             Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum",
-                            Foto = "CdGrupoN1",
+                            Foto = "CdGrupoN1.jpg",
                             Price = 15m,
                             ProductTypeId = 1
                         },
@@ -499,7 +505,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 8,
                             Description = "CD (ALBUM) |1 disk |Spaans|november 2015 ",
-                            Foto = "CdGrupoN2",
+                            Foto = "CdGrupoN2.jpg",
                             Price = 20m,
                             ProductTypeId = 1
                         },
@@ -507,7 +513,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 9,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 ",
-                            Foto = "CdMaluma1",
+                            Foto = "CdMaluma1.jpg",
                             Price = 22m,
                             ProductTypeId = 1
                         },
@@ -515,7 +521,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 10,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 ",
-                            Foto = "CdMaluma2",
+                            Foto = "CdMaluma2.jpg",
                             Price = 22m,
                             ProductTypeId = 1
                         },
@@ -523,7 +529,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 11,
                             Description = "CD (ALBUM) |1 disk |Spaans|October 2011",
-                            Foto = "CdChino1",
+                            Foto = "CdChino1.jpg",
                             Price = 20m,
                             ProductTypeId = 1
                         },
@@ -531,7 +537,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 12,
                             Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015",
-                            Foto = "CdChino2",
+                            Foto = "CdChino2.jpg",
                             Price = 18m,
                             ProductTypeId = 1
                         },
@@ -539,7 +545,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 13,
                             Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017",
-                            Foto = "CdVives1",
+                            Foto = "CdVives1.jpg",
                             Price = 18m,
                             ProductTypeId = 1
                         },
@@ -547,7 +553,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 14,
                             Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014",
-                            Foto = "CdVives2",
+                            Foto = "CdVives2.jpg",
                             Price = 18m,
                             ProductTypeId = 1
                         },
@@ -555,7 +561,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 15,
                             Description = "CD (ALBUM) |1 disk |Spaans|april 1998",
-                            Foto = "CdElvisC1",
+                            Foto = "CdElvisC1.jpg",
                             Price = 18m,
                             ProductTypeId = 1
                         },
@@ -563,7 +569,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 16,
                             Description = "CD (ALBUM) |1 disk |Spaans|mei 2012",
-                            Foto = "CdElvisC2",
+                            Foto = "CdElvisC2.jpg",
                             Price = 20m,
                             ProductTypeId = 1
                         },
@@ -750,6 +756,8 @@ namespace MaracasMusic.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("Type");
 
@@ -940,11 +948,11 @@ namespace MaracasMusic.API.Migrations
             modelBuilder.Entity("Maracas.Lib.Models.Cd", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Artist", "Artist")
-                        .WithMany("Cds")
+                        .WithMany()
                         .HasForeignKey("ArtistId");
 
                     b.HasOne("Maracas.Lib.Models.Genre", "Genre")
-                        .WithMany("Cds")
+                        .WithMany()
                         .HasForeignKey("GenreId");
 
                     b.HasOne("Maracas.Lib.Models.Product", "Product")
@@ -986,7 +994,7 @@ namespace MaracasMusic.API.Migrations
             modelBuilder.Entity("Maracas.Lib.Models.Score", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Artist", "Artist")
-                        .WithMany("Scores")
+                        .WithMany()
                         .HasForeignKey("ArtistId");
 
                     b.HasOne("Maracas.Lib.Models.Genre", "Genre")

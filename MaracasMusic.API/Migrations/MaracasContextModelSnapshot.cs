@@ -15,7 +15,7 @@ namespace MaracasMusic.API.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -405,6 +405,10 @@ namespace MaracasMusic.API.Migrations
 
                     b.Property<int>("ClientId");
 
+                    b.Property<DateTime>("DateOrder");
+
+                    b.Property<string>("Name");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
@@ -421,6 +425,8 @@ namespace MaracasMusic.API.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("Foto");
+
+                    b.Property<string>("Name");
 
                     b.Property<int?>("OrderId");
 
@@ -749,6 +755,8 @@ namespace MaracasMusic.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Name");
+
                     b.Property<string>("Type");
 
                     b.HasKey("Id");
@@ -938,11 +946,11 @@ namespace MaracasMusic.API.Migrations
             modelBuilder.Entity("Maracas.Lib.Models.Cd", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Artist", "Artist")
-                        .WithMany("Cds")
+                        .WithMany()
                         .HasForeignKey("ArtistId");
 
                     b.HasOne("Maracas.Lib.Models.Genre", "Genre")
-                        .WithMany("Cds")
+                        .WithMany()
                         .HasForeignKey("GenreId");
 
                     b.HasOne("Maracas.Lib.Models.Product", "Product")
@@ -984,7 +992,7 @@ namespace MaracasMusic.API.Migrations
             modelBuilder.Entity("Maracas.Lib.Models.Score", b =>
                 {
                     b.HasOne("Maracas.Lib.Models.Artist", "Artist")
-                        .WithMany("Scores")
+                        .WithMany()
                         .HasForeignKey("ArtistId");
 
                     b.HasOne("Maracas.Lib.Models.Genre", "Genre")

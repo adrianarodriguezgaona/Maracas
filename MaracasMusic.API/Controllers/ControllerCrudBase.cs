@@ -9,7 +9,7 @@ namespace MaracasMusic.API.Controllers
 {
     public class ControllerCrudBase<T, R> : ControllerBase  
         where T : EntityBase
-        where R : Repository<T>
+        //where R : Repository<T>
  
     {
         protected R repository;
