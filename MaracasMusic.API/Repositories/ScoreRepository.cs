@@ -31,10 +31,6 @@ namespace MaracasMusic.API.Repositories
             }).ToList();
         }
 
-
-
-
-
         public ScoreDetail GetDetailsById(int id)
         {
             return _context.Scores.Select(s => new ScoreDetail
@@ -46,10 +42,7 @@ namespace MaracasMusic.API.Repositories
                 Foto = s.Product.Foto
 
             }).FirstOrDefault(s => s.Id == id);
-                
-                
-
-
+                                
         }
     }
 }

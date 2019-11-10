@@ -36,10 +36,7 @@ namespace MaracasMusic.API.Repositories
         public CdDetail GetDetailById(int id)
         {
             return (
-                 _maracasContext.Cds
-                .Include(cd => cd.Product)
-                .Include(cd => cd.Artist)
-                .Include(cd => cd.Genre)
+                 _maracasContext.Cds              
                 .Select(cd => new CdDetail
                 {
                     Id = cd.Id,
@@ -50,8 +47,8 @@ namespace MaracasMusic.API.Repositories
                     CdFoto = cd.Product.Foto,
                     ArtistId = cd.Artist.Id,
                     ArtistName = cd.Artist.Name,
-                     GenreId = cd.Genre.Id,
-                     GenreName = cd.Genre.Name
+                    GenreId = cd.Genre.Id,
+                    GenreName = cd.Genre.Name
                  })               
                 .FirstOrDefault(cd => cd.Id == id));
         }
