@@ -24,7 +24,7 @@ namespace MaracasMusic.API.Controllers
         [Microsoft.AspNetCore.Mvc.HttpGet]
         public IActionResult GetGenres()
         {
-            return Ok(_genreRepository.List());
+            return Ok(_genreRepository.ListAll());
         }
 
         // GET: api/Genres/2

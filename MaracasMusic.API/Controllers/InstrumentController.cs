@@ -21,27 +21,27 @@ namespace MaracasMusic.API.Controllers
 
         // api/instrument
         [HttpGet]
-        public IActionResult GetInstruments()
+        public async Task <IActionResult> GetInstruments()
 
         {
-            return Ok(repository.List());
+            return Ok(await repository.ListAll());
         }
 
         //GET : api/Instrument/Basic
 
         [HttpGet]
         [Route ("Basic")]
-        public IActionResult GetInstrumentsBasic()
+        public async Task<IActionResult> GetInstrumentsBasic()
         {
-            return Ok(repository.ListBasic());
+            return Ok(await repository.ListBasic());
         }
 
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetInstrumentDetail(int id)
+        public async Task<IActionResult> GetInstrumentDetail(int id)
         {
-            return Ok(repository.GetDetailById(id));
+            return Ok(await repository.GetDetailById(id));
         }
     }
 }

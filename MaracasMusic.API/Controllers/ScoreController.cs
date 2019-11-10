@@ -25,7 +25,7 @@ namespace MaracasMusic.API.Controllers
         public IActionResult GetScores()
 
         {
-            return Ok(repository.List());
+            return Ok(repository.ListAll());
         }
 
         [HttpGet]

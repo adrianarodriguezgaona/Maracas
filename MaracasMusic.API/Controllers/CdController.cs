@@ -23,23 +23,23 @@ namespace MaracasMusic.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetCds()
+        public async Task<IActionResult> GetCds()
         {
-            return Ok(_cdRepository.List());
+            return Ok(await _cdRepository.ListAll());
         }
 
         [HttpGet]
         [Route("Basic")]
-        public IActionResult GetCdsBasic()
+        public async Task<IActionResult> GetCdsBasic()
         {
-            return Ok(_cdRepository.ListBasic());
+            return Ok(await _cdRepository.ListBasic());
         }
 
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetCdDetail(int id)
+        public async Task<IActionResult> GetCdDetail(int id)
         {
-            return Ok(_cdRepository.GetDetailById(id));
+            return Ok(await _cdRepository.GetDetailById(id));
         }
 
         [HttpGet]
@@ -47,15 +47,17 @@ namespace MaracasMusic.API.Controllers
         public IActionResult GetImageByFileName(string filename)
         {
             var pathOfImage = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", filename);
-            return PhysicalFile(pathOfImage, "image/jpeg");
+            return  PhysicalFile(pathOfImage, "image/jpeg");
         }
 
         // GET: api/cd/imagebyid/6
         [HttpGet]
         [Route("ImageById/{cdid}")]
-        public IActionResult GetImageByBookId(int cdId)
+        public async Task<IActionResult> GetImageByBookId(int cdId)
         {
-            return GetImageByFileName(_cdRepository.GetDetailById(cdId).CdFoto);
+            CdDetail cd = await _cdRepository.GetDetailById(cdId);
+            return GetImageByFileName(cd.CdFoto);
+           
         }
 
         ////PUT: api/Cd/5

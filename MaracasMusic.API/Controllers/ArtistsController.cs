@@ -22,24 +22,24 @@ namespace MaracasMusic.API.Controllers
 
         // GET: api/Artists
         [HttpGet]
-        public IActionResult GetArtists()
+        public async Task<IActionResult> GetArtists()
         {
-            return Ok(_artistRepository.List());
+            return Ok(await _artistRepository.ListAll());
         }
 
         // GET: api/Artists/Basic
         [HttpGet]
         [Route("Basic")]
-        public IActionResult GetAuthorBasic()
+        public async Task<IActionResult> GetArtistBasic()
         {
-            return Ok(_artistRepository.ListBasic());
+            return Ok(await _artistRepository.ListBasic());
         }
 
         // GET: api/Artists/2
         [HttpGet("{id}")]
-        public IActionResult GetArtist(int id)
+        public async Task<IActionResult> GetArtist(int id)
         {
-            return Ok(_artistRepository.GetById(id));
+            return Ok(await _artistRepository.GetById(id));
         }
 
         //PUT: api/Artists/5
