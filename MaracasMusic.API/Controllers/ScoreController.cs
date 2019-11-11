@@ -41,7 +41,7 @@ namespace MaracasMusic.API.Controllers
         public IActionResult GetScoreDetailById(int id)
 
         {
-            return Ok(repository.GetDetailsById(id));
+            return Ok(repository.GetDetailsById(id));   
         }
     }
 }
