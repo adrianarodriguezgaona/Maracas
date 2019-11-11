@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Maracas.Lib.Models;
 using MaracasMusic.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,38 +11,13 @@ namespace MaracasMusic.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ScoreController : ControllerBase
+    public class ScoreController : ControllerCrudBase<Score, ScoreRepository>
     {
-        ScoreRepository repository;
 
-        public ScoreController(ScoreRepository scoreRepository)
+        public ScoreController(ScoreRepository scoreRepository) : base(scoreRepository)
         {
-            repository = scoreRepository;
+
         }
 
-        // GET api/scores
-
-        [HttpGet]
-        public IActionResult GetScores()
-
-        {
-            return Ok(repository.ListAll());
-        }
-
-        [HttpGet]
-        [Route("basic")]
-        public IActionResult GetScoresBasic()
-        {
-            return Ok(repository.ListBasic());
-        }
-
-
-        [HttpGet]
-        [Route("{Id}")]
-        public IActionResult GetScoreDetailById(int id)
-
-        {
-            return Ok(repository.GetDetailsById(id));   
-        }
     }
 }

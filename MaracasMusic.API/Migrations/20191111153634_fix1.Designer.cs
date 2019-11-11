@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaracasMusic.API.Migrations
 {
     [DbContext(typeof(MaracasContext))]
-    [Migration("20191110121401_init")]
-    partial class init
+    [Migration("20191111153634_fix1")]
+    partial class fix1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
