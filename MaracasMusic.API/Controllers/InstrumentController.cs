@@ -13,9 +13,31 @@ namespace MaracasMusic.API.Controllers
     [ApiController]
     public class InstrumentController : ControllerCrudBase<Instrument, InstrumentRepository>
     {
+        private InstrumentRepository _instrumentRepository;
+
         public InstrumentController(InstrumentRepository instrumentRepository): base(instrumentRepository)
         {
+            _instrumentRepository = instrumentRepository;
+        }
 
+
+
+
+        [HttpGet]
+        [Route("basic")]
+
+        public virtual async Task<IActionResult> GetBasic()
+
+        {
+            return Ok(await _instrumentRepository.ListBasic());
+        }
+
+        [HttpGet]
+        [Route("{Id}")]
+
+        public virtual async Task<IActionResult> GetDetailById(int id)
+        {
+            return Ok(await _instrumentRepository.GetDetailById(id));
         }
     }
 }

@@ -13,11 +13,30 @@ namespace MaracasMusic.API.Controllers
     [ApiController]
     public class ScoreController : ControllerCrudBase<Score, ScoreRepository>
     {
+       private ScoreRepository _scoreRepository;
 
         public ScoreController(ScoreRepository scoreRepository) : base(scoreRepository)
         {
-
+            _scoreRepository = scoreRepository;
         }
 
+
+
+        [HttpGet]
+        [Route("basic")]
+
+        public virtual async Task<IActionResult> GetBasic()
+
+        {
+            return Ok(await _scoreRepository.ListBasic());
+        }
+
+        [HttpGet]
+        [Route("{Id}")]
+
+        public virtual async Task<IActionResult> GetDetailById(int id)
+        {
+            return Ok(await _scoreRepository.GetDetailsById(id));
+        }
     }
 }

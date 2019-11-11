@@ -28,14 +28,15 @@ namespace MaracasMusic.API.Controllers
         }
 
 
-        // get API/T/Id
-        [HttpGet]
-        [Route("{Id}")]
+       // get API/T/Id
+       //[HttpGet]
+       //[Route("{Id}")]
 
-        public virtual async Task<IActionResult> GetById(int id)
-        {
-            return Ok(await repository.GetById(id));
-        }
+       // public virtual async Task<IActionResult> GetById(int id)
+       // {
+       //     return Ok(await repository.GetById(id));
+       // }
+
 
         // Put API/T/Id
         [HttpPut]
@@ -88,7 +89,7 @@ namespace MaracasMusic.API.Controllers
 
 
         // Delete API/T/Id
-        [HttpPost("{Id}")]
+        [HttpDelete("{Id}")]
         public virtual async Task<IActionResult> Delete([FromBody] T entity, [FromRoute] int Id)
 
         {

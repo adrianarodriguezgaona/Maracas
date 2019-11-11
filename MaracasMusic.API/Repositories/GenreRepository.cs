@@ -10,7 +10,7 @@ namespace MaracasMusic.API.Repositories
 {
     public class GenreRepository : RepositoryBase<Genre>
     {
-        public GenreRepository(MaracasContext maracasContext) : base (maracasContext)
+        public GenreRepository(MaracasContext maracasContext) : base(maracasContext)
         {
            
         }
