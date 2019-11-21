@@ -4,11 +4,13 @@ using System.Text;
 
 namespace Maracas.Lib.Models
 {
-    class ProductDetail : EntityBase
+     public class OrderDetails : EntityBase
     {
+       
+        public int OrderId { get; set; }
+        public Order Order { get; set; }
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
+        public int Aantal { get; set; }
     }
 }
