@@ -7,12 +7,12 @@ namespace Maracas.Lib.Models
 {
     public class Artist : EntityBase
     {
-        public long? GenreId { get; set; }      
+        public int GenreId { get; set; }      
         public Genre Genre { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
-
-
-       
 
     }
 }
+

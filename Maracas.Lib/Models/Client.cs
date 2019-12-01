@@ -9,6 +9,7 @@ namespace Maracas.Lib.Models
         public string Address { get; set; }
         public string City { get; set; }
         public string Email { get; set; }
+        public Guid UserId { get; set; }
         public List<Order> Orders { get; set; }
 
 

@@ -6,6 +6,8 @@ namespace Maracas.Lib.Models
 {
    public class InstrumentType : EntityBase
     {
-        public List<Instrument> Instruments { get; set; }
+        public List<Product> Products { get; set; }
+
+
     }
 }
