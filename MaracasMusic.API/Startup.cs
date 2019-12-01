@@ -30,9 +30,6 @@ namespace MaracasMusic.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<MaracasContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Maracas")));
-            services.AddScoped<ScoreRepository>();
-            services.AddScoped<CdRepository>();
-            services.AddScoped<InstrumentRepository>();
             services.AddScoped<ArtistRepository>();
             services.AddScoped<ProductRepository>();
             services.AddScoped<GenreRepository>();
