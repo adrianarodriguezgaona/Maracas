@@ -4,9 +4,10 @@ using System.Text;
 
 namespace Maracas.Lib.DTO
 {
-    public class ScoreBasicDTO
+    public class ProductBasicDto
+
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
