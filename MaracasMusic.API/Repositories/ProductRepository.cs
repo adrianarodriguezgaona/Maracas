@@ -1,6 +1,9 @@
-﻿using Maracas.Lib.DTO;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Maracas.Lib.DTO;
 using Maracas.Lib.Models;
 using MaracasMusic.API.Data;
+using MaracasMusic.API.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,66 +12,41 @@ using System.Threading.Tasks;
 
 namespace MaracasMusic.API.Repositories
 {
-    public class ProductRepository : RepositoryBase<Product>
+    public class ProductRepository : RepositoryMapping<Product>
     {
-        public ProductRepository(MaracasContext maracasContext) : base (maracasContext)
+        public ProductRepository(MaracasContext maracasContext, IMapper mapper) : base (maracasContext, mapper)
         {
 
         }
 
         public async Task<List<ProductBasicDto>> ListBasic()
         {
-            return await _maracasContext.Products.Select(p => new ProductBasicDto
-            {
-                Id = p.Id,
-                Name = p.Name
-            }).ToListAsync();
+            return await _maracasContext.Products
+              .ProjectTo<ProductBasicDto>(_mapper.ConfigurationProvider)
+              .ToListAsync();
 
         }
 
         public async Task<ProductDetail> GetDetailById(int id)
         {
-            return (
-                 await _maracasContext.Cds
-                .Select(p => new ProductDetail
-                {
-                    Id = p.Id,
-                    Name = p.Name,                    
-                    Price = p.Price,
-                    Description = p.Description,
-                    Foto = p.Foto,
-                    ArtistId = p.Artist.Id,
-                    ArtistName = p.Artist.Name,
-                    GenreId = p.Genre.Id,
-                    GenreName = p.Genre.Name,
-                    InstrumentTypeId=p.InstrumentType.Id,
-                    InstrumentTypeName =p.InstrumentType.Name
-                })
-                .FirstOrDefaultAsync(p => p.Id == id));
+            return _mapper.Map<ProductDetail>(
+                 await _maracasContext.Products
+                                      .Include(p => p.Artist)
+                                      .Include(p => p.Genre)
+                                      .Include(p => p.InstrumentType)
+                                      .Include(p => p.ProductType)
+                                      .FirstOrDefaultAsync(p => p.Id == id));
         }
 
         public async Task<ProductDetail> GetDetailByProductTypeName(string typeName)
         {
-            return (
-                 await _maracasContext.Cds
-                .Select(p => new ProductDetail
-                {
-                    Id = p.Id,
-                    Name = p.Name,
-                    Price = p.Price,
-                    Description = p.Description,
-                    Foto = p.Foto,
-                    ArtistId = p.Artist.Id,
-                    ArtistName = p.Artist.Name,
-                    GenreId = p.Genre.Id,
-                    GenreName = p.Genre.Name,
-                    InstrumentTypeId = p.InstrumentType.Id,
-                    InstrumentTypeName = p.InstrumentType.Name,
-                    ProductTypeId= p.ProducType.Id,
-                    ProductTypeName = p.ProductType.Name
-
-                })
-                .FirstOrDefaultAsync(pd => pd.ProductTypeName == typeName));
+            return _mapper.Map<ProductDetail>(
+                 await _maracasContext.Products
+                                      .Include(p => p.Artist)
+                                      .Include(p => p.Genre)
+                                      .Include(p => p.InstrumentType)
+                                      .Include(p => p.ProductType)
+                                      .FirstOrDefaultAsync(p => p.ProductType.Name == typeName));
         }
 
     }

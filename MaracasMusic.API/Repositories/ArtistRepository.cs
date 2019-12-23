@@ -1,6 +1,9 @@
-﻿using Maracas.Lib.DTO;
+﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using Maracas.Lib.DTO;
 using Maracas.Lib.Models;
 using MaracasMusic.API.Data;
+using MaracasMusic.API.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,20 +12,18 @@ using System.Threading.Tasks;
 
 namespace MaracasMusic.API.Repositories
 {
-    public class ArtistRepository : RepositoryBase<Artist>
+    public class ArtistRepository : RepositoryMapping<Artist>
     {        
-        public ArtistRepository(MaracasContext maracasContext) : base (maracasContext)
+        public ArtistRepository(MaracasContext maracasContext, IMapper mapper) : base (maracasContext,mapper)
         {
             
         }
 
         public async Task<List<ArtistBasicDto>> ListBasic()
         {
-            return await _maracasContext.Artists.Select(a => new ArtistBasicDto
-            {
-                Id = a.Id,
-                Name = a.Name
-            }).ToListAsync();
+            return await _maracasContext.Artists
+              .ProjectTo<ArtistBasicDto>(_mapper.ConfigurationProvider)
+              .ToListAsync();
 
         }
     }
