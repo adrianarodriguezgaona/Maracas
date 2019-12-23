@@ -34,6 +34,9 @@ namespace MaracasMusic.API
             services.AddScoped<ArtistRepository>();
             services.AddScoped<ProductRepository>();
             services.AddScoped<GenreRepository>();
+            services.AddScoped<OrderRepository>();
+            services.AddScoped<OrderDetailRepository>();
+
             services.AddMvc().AddJsonOptions(ConfigureJson);
 
             var config = new AutoMapper.MapperConfiguration(
