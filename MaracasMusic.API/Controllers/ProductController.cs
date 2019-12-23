@@ -8,6 +8,7 @@ using MaracasMusic.API.Data;
 using MaracasMusic.API.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace MaracasMusic.API.Controllers
 {
@@ -46,6 +47,34 @@ namespace MaracasMusic.API.Controllers
         public virtual async Task<IActionResult> GetDetailByProductTypeName(string  typeName)
         {
             return Ok(await _productRepository.GetDetailByProductTypeName(typeName));
+        }
+
+
+        [HttpPost]
+        [Route("Image")]
+
+        public async Task<IActionResult> Image( IFormFile formFile )
+
+        {
+
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images" , formFile.FileName);
+
+            if (formFile.Length > 0)
+
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+
+                {
+                    await formFile.CopyToAsync(stream);
+                }
+            }
+
+            return Ok(new
+            {
+                count = 1,
+                formFile.Length
+            }
+            );
         }
     }
     
