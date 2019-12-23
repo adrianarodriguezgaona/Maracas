@@ -41,9 +41,9 @@ namespace MaracasMusic.API.Controllers
         }
 
         [HttpGet]
-        [Route("Detail/{TypeName}")]
+        [Route("DetailByType/{TypeName}")]
 
-        public virtual async Task<IActionResult> GetDetailByProductTypeName(string  typeName)
+        public virtual async Task<IActionResult> GetDetailByProductTypeName(string typeName)
         {
             return Ok(await _productRepository.GetDetailByProductTypeName(typeName));
         }
