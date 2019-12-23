@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MaracasMusic.API.Data;
 using MaracasMusic.API.Repositories;
+using MaracasMusic.API.Services.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,15 @@ namespace MaracasMusic.API
             services.AddScoped<ProductRepository>();
             services.AddScoped<GenreRepository>();
             services.AddMvc().AddJsonOptions(ConfigureJson);
+
+            var config = new AutoMapper.MapperConfiguration(
+               cfg => {
+                   cfg.AddProfile(new AutoMapperProfileConfiguration());
+               });
+
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
 
         }
 
