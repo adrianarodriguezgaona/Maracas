@@ -38,16 +38,18 @@ namespace MaracasMusic.API.Repositories
                                       .FirstOrDefaultAsync(p => p.Id == id));
         }
 
-        public async Task<ProductDetail> GetDetailByProductTypeName(string typeName)
+        public async Task<List<ProductDetail>> GetDetailByProductTypeName(string typeName)
         {
-            return _mapper.Map<ProductDetail>(
-                 await _maracasContext.Products
+            return  await _maracasContext.Products
                                       .Include(p => p.Artist)
                                       .Include(p => p.Genre)
                                       .Include(p => p.InstrumentType)
                                       .Include(p => p.ProductType)
-                                      .FirstOrDefaultAsync(p => p.ProductType.Name == typeName));
+                                      .Where(p => p.ProductType.Name == typeName)
+                                      .ProjectTo<ProductDetail>(_mapper.ConfigurationProvider)
+                                      .ToListAsync();
         }
+
 
     }
 }
