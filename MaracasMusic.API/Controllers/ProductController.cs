@@ -31,8 +31,9 @@ namespace MaracasMusic.API.Controllers
             return Ok(await _productRepository.ListBasic());
         }
 
+        //GET:api/Product/Detail/2
         [HttpGet]
-        [Route("{Id}")]
+        [Route("Detail/{Id}")]
         
         public virtual async Task<IActionResult> GetDetailById(int id)
         {
@@ -40,7 +41,7 @@ namespace MaracasMusic.API.Controllers
         }
 
         [HttpGet]
-        [Route("{TypeName}")]
+        [Route("Detail/{TypeName}")]
 
         public virtual async Task<IActionResult> GetDetailByProductTypeName(string  typeName)
         {

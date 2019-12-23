@@ -16,7 +16,6 @@ namespace Maracas.Lib.Models
         public string GenreName { get; set; }
         public int InstrumentTypeId { get; set; }
         public string InstrumentTypeName { get; set; }
-
         public int ProductTypeId { get; set; }
         public string ProductTypeName { get; set; }
     }
