@@ -19,7 +19,7 @@ namespace MaracasMusic.API.Services.AutoMapper
         {
             CreateMap<ProductBasicDto, Product>().ReverseMap();
             CreateMap<ArtistBasicDto, Artist>().ReverseMap();
-            CreateMap<Product, ProductDetail>().ReverseMap();
+            CreateMap<Product, ProductDetail>();
 
         }
     }
