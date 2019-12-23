@@ -11,7 +11,7 @@ namespace Maracas.Lib.Models
         public string Foto { get; set; }
         public int ProductTypeId { get; set; }
         public ProductType ProductType { get; set; }
-        public int ArtiestId { get; set; }
+        public int ArtistId { get; set; }
         public Artist Artist { get; set; }
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
