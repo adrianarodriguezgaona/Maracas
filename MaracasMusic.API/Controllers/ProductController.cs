@@ -62,7 +62,7 @@ namespace MaracasMusic.API.Controllers
             if (formFile.Length > 0)
 
             {
-                using (var stream = new FileStream(filePath, FileMode.Create))
+              using (var stream = new FileStream(filePath, FileMode.Create))
 
                 {
                     await formFile.CopyToAsync(stream);
