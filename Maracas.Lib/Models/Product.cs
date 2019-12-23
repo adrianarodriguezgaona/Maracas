@@ -13,7 +13,7 @@ namespace Maracas.Lib.Models
         public ProductType ProductType { get; set; }
         public int ArtistId { get; set; }
         public Artist Artist { get; set; }
-        public int GenreId { get; set; }
+        public int? GenreId { get; set; }
         public Genre Genre { get; set; }
         public int InstrumentTypeId { get; set; }
         public InstrumentType InstrumentType { get; set; }

@@ -9,9 +9,7 @@ namespace Maracas.Lib.Models
     {
         public int GenreId { get; set; }      
         public Genre Genre { get; set; }
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
-
+        public List<Product> Products { get; set; }
 
     }
 }
