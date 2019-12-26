@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaracasMusic.API", "MaracasMusic.API\MaracasMusic.API.csproj", "{26C691DE-8024-4CC0-88D3-CE41B017A74A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaracasMusic.API", "MaracasMusic.API\MaracasMusic.API.csproj", "{26C691DE-8024-4CC0-88D3-CE41B017A74A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maracas.Lib", "Maracas.Lib\Maracas.Lib.csproj", "{253F0F5F-DB4F-4D47-84FB-8C55565FDD9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maracas.Lib", "Maracas.Lib\Maracas.Lib.csproj", "{253F0F5F-DB4F-4D47-84FB-8C55565FDD9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaracasMusic.MVC", "MaracasMusic.MVC\MaracasMusic.MVC.csproj", "{8BE9177F-D066-4182-9E25-CF4A8F909B2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{253F0F5F-DB4F-4D47-84FB-8C55565FDD9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{253F0F5F-DB4F-4D47-84FB-8C55565FDD9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{253F0F5F-DB4F-4D47-84FB-8C55565FDD9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BE9177F-D066-4182-9E25-CF4A8F909B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BE9177F-D066-4182-9E25-CF4A8F909B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BE9177F-D066-4182-9E25-CF4A8F909B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BE9177F-D066-4182-9E25-CF4A8F909B2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
