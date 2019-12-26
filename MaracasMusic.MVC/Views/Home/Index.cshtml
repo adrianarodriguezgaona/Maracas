@@ -2,7 +2,66 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div id="app">
+
+        <h3 v-on:click="fetchScores()">Haal scores op</h3>
+
+        <h1 id="titel">{{titel}}</h1>
+
+        <ul>
+            <li v-for="product in products">
+            
+                <span>{{ product.name}}</span>
+                <span>{{product.artistName}}</span>
+            </li>
+        </ul>
+
+    </div>
+@section scripts {
+    <script src="~/lib/vue/vue.js">
+    </script>
+
+<script>
+
+    var apiurl ='https://localhost:44378/api/product/detailbytype';
+        var app = new Vue({
+
+            el: '#app',
+            data: {
+                titel: 'werkt dit????',
+                products: null,
+            },
+
+            created: function () {
+                var self = this;
+                self.fetchCds();
+            },
+
+            methods: {  
+                fetchCds: function () {
+                    self = this;
+                    fetch(`${apiurl}/cd`)
+                        .then(res => res.json())
+                        .then(function (cds) {
+                            self.products = cds;
+                        })
+                    .catch(error => console.log(error))
+                   
+                },
+
+                fetchScores: function () {
+                    self = this;
+                    fetch(`${apiurl}/score`)
+                        .then(res => res.json())
+                        .then(function (scores) {
+                            self.products = scores;
+                        })
+                    .catch(error => console.log(error))
+                   
+                },
+            }
+
+        });
+
+    </script>
+}

@@ -47,6 +47,8 @@ namespace MaracasMusic.API
             var mapper = config.CreateMapper();
             services.AddSingleton(mapper);
 
+            services.AddCors();
+
 
         }
 
@@ -69,6 +71,12 @@ namespace MaracasMusic.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(builder =>
+            builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+
             app.UseMvc();
         }
     }
