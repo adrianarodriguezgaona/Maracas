@@ -12,6 +12,7 @@ namespace Maracas.Lib.Models
         public Genre()
         {
             Artists = new List<Artist>();
+            Products = new List<Product>();
             
         }
     }

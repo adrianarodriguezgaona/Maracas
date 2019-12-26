@@ -8,6 +8,10 @@ namespace Maracas.Lib.Models
     {
         public List<Product> Products { get; set; }
 
+        public InstrumentType()
+        {
+            Products = new List<Product>();
+        }
 
     }
 }

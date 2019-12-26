@@ -12,6 +12,11 @@ namespace Maracas.Lib.Models
         public Guid UserId { get; set; }
         public List<Order> Orders { get; set; }
 
+        public Client()
+        {
+            Orders = new List<Order>();
+        }
+
 
     }
    
