@@ -2,65 +2,81 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <div id="app">
-
+    <article id="app" class="row">
+        <header class="col-md-4"></header>
+         <nav>
+            <ul class="list-group">
+                <li v-for="item in productTypes" v-on:click="fetchProducts(item.name)" style="cursor:pointer">
+                    <span >{{item.nameForView}}</span>
+                </li>
+            </ul>
+        </nav>
+        
         <h3 v-on:click="fetchScores()">Haal scores op</h3>
 
-        <h1 id="titel">{{titel}}</h1>
+       
+        <div>
+            <ul>
+                <li v-for="product in products">
 
-        <ul>
-            <li v-for="product in products">
-            
-                <span>{{ product.name}}</span>
-                <span>{{product.artistName}}</span>
-            </li>
-        </ul>
+                    <span v-on:click="">{{ product.name}}</span>
+                    <span>{{product.artistName}}</span>
+                </li>
+            </ul>
+        </div>
 
-    </div>
+        <div id="details">
+
+        </div>
+    </article>
 @section scripts {
     <script src="~/lib/vue/vue.js">
     </script>
 
 <script>
 
-    var apiurl ='https://localhost:44378/api/product/detailbytype';
+    var apiurl ='https://localhost:44378/api/product';
         var app = new Vue({
 
             el: '#app',
             data: {
-                titel: 'werkt dit????',
+               
                 products: null,
+                productTypes: [{ "nameForView": "Alle Producten", "name": "product" },
+                               { "nameForView": "Cds", "name": "Cd" },
+                               { "nameForView": "Instrumenten", "name": "Instrument" },
+                               { "nameForView": "Partituren", "name": "score" }]
             },
 
             created: function () {
                 var self = this;
-                self.fetchCds();
+                self.fetchProducts("product");
             },
 
             methods: {  
-                fetchCds: function () {
+                fetchProducts: function (type) {
+                                           
                     self = this;
-                    fetch(`${apiurl}/cd`)
+                    if (type == "product") {
+                        fetch(`${apiurl}`)
                         .then(res => res.json())
-                        .then(function (cds) {
-                            self.products = cds;
-                        })
-                    .catch(error => console.log(error))
-                   
+                         .then(function (products) {
+                          self.products = products;
+                                })
+                     .catch(error => console.log(error))
+                    }
+                    else 
+                    fetch(`${apiurl}/detailByType/${type}`)                    
+                    .then(res => res.json())
+                    .then(function (products) {
+                                    self.products = products;
+                                })
+                     .catch(error => console.log(error))
+                      
                 },
-
-                fetchScores: function () {
-                    self = this;
-                    fetch(`${apiurl}/score`)
-                        .then(res => res.json())
-                        .then(function (scores) {
-                            self.products = scores;
-                        })
-                    .catch(error => console.log(error))
-                   
-                },
+                    
             }
-
+                                 
         });
 
     </script>
