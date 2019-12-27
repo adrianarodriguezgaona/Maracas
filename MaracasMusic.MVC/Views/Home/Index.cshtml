@@ -19,11 +19,12 @@
 
         <div class="col-md-4">
            
-                <div v-for="product in products">
-                    <img src="./"
-                    <span v-on:click="">{{ product.name}}</span>
-                    <span>{{product.artistName}}</span>
-                </div>
+            <div v-for="product in products">
+              
+                <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`"/>
+                <span v-on:click="">{{ product.name}}</span>
+                <span>{{product.artistName}}</span>
+            </div>
        
         </div>
 
@@ -54,9 +55,13 @@
                                { "nameForView": "Partituren", "name": "score" }]
             },
 
+
             created: function () {
                 var self = this;
                 self.fetchProducts("product");
+
+
+
             },
 
             methods: {  
@@ -80,6 +85,11 @@
                      .catch(error => console.log(error))
                       
                 },
+
+                fetchImage: function (imgId) {
+                    fetch(`${apiurl}/ImageById/${imgId}`)
+                    then(image => images = image);
+                }
                     
             }
                                  
