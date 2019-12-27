@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Maracas.Lib.Models;
 using MaracasMusic.API.Data;
 using MaracasMusic.API.Repositories;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
@@ -17,10 +18,12 @@ namespace MaracasMusic.API.Controllers
     public class ProductController : ControllerCrudBase<Product, ProductRepository>
     {
         private ProductRepository _productRepository;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
-        public ProductController(ProductRepository productRepository) : base(productRepository)
+        public ProductController(ProductRepository productRepository, IHostingEnvironment hostingEnvironment) : base(productRepository)
 
-        { _productRepository = productRepository; }
+        { _productRepository = productRepository; _hostingEnvironment = hostingEnvironment;
+        }
 
 
         [HttpGet]
@@ -48,6 +51,33 @@ namespace MaracasMusic.API.Controllers
         {
             return Ok(await _productRepository.GetDetailByProductTypeName(typeName));
         }
+
+        // GET: api/product/imagebyname/shakira.jpg
+        [HttpGet]
+        [Route("ImageByName/{filename}")]
+        public IActionResult GetImageByFileName(string filename)
+        {
+            var pathOfImage = Path.Combine(_hostingEnvironment.WebRootPath, "images", filename);
+            return PhysicalFile(pathOfImage, "image/jpeg");
+        }
+
+        // GET: api/product/imagebyid/6
+        [HttpGet]
+        [Route("ImageById/{productid}")]
+        public async Task<IActionResult> GetImageById(int productId)
+        {
+            ProductDetail product = await repository.GetDetailById(productId);
+            return GetImageByFileName(product.Foto);
+        }
+
+        //[HttpPost]
+        //public override async Task<IActionResult> Post([FromBody] Book book)
+        //{
+        //    book.Author = null;
+        //    book.Publisher = null;
+
+        //    return await base.Post(book);
+        //}
 
 
         [HttpPost]

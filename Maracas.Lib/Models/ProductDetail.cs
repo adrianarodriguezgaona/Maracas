@@ -18,6 +18,7 @@ namespace Maracas.Lib.Models
         public string InstrumentTypeName { get; set; }
         public int ProductTypeId { get; set; }
         public string ProductTypeName { get; set; }
+
     }
 
 
