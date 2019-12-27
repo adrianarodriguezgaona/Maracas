@@ -145,8 +145,8 @@ namespace MaracasMusic.API.Data
             modelbuilder.Entity<Product>()
                 .ToTable("Products")
                 .HasData(
-                    new Product { Id = 1, Name = "Shakira", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Engels|maart 2014", Price = 11, Foto = "CdShakira1.jpg" },
-                    new Product { Id = 2, Name = "El Dorado", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|mei 2017", Price = 10, Foto = "CdShakira2.jpg" },
+                    new Product { Id = 1, Name = "El Dorado", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Engels|maart 2014", Price = 11, Foto = "CdShakira1.jpg" },
+                    new Product { Id = 2, Name = "Shakira", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|mei 2017", Price = 10, Foto = "CdShakira2.jpg" },
                     new Product { Id = 3, Name = "Mi sangre", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|september 2004", Price = 11, Foto = "CdJuanes1.jpg" },
                     new Product { Id = 4, Name = "Un dia normal", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2002", Price = 9, Foto = "CdJuanes2.jpg" },
                     new Product { Id = 5, Name = "3.0", ProductTypeId = 1, ArtistId = 4, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2013", Price = 11, Foto = "CdMarcA1.jpg" },
@@ -159,8 +159,8 @@ namespace MaracasMusic.API.Data
                     new Product { Id = 12, Name = "Radio universo", ProductTypeId = 1, ArtistId = 7, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015", Price = 18, Foto = "CdChino2.jpg" },
                     new Product { Id = 13, Name = "VIVES", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017", Price = 18, Foto = "CdVives1.jpg" },
                     new Product { Id = 14, Name = "Más + Corazón Profundo", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014", Price = 18, Foto = "CdVives2.jpg" },
-                    new Product { Id = 15, Name = "Suavemente", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Spaans|april 1998", Price = 18, Foto = "CdElvisC1.jpg" },
-                    new Product { Id = 16, Name = "Los Monsters", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012", Price = 20, Foto = "CdElvisC2.jpg" },
+                    new Product { Id = 15, Name = "Suavemente", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Spaans|april 1998", Price = 18, Foto = "CdElvis1.jpg" },
+                    new Product { Id = 16, Name = "Los Monsters", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012", Price = 20, Foto = "CdElvis2.jpg" },
 
 
             new Product

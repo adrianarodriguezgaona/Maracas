@@ -44,7 +44,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-  background-color: brown;
+
 }
 .footer {
   position: absolute;
@@ -60,6 +60,21 @@ body {
 .maraNav {flex-direction: row;
           justify-content: space-around;
               
+}
+
+.fotos {
+    height: 250px;
+    width: 95%;
+    border: 1px solid #000;
+    margin: 15px 5px 15px 5px;
+    padding: 5px;
+}
+
+.fotosProduct {
+    height: 200px;
+    width: 250px;
+    margin: 15px 10px 5px 5px;
+    float: left;
 }
 
 
