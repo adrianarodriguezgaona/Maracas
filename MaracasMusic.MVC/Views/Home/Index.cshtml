@@ -2,30 +2,36 @@
     ViewData["Title"] = "Home Page";
 }
 
-    <article id="app" class="row">
-        <header class="col-md-4"></header>
-         <nav>
-            <ul class="list-group">
-                <li v-for="item in productTypes" v-on:click="fetchProducts(item.name)" style="cursor:pointer">
-                    <span >{{item.nameForView}}</span>
-                </li>
-            </ul>
+    <article id="app">
+        <header></header>
+        <nav class="col-md-9 navbar navbar-default">
+            <div class="navbar-fluid">
+                
+                <ul class="nav navbar-nav" style="flex-direction: row;">
+                    <li v-for="item in productTypes" v-on:click="fetchProducts(item.name)" style="cursor:pointer; margin-right: 50px">
+                        <span>{{item.nameForView}}</span>
+                    </li>
+                </ul>
+            </div>
         </nav>
-        
-        <h3 v-on:click="fetchScores()">Haal scores op</h3>
 
-       
-        <div>
-            <ul>
-                <li v-for="product in products">
+      
 
+        <div class="col-md-4">
+           
+                <div v-for="product in products">
+                    <img src="./"
                     <span v-on:click="">{{ product.name}}</span>
                     <span>{{product.artistName}}</span>
-                </li>
-            </ul>
+                </div>
+       
         </div>
 
         <div id="details">
+
+
+
+
 
         </div>
     </article>
@@ -80,4 +86,6 @@
         });
 
     </script>
+
+
 }
