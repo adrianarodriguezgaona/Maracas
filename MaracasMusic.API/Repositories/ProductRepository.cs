@@ -19,6 +19,16 @@ namespace MaracasMusic.API.Repositories
 
         }
 
+        public override async Task<Product> GetById(int id)
+        {
+            return await _maracasContext.Products
+                .Include(p => p.Artist)
+                .Include(p => p.Genre)
+                .Include(p => p.InstrumentType)
+                .Include(p => p.ProductType)
+                .FirstOrDefaultAsync(p => p.Id == id);
+        }
+
         public async Task<List<ProductBasicDto>> ListBasic()
         {
             return await _maracasContext.Products

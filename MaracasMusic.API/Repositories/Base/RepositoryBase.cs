@@ -58,7 +58,7 @@ namespace MaracasMusic.API.Repositories
             return _maracasContext.Set<T>().AsNoTracking();
         }
 
-        public async Task<T> GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
             return await _maracasContext.Set<T>().FindAsync(id);
         }
