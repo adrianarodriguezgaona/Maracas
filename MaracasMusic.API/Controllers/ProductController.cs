@@ -70,14 +70,16 @@ namespace MaracasMusic.API.Controllers
             return GetImageByFileName(product.Foto);
         }
 
-        //[HttpPost]
-        //public override async Task<IActionResult> Post([FromBody] Book book)
-        //{
-        //    book.Author = null;
-        //    book.Publisher = null;
+        [HttpPost]
+        public override async Task<IActionResult> Post([FromBody] Product product)
+        {
+            product.Artist = null;
+            product.ProductType = null;
+            product.InstrumentType = null;
+            product.Genre = null;
 
-        //    return await base.Post(book);
-        //}
+            return await base.Post(product);
+        }
 
 
         [HttpPost]
