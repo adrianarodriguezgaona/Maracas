@@ -1,0 +1,295 @@
+﻿@{
+    ViewData["Title"] = "Admin products";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+<article id="app" class="row">
+    <header class="col-md-4">
+        <h3>{{message}}</h3>
+        <nav>
+            <ul class="list-group">
+                <li v-for="product in products" v-on:click="fetchProductDetails(product)" :class="getProductClass(product)" style="cursor:pointer">
+                    <span class="productName">{{product.name}}</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div v-if="currentProduct" class="col-md-4">
+        <h3>Details</h3>
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Naam</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="currentProduct.name" :readonly="isReadOnly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Artiest</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="currentProduct.artist.name" v-if="isReadOnly" :readonly="isReadOnly">
+                    <select v-model="currentProduct.artist" class="form-control" v-if="!isReadOnly">
+                        <option v-for="artist in artists" :value="artist">{{ artist.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Genre</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentProduct.genre.name" v-if="isReadOnly" :readonly="isReadOnly">
+                    <select v-model="currentProduct.genre" class="form-control" v-if="!isReadOnly">
+                        <option v-for="genre in genres" :value="genre">{{ genre.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">InstrumentType</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentProduct.instrumentType.name" v-if="isReadOnly" :readonly="isReadOnly">
+                    <select v-model="currentProduct.instrumentType" class="form-control" v-if="!isReadOnly">
+                        <option v-for="instrumentType in instrumentTypes" :value="instrumentType">{{ instrumentType.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Categorie</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" :value="currentProduct.productType.name" v-if="isReadOnly" :readonly="isReadOnly">
+                    <select v-model="currentProduct.productType" class="form-control" v-if="!isReadOnly">
+                        <option v-for="productType in productTypes" :value="productType">{{ productType.name }}</option>
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Beschrijving</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="currentProduct.description" :readonly="isReadOnly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">FOTO</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="currentProduct.foto" :readonly="isReadOnly">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label small">Prijs</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="currentProduct.price" :readonly="isReadOnly">
+                </div>
+            </div>
+            <button v-on:click="toEditMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
+            <button v-on:click="toEditMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
+            <button v-on:click="deleteProduct()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+            <button v-on:click="save" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
+            <button v-on:click="cancel" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
+        </div>
+    </div>
+
+</article>
+
+
+
+
+
+@section scripts {
+    <script src="~/lib/vue/vue.js"></script>
+
+    <script>
+        var apiUri ='https://localhost:44378/api/';
+      var app = new Vue({
+          el: '#app',
+          data: {
+            message: 'Loading products...',
+                products: null,
+                artists: null,
+                genres: null,
+                instrumentTypes: null,
+                productTypes: null,
+                currentProduct: null,
+                isReadOnly: true,
+                isEdit: false
+          },
+
+          created: function () {
+                var self = this;
+                self.fetchProducts();
+                self.fetchArtists();
+                self.fetchGenres();
+                self.fetchInstrumentTypes();
+                self.fetchProductTypes();
+          },
+          methods: {
+                fetchProducts: function () {
+                    self = this;
+                    fetch(`${apiUri}Product/Basic`)
+                        .then(res => res.json())
+                        .then(function (products) {
+                            products.forEach(function (product, i) {
+                                product.isActive = false;
+                            });
+                            self.products = products;
+                            self.message = 'Overview';
+                            if (self.products.length > 0) {
+                                self.fetchProductDetails(self.products[0]);
+                            }
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+                fetchProductDetails: function (product) {
+                    self = this;
+                    if (!self.isReadOnly) return;
+                    fetch(`${apiUri}Product/${product.id}`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (res) {
+                            self.currentProduct = res;
+                            self.makeProductActive(product.id);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+                makeProductActive: function (productId) {
+                    self.products.forEach(function (product) {
+                        product.isActive = product.id === productId ? true : false;
+                    });
+                },
+
+                getProductClass: function (product) {
+                    if (product.isActive) return 'list-group-item active';
+                    return 'list-group-item';
+                },
+                fetchArtists: function () {
+                    self = this;
+                    fetch(`${apiUri}Artists`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (res) {
+                            self.artists = res;
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+                fetchGenres: function () {
+                    self = this;
+                    fetch(`${apiUri}Genres`)
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.genres = res;
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+
+                 fetchInstrumentTypes: function () {
+                    self = this;
+                    fetch(`${apiUri}InstrumentTypes`)
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.instrumentTypes = res;
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+                   fetchProductTypes: function () {
+                    self = this;
+                    fetch(`${apiUri}ProductTypes`)
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.productTypes = res;
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+
+
+                toEditMode: function (isEdit) {
+                    self = this;
+                    self.isReadOnly = false;
+                    self.isEdit = isEdit;
+                    if (!isEdit) {
+                        self.currentProduct = { "name": "", "description": "", "foto": "", "price": 0,  "artistId": 0, "artist": { "name": "",  "id": 0 }, "genreId": 0, "genre": { "name": "",  "id": 0 }, "instrumentTypeId":0 , "instrumentType":{ "name": "", "id": 0 },  "productType":{ "name": "", "id": 0 }, "id": 0 };
+                    }
+                },
+                save: function () {
+                    var self = this;
+                    self.currentProduct.artistId = self.currentProduct.artist.id;
+                    self.currentProduct.genreId = self.currentProduct.genre.id;
+                    self.currentProduct.instrumentTypeId = self.currentProduct.instrumentType.id;
+                    self.currentProduct.productTypeId = self.currentProduct.productType.id;
+
+                    var ajaxHeaders = new Headers();
+                    ajaxHeaders.append("Content-Type", "application/json");
+                    var ajaxConfig = {
+                        method: 'PUT',
+                        body: JSON.stringify(self.currentProduct),
+                        headers: ajaxHeaders
+                    };
+
+                    if (self.isEdit) {
+                        let myRequest = new Request(`${apiUri}Product/${self.currentProduct.id}`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.updateProductList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    else {
+                        ajaxConfig.method = 'POST';
+                        let myRequest = new Request(`${apiUri}Product/`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.addProductToList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    self.isEdit = false;
+                    self.isReadOnly = true;
+                },
+                addProductToList: function (product) {
+
+                    self.currentProduct.id = product.id;
+                    self.products.push(product);
+                    self.fetchProductDetails(self.products[self.products.length - 1]);
+                },
+                updateProductList: function (product) {
+
+                    var updatedProduct = self.products.filter(p => p.id === product.id)[0];
+                    updatedProduct.name = product.name;
+                },
+                cancel: function () {
+                    var self = this;
+                    self.isReadOnly = true;
+                    self.isEdit = false;
+                    if (self.isEdit) {
+                        self.fetchProductDetails(self.currentProduct);
+                    } else {
+                        self.fetchProductDetails(self.products[0]);
+                    }
+                },
+                deleteProduct: function () {
+                    self = this;
+                    fetch(`${apiUri}Product/${self.currentProduct.id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.products.forEach(function (product, i) {
+                                if (product.id === self.currentProduct.id) {
+                                    self.products.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            if (self.products.length > 0)
+                                self.fetchProductDetails(self.products[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+          }
+
+
+      });
+    </script>
+
+}
+
+
+
