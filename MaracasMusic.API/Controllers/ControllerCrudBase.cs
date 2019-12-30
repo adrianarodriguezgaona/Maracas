@@ -29,13 +29,13 @@ namespace MaracasMusic.API.Controllers
 
 
        // get API/T/Id
-       //[HttpGet]
-       //[Route("{Id}")]
+       [HttpGet]
+       [Route("{Id}")]
 
-       // public virtual async Task<IActionResult> GetById(int id)
-       // {
-       //     return Ok(await repository.GetById(id));
-       // }
+        public virtual async Task<IActionResult> GetById(int id)
+        {
+            return Ok(await repository.GetById(id));
+        }
 
 
         // Put API/T/Id
@@ -108,11 +108,6 @@ namespace MaracasMusic.API.Controllers
             return Ok(entity);
 
         }
-
-
-
-
-
     }
 }
     
