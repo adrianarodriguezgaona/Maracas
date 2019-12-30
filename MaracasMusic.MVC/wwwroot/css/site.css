@@ -64,11 +64,15 @@ body {
 
 .fotos {
     height: 250px;
-    width: 95%;
+    
     border: 1px solid #000;
     margin: 15px 5px 15px 5px;
     padding: 5px;
+
 }
+
+
+
 
 .fotosProduct {
     height: 200px;
@@ -78,6 +82,11 @@ body {
 }
 
 
-
+#fixedBox {
+    position: fixed;
+    height: 300px;
+    width: 300px;
+    background-color: blueviolet;
+}
 
 

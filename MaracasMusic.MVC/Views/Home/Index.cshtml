@@ -16,36 +16,28 @@
         </nav>
 
 
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="fotos" v-for="product in products" v-on:click="getSelectedProduct(product.id)" style="cursor:pointer">
+                    <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
+                    <h3>{{ product.name}}</h3>
+                    <h2>{{product.id}}</h2>
+                    <p>{{product.description}}</p>
+                    <p>Meer details</p>
+                </div>
+                </div>
 
-        <div >
 
-            <div class="fotos" v-for="product in products">
-                <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
-                <h3 v-on:click="">{{ product.name}}</h3>
-                <p>{{product.description}}</p>
-                <p>Meer details</p>
+
+                <div class="col-sm-6">
+                    <div v-model="selectedProduct" class="sticky-top" style="width: 40vw; right: 10px; top:10px; height: 700px; background-color:burlywood">
+
+                        <h3 v-for="value in selectedProduct">{{value.id}}</h3>
+                    </div>  
+                </div>
+               
+           
             </div>
-
-        </div>
-
-        @*<div class="fotos">
-            <img class="fotosHotel" src="~/images/hotels/@hotel.Photo" alt="@hotel.Name" />
-            <h3>@hotel.Name <img src="~/images/sterren/@(hotel.Stars).jpg" alt="@hotel.Stars" /></h3>
-            <h4>@city.Name</h4>
-            <p>@hotel.Description</p>
-
-            <p><a asp-controller="Hotel" asp-action="HotelDetails" asp-route-id="@hotel.Id">Meer details</a> </p>
-
-        </div>*@
-
-
-        <div id="details">
-
-
-
-
-
-        </div>
     </article>
 @section scripts {
     <script src="~/lib/vue/vue.js">
@@ -58,12 +50,15 @@
 
             el: '#app',
             data: {
-               
+
+                test: "boodschap",
+                 selectedProduct: null,
                 products: null,
                 productTypes: [{ "nameForView": "Alle Producten", "name": "product" },
                                { "nameForView": "Cds", "name": "Cd" },
                                { "nameForView": "Instrumenten", "name": "Instrument" },
-                               { "nameForView": "Partituren", "name": "score" }]
+                    { "nameForView": "Partituren", "name": "score" }],
+              
             },
 
 
@@ -98,8 +93,28 @@
                 fetchImage: function (imgId) {
                     fetch(`${apiurl}/ImageById/${imgId}`)
                     then(image => images = image);
+                },
+
+
+                getSelectedProduct: function (product) {
+
+
+                    self = this;
+             
+                    fetch(`${apiurl}/detail/${product}`)
+                        .then(res => res.json())
+                         .then(function (detail) {
+                             self.selectedProduct = detail;
+
+                                })
+                        .catch(error => console.log(error))
+
+
+                     
+                
+
+
                 }
-                    
             }
                                  
         });
