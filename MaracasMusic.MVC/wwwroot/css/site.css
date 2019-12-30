@@ -77,6 +77,16 @@ body {
     float: left;
 }
 
+.productTitle {
+    color: darkblue;
+    font-size: small;
+}
+
+.productArtistName {
+    color: darkred;
+    font-style: italic;
+    font-size: small;
+}
 
 
 
