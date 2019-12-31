@@ -8,7 +8,7 @@ namespace Maracas.Lib.Models
     public class Order : EntityBase
     {
         public int ClientId { get; set; }
-        [JsonIgnore]
+      
         public Client Client { get; set; }
         public DateTime DateOrder { get; set; }
         public List <OrderDetails> OrderDetails { get; set; }
