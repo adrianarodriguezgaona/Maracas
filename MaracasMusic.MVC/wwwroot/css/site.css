@@ -65,10 +65,9 @@ body {
 .fotos {
     height: 250px;
     
-    border: 1px solid #000;
+    border-bottom: 1px solid #000;
     margin: 15px 5px 15px 5px;
     padding: 5px;
-
 }
 
 
@@ -79,6 +78,7 @@ body {
     width: 250px;
     margin: 15px 10px 5px 5px;
     float: left;
+    vertical-align:central;
 }
 
 .productTitle {
@@ -92,11 +92,49 @@ body {
     font-size: small;
 }
 
-#fixedBox {
-    position: fixed;
-    height: 300px;
-    width: 300px;
-    background-color: blueviolet;
+.detail {
+    border: 1px solid black;
+    width: 40vw;
+    right: 10px;
+    top: 10px;
+    height: 700px;
+    background-color: lightgrey;
+    padding: 10px;  
 }
 
 
+.productContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%
+}
+
+.modal-content {
+    width: 70%;
+    margin: auto;
+
+}
+
+
+.modal-dialog
+{width: 100%;
+ max-width:none;
+}
+
+.productDetail {
+    display: flex;
+    
+}
+
+.basicbtn {
+    background-color: none;
+    width: 170px;
+
+}
+
+.detailAlign {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}

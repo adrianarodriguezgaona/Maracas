@@ -2,7 +2,14 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+
+<!-- Modal -->
+
+
     <article id="app">
+
+
         <header></header>
         <nav class="col-md-9 navbar navbar-default">
             <div class="navbar-fluid">
@@ -17,46 +24,94 @@
 
 
         <div class="row">
-            <div class="col-sm-6">
-                <div class="fotos" v-for="product in products" v-on:click="getSelectedProduct(product.id)" style="cursor:pointer">
+            <div class="col-sm-12">
+                <div class="fotos" v-for="product in products" style="cursor:pointer">
                     <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
+                    
+                    <div class="productContent">
                     <h3>{{ product.name}}</h3>
-                    <h2>{{product.id}}</h2>
                     <p>{{product.description}}</p>
-                    <p>Meer details</p>
+                    <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
+                        Toon meer informatie
+                    </button>
+                        </div>
                 </div>
-                </div>
-
-                <div class="col-sm-6">
-                    <div v-model="selectedProduct" class="sticky-top" style="width: 40vw; right: 10px; top:10px; height: 700px; background-color:burlywood">
-
-                        <h3 v-for="value in selectedProduct">{{value.id}}</h3>
-                    </div>  
-                </div>
-               
-           
             </div>
+
+        </div>
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 100%"  role="document">
+                <div class="modal-content" style="width: 70%; margin: auto">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{selectedProduct.name}}</h5>
+                       
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Omschrijving:  {{selectedProduct.description}}</li>
+                            <li>Product categorie:  {{selectedProduct.productTypeName}}</li>
+                            </ul>
+                            <hr />
+                            <div class="productDetail">
+                                <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+
+                                <ul class="detailAlign">
+                                    <li>Naam artiest:  {{selectedProduct.artistName}}</li>
+                                    <li>Genre:  {{selectedProduct.genreName}}</li>
+                                    <li>Prijs:  {{selectedProduct.price}} euro</li>
+                                </ul>
+
+
+
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="basicbtn" data-dismiss="modal">Sluit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </article>
+
+
+
+
+
+
+
+
 @section scripts {
+
+    <script>
+     
+    </script>
     <script src="~/lib/vue/vue.js">
     </script>
 
-<script>
+    <script>
 
-    var apiurl ='https://localhost:44378/api/product';
+
+        var apiurl = 'https://localhost:44378/api/product';
         var app = new Vue({
 
             el: '#app',
             data: {
 
                 test: "boodschap",
-                 selectedProduct: null,
+                selectedProduct: {},
                 products: null,
                 productTypes: [{ "nameForView": "Alle Producten", "name": "product" },
-                               { "nameForView": "Cds", "name": "Cd" },
-                               { "nameForView": "Instrumenten", "name": "Instrument" },
-                    { "nameForView": "Partituren", "name": "score" }],
-              
+                { "nameForView": "Cds", "name": "Cd" },
+                { "nameForView": "Instrumenten", "name": "Instrument" },
+                { "nameForView": "Partituren", "name": "score" }],
+
             },
 
 
@@ -66,26 +121,26 @@
 
             },
 
-            methods: {  
+            methods: {
                 fetchProducts: function (type) {
-                                           
+
                     self = this;
                     if (type == "product") {
                         fetch(`${apiurl}`)
-                        .then(res => res.json())
-                         .then(function (products) {
-                          self.products = products;
-                                })
-                     .catch(error => console.log(error))
+                            .then(res => res.json())
+                            .then(function (products) {
+                                self.products = products;
+                            })
+                            .catch(error => console.log(error))
                     }
-                    else 
-                    fetch(`${apiurl}/detailByType/${type}`)                    
-                    .then(res => res.json())
-                    .then(function (products) {
-                                    self.products = products;
-                                })
-                     .catch(error => console.log(error))
-                      
+                    else
+                        fetch(`${apiurl}/detailByType/${type}`)
+                            .then(res => res.json())
+                            .then(function (products) {
+                                self.products = products;
+                            })
+                            .catch(error => console.log(error))
+
                 },
 
                 fetchImage: function (imgId) {
@@ -98,23 +153,23 @@
 
 
                     self = this;
-             
+
                     fetch(`${apiurl}/detail/${product}`)
                         .then(res => res.json())
-                         .then(function (detail) {
-                             self.selectedProduct = detail;
+                        .then(function (detail) {
+                            self.selectedProduct = detail;
 
-                                })
+                        })
                         .catch(error => console.log(error))
 
+                },
 
-                     
-                
+                showModal:    $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus').val()
+})
 
-
-                }
             }
-                                 
+
         });
 
     </script>
@@ -122,19 +177,19 @@
 }
 
 @*<style>
-.fotos {
-    height: 250px;
-    width: 95%;
-    border: 1px solid #000;
-    margin:15px 5px 15px 5px;
-    padding:5px;
+    .fotos {
+        height: 250px;
+        width: 95%;
+        border: 1px solid #000;
+        margin:15px 5px 15px 5px;
+        padding:5px;
 
-}
-.fotosHotel {
-    height:200px;
-    width:250px;
-    margin:15px 10px 5px 5px;
-    float:left;
-}
+    }
+    .fotosHotel {
+        height:200px;
+        width:250px;
+        margin:15px 10px 5px 5px;
+        float:left;
+    }
 
-</style>*@
+    </style>*@
