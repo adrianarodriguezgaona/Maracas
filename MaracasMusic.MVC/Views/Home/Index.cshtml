@@ -30,7 +30,8 @@
                     
                     <div class="productContent">
                     <h3>{{ product.name}}</h3>
-                    <p>{{product.description}}</p>
+                    <p>{{product.description}} -  {{product.artistName}}</p>
+
                     <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
                         Toon meer informatie
                     </button>
@@ -61,8 +62,8 @@
                             <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
 
                             <ul class="detailAlign">
-                                <li>Type instrument:  {{selectedProduct.artistName}}</li>
-                                <li>Naam:  {{selectedProduct.genreName}}</li>
+                                <li>Naam artiest  {{selectedProduct.artistName}}</li>
+                                <li>Genre:  {{selectedProduct.genreName}}</li>
                                 <li>Prijs:  {{selectedProduct.price}} euro</li>
                             </ul>
                         </div>
