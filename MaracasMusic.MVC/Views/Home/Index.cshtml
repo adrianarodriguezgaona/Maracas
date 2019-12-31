@@ -55,28 +55,47 @@
                         <ul>
                             <li>Omschrijving:  {{selectedProduct.description}}</li>
                             <li>Product categorie:  {{selectedProduct.productTypeName}}</li>
+                        </ul>
+                        <hr />
+                        <div class="productDetail" v-if="selectedProduct.productTypeId === 1">
+                            <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+
+                            <ul class="detailAlign">
+                                <li>Type instrument:  {{selectedProduct.artistName}}</li>
+                                <li>Naam:  {{selectedProduct.genreName}}</li>
+                                <li>Prijs:  {{selectedProduct.price}} euro</li>
                             </ul>
-                            <hr />
-                            <div class="productDetail">
-                                <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+                        </div>
 
-                                <ul class="detailAlign">
-                                    <li>Naam artiest:  {{selectedProduct.artistName}}</li>
-                                    <li>Genre:  {{selectedProduct.genreName}}</li>
-                                    <li>Prijs:  {{selectedProduct.price}} euro</li>
-                                </ul>
+                        <div class="productDetail" v-else-if="selectedProduct.productTypeId === 2">
+                            <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+
+                            <ul class="detailAlign">
+                                <li>Type instrument:  {{selectedProduct.instrumentTypeName}}</li>
+                                <li>Naam instrument:  {{selectedProduct.name}}</li>
+                                <li>Prijs:  {{selectedProduct.price}} euro</li>
+                            </ul>
+                        </div>
+
+                        <div class="productDetail" v-else>
+                            <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+
+                            <ul class="detailAlign">
+                                <li>Naam artiest:  {{selectedProduct.artistName}}</li>
+                                <li>Genre:  {{selectedProduct.genreName}}</li>
+                                <li>Name:   {{selectedProduct.name}}</li>
+                                <li>Prijs:  {{selectedProduct.price}} euro</li>
+                            </ul>
+                        </div>
 
 
-
-                            </div>
+                        <div class="modal-footer">
+                            <button class="basicbtn" data-dismiss="modal">Sluit</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="basicbtn" data-dismiss="modal">Sluit</button>
-                    </div>
-                </div>
             </div>
         </div>
-
+            </div>
 
     </article>
 
