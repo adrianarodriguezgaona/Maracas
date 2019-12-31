@@ -295,7 +295,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 2,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "PARTITUUR | Juanes bladmuziek - Song: Juntos",
+                Description = "PARTITUUR | Juanes bladmuziek - Nummer: Juntos",
                 Foto = "scoreJua2.png"
 
             },
@@ -309,7 +309,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 3,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "PARTITUUR | Marc Anthony sheet music - Song: Vivir mi Vida",
+                Description = "PARTITUUR | Marc Anthony sheet music - Nummer: Vivir mi Vida",
                 Foto = "scoreMar1.png"
 
             },
@@ -323,7 +323,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 3,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Marc Anthony bladmuziek - Song: Te Conozco Bien",
+                Description = "Marc Anthony bladmuziek - Nummer: Te Conozco Bien",
                 Foto = "scoreMar2.png"
 
             },
@@ -337,7 +337,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 3,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Grupo Niche bladmuziek - Song: Tapanco El Hueco",
+                Description = "Grupo Niche bladmuziek - Nummer: Tapanco El Hueco",
                 Foto = "scoreGru1.png"
 
 
@@ -352,7 +352,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 3,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Grupo Niche - Song: El Amor Vendra",
+                Description = "Grupo Niche - Nummer: El Amor Vendra",
                 Foto = "scoreGru2.png"
 
             },
@@ -368,7 +368,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Maluma bladmuziek - Song: Felices los 4",
+                Description = "Maluma bladmuziek - Nummer: Felices los 4",
                 Foto = "scoreMal1.png"
 
             },
@@ -382,7 +382,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Maluma bladmuziek - Song: Corazòn",
+                Description = "Maluma bladmuziek - Nummer: Corazòn",
                 Foto = "scoreMal2.png"
 
             },
@@ -396,7 +396,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Chino y Nacho bladmuziek - Song: Andas en mi Cabeza",
+                Description = "Chino y Nacho bladmuziek - Nummer: Andas en mi Cabeza",
                 Foto = "scoreChi1.png"
 
 
@@ -411,7 +411,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Chino y Nacho bladmuziek - Song: Mi Niña Bonita",
+                Description = "Chino y Nacho bladmuziek - Nummer: Mi Niña Bonita",
                 Foto = "scoreChi2.png"
 
             },
@@ -425,7 +425,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 5,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Carlos Vives - Song: Déjame Entrar",
+                Description = "Carlos Vives - Nummer: Déjame Entrar",
                 Foto = "scoreCar1.png"
 
             },
@@ -439,7 +439,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 5,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Carlos Vives bladmuziek - Song: Carito",
+                Description = "Carlos Vives bladmuziek - Nummer: Carito",
                 Foto = "scoreCar2.png"
 
             },
@@ -453,7 +453,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 6,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Elvis Crespo bladmuziek - Song: Suavemente",
+                Description = "Elvis Crespo bladmuziek - Nummer: Suavemente",
                 Foto = "scoreElv1.png"
 
             },
@@ -467,7 +467,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 6,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Elvis Crespo bladmuziek - Song: Pintame",
+                Description = "Elvis Crespo bladmuziek - Nummer: Pintame",
                 Foto = "scoreElv2.png"
 
             });
