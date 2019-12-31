@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using MaracasMusic.MVC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using MaracasMusic.MVC.Areas.Identity.Services;
 
 namespace MaracasMusic.MVC
 {
@@ -46,6 +48,16 @@ namespace MaracasMusic.MVC
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                //Sign-in settings
+                options.SignIn.RequireConfirmedEmail = true;
+            });
+
+            //Configuratie e-mail ondersteuning        
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
