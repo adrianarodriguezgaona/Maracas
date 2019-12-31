@@ -145,34 +145,34 @@ namespace MaracasMusic.API.Data
             modelbuilder.Entity<Product>()
                 .ToTable("Products")
                 .HasData(
-                    new Product { Id = 1, Name = "El Dorado", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Engels|maart 2014", Price = 11, Foto = "CdShakira1.jpg" },
-                    new Product { Id = 2, Name = "Shakira", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|mei 2017", Price = 10, Foto = "CdShakira2.jpg" },
-                    new Product { Id = 3, Name = "Mi sangre", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|september 2004", Price = 11, Foto = "CdJuanes1.jpg" },
-                    new Product { Id = 4, Name = "Un dia normal", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2002", Price = 9, Foto = "CdJuanes2.jpg" },
-                    new Product { Id = 5, Name = "3.0", ProductTypeId = 1, ArtistId = 4, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2013", Price = 11, Foto = "CdMarcA1.jpg" },
-                    new Product { Id = 6, Name = "Sigo siendo yo", ProductTypeId = 1, ArtistId = 4, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum", Price = 11, Foto = "CdMarcA2.jpg" },
-                    new Product { Id = 7, Name = "Brillantes", ProductTypeId = 1, ArtistId = 5, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum", Price = 15, Foto = "CdGrupoN1.jpg" },
-                    new Product { Id = 8, Name = "Bonitas y hermosas", ProductTypeId = 1, ArtistId = 5, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|november 2015 ", Price = 20, Foto = "CdGrupoN2.jpg" },
-                    new Product { Id = 9, Name = "11:11", ProductTypeId = 1, ArtistId = 6, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 ", Price = 22, Foto = "CdMaluma1.jpg" },
-                    new Product { Id = 10, Name = "F.A.M.E", ProductTypeId = 1, ArtistId = 6, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 ", Price = 22, Foto = "CdMaluma2.jpg" },
-                    new Product { Id = 11, Name = "Supremo", ProductTypeId = 1, ArtistId = 7, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|October 2011", Price = 20, Foto = "CdChino1.jpg" },
-                    new Product { Id = 12, Name = "Radio universo", ProductTypeId = 1, ArtistId = 7, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015", Price = 18, Foto = "CdChino2.jpg" },
-                    new Product { Id = 13, Name = "VIVES", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017", Price = 18, Foto = "CdVives1.jpg" },
-                    new Product { Id = 14, Name = "Más + Corazón Profundo", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014", Price = 18, Foto = "CdVives2.jpg" },
-                    new Product { Id = 15, Name = "Suavemente", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Spaans|april 1998", Price = 18, Foto = "CdElvis1.jpg" },
-                    new Product { Id = 16, Name = "Los Monsters", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012", Price = 20, Foto = "CdElvis2.jpg" },
+                    new Product { Id = 1, Name = "El Dorado", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Engels|maart 2014 -- Shakira", Price = 11, Foto = "CdShakira1.jpg" },
+                    new Product { Id = 2, Name = "Shakira", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|mei 2017 -- Shakira", Price = 10, Foto = "CdShakira2.jpg" },
+                    new Product { Id = 3, Name = "Mi sangre", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|september 2004 -- Juanes", Price = 11, Foto = "CdJuanes1.jpg" },
+                    new Product { Id = 4, Name = "Un dia normal", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2002 -- Juanes", Price = 9, Foto = "CdJuanes2.jpg" },
+                    new Product { Id = 5, Name = "3.0", ProductTypeId = 1, ArtistId = 4, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2013 -- Marc Anthony", Price = 11, Foto = "CdMarcA1.jpg" },
+                    new Product { Id = 6, Name = "Sigo siendo yo", ProductTypeId = 1, ArtistId = 4, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum -- Marc Anthony", Price = 11, Foto = "CdMarcA2.jpg" },
+                    new Product { Id = 7, Name = "Brillantes", ProductTypeId = 1, ArtistId = 5, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum -- Grupo Niche", Price = 15, Foto = "CdGrupoN1.jpg" },
+                    new Product { Id = 8, Name = "Bonitas y hermosas", ProductTypeId = 1, ArtistId = 5, GenreId = 3, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|november 2015 -- Grupo Niche ", Price = 20, Foto = "CdGrupoN2.jpg" },
+                    new Product { Id = 9, Name = "11:11", ProductTypeId = 1, ArtistId = 6, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 -- Maluma", Price = 22, Foto = "CdMaluma1.jpg" },
+                    new Product { Id = 10, Name = "F.A.M.E", ProductTypeId = 1, ArtistId = 6, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 -- Maluma", Price = 22, Foto = "CdMaluma2.jpg" },
+                    new Product { Id = 11, Name = "Supremo", ProductTypeId = 1, ArtistId = 7, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|October 2011 -- Chino y Nacho", Price = 20, Foto = "CdChino1.jpg" },
+                    new Product { Id = 12, Name = "Radio universo", ProductTypeId = 1, ArtistId = 7, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015 -- Chino y Nacho", Price = 18, Foto = "CdChino2.jpg" },
+                    new Product { Id = 13, Name = "VIVES", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017 -- Carlos Vives", Price = 18, Foto = "CdVives1.jpg" },
+                    new Product { Id = 14, Name = "Más + Corazón Profundo", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014 -- Carlos Vives", Price = 18, Foto = "CdVives2.jpg" },
+                    new Product { Id = 15, Name = "Suavemente", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Spaans|april 1998 -- Elvis Crespo", Price = 18, Foto = "CdElvis1.jpg" },
+                    new Product { Id = 16, Name = "Los Monsters", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012 -- Elvis Crespo", Price = 20, Foto = "CdElvis2.jpg" },
 
 
             new Product
             {
                 Id = 17,
                 ProductTypeId = 2,
-                Name = "LPM198 Mini Tuneable Conga",
+                Name = "LPM198 Mini afstelbare conga",
                 ArtistId = 1,
                 GenreId = 1,
                 InstrumentTypeId = 2,
                 Price = 60,
-                Description = "Finish: Natural - Siam Oak drum shell with natural head - Head: Ø 4.5' - Approx. 28 cm high - Mini Comfort Curve II Rims",
+                Description = "INSTRUMENT | Finish: Natural - Siam Oak drum shell met natuurlijke bekleding - Top: Ø 4.5' - ongeveer 28 cm hoog - Mini Comfort Curve II Rims",
                 Foto = "instrumentPerc1.jpg"
             },
 
@@ -180,12 +180,12 @@ namespace MaracasMusic.API.Data
             {
                 Id = 18,
                 ProductTypeId = 2,
-                Name = "Large Wooden Maracas",
+                Name = "Grote houten Maracas",
                 ArtistId = 1,
                 GenreId = 1,
                 InstrumentTypeId = 2,
                 Price = 20,
-                Description = "Simple wooden percussion instrument, deliverd in pairs",
+                Description = "INSTRUMENT | Eenvoudig houten percussieinstrument. - Wordt geleverd in paren.",
                 Foto = "instrumentPerc2.jpg"
             },
 
@@ -198,7 +198,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 1,
                 InstrumentTypeId = 3,
                 Price = 50,
-                Description = "",
+                Description = "INSTRUMENT |",
                 Foto = "instrumentString1.jpg"
 
             },
@@ -212,7 +212,7 @@ namespace MaracasMusic.API.Data
                 GenreId = 1,
                 InstrumentTypeId = 3,
                 Price = 470,
-                Description = "RoseWood back, glossy finish, hand crafted",
+                Description = "INSTRUMENT | RoseWood houten rug, glossy finish, handgemaakt",
                 Foto = "instrumentString2.jpg"
             },
 
@@ -225,8 +225,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 1,
                 InstrumentTypeId = 4,
                 Price = 20,
-                Description = "Hand crafted, made of Bamboo, pure tuning",
-                Foto = "instrumentWind1"
+                Description = "INSTRUMENT | Handgemaakt, vervaardigd uit bamboe Hand crafted, precisie afstemming,",
+                Foto = "instrumentWind1.jpg"
             },
 
 
@@ -234,13 +234,13 @@ namespace MaracasMusic.API.Data
             {
                 Id = 22,
                 ProductTypeId = 2,
-                Name = "Quena Flute",
+                Name = "Quena pamfluit",
                 ArtistId = 1,
                 GenreId = 1,
                 InstrumentTypeId = 4,
                 Price = 45,
-                Description = "Hand crafted, made of plum wood",
-                Foto = "instrumentWind2"
+                Description = "INSTRUMENT | Handgemaakt, vervaardigd uit zacht hout",
+                Foto = "instrumentWind2.jpg"
             },
 
             new Product
@@ -252,8 +252,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 2,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Shakira sheet music - Song: Whenever, Wherever",
-                Foto = "scoreSha1.jpg"
+                Description = "PARTITUUR | Shakira bladmuziek - Nummer: Whenever, Wherever",
+                Foto = "scoreSha1.png"
 
             },
 
@@ -266,8 +266,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 2,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Shakira sheet music - Song: Hips don't Lie",
-                Foto = "scoreSha2.jpg"
+                Description = "PARTITUUR | Shakira bladmuziek - Nummer: Hips don't Lie",
+                Foto = "scoreSha2.png"
 
 
             },
@@ -281,8 +281,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 2,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Juanes sheet music - Song: La Camisa Negra",
-                Foto = "scoreJua1.jpg"
+                Description = "PARTITUUR | Juanes bladmuziek - Nummer: La Camisa Negra",
+                Foto = "scoreJua1.png"
 
             },
 
@@ -295,8 +295,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 2,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Juanes sheet music - Song: Juntos",
-                Foto = "scoreJua2.jpg"
+                Description = "PARTITUUR | Juanes bladmuziek - Song: Juntos",
+                Foto = "scoreJua2.png"
 
             },
 
@@ -309,8 +309,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 3,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Marc Anthony sheet music - Song: Vivir mi Vida",
-                Foto = "scoreMar1.jpg"
+                Description = "PARTITUUR | Marc Anthony sheet music - Song: Vivir mi Vida",
+                Foto = "scoreMar1.png"
 
             },
 
@@ -323,8 +323,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 3,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Marc Anthony sheet music - Song: Te Conozco Bien",
-                Foto = "scoreMar2.jpg"
+                Description = "Marc Anthony bladmuziek - Song: Te Conozco Bien",
+                Foto = "scoreMar2.png"
 
             },
 
@@ -337,8 +337,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 3,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Grupo Niche sheet music - Song: Tapanco El Hueco",
-                Foto = "scoreGru1.jpg"
+                Description = "Grupo Niche bladmuziek - Song: Tapanco El Hueco",
+                Foto = "scoreGru1.png"
 
 
             },
@@ -353,7 +353,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "Grupo Niche - Song: El Amor Vendra",
-                Foto = "scoreGru2.jpg"
+                Foto = "scoreGru2.png"
 
             },
 
@@ -368,8 +368,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Maluma sheet music - Song: Felices los 4",
-                Foto = "scoreMal1.jpg"
+                Description = "Maluma bladmuziek - Song: Felices los 4",
+                Foto = "scoreMal1.png"
 
             },
 
@@ -382,8 +382,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Maluma sheet music - Song: Corazòn",
-                Foto = "scoreMal2.jpg"
+                Description = "Maluma bladmuziek - Song: Corazòn",
+                Foto = "scoreMal2.png"
 
             },
 
@@ -396,8 +396,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Chino y Nacho sheet music - Song: Andas en mi Cabeza",
-                Foto = "scoreChi1.jpg"
+                Description = "Chino y Nacho bladmuziek - Song: Andas en mi Cabeza",
+                Foto = "scoreChi1.png"
 
 
             },
@@ -411,8 +411,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 4,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Chino y Nacho sheet music - Song: Mi Niña Bonita",
-                Foto = "scoreChi2.jpg"
+                Description = "Chino y Nacho bladmuziek - Song: Mi Niña Bonita",
+                Foto = "scoreChi2.png"
 
             },
 
@@ -426,7 +426,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "Carlos Vives - Song: Déjame Entrar",
-                Foto = "scoreCar1.jpg"
+                Foto = "scoreCar1.png"
 
             },
 
@@ -439,8 +439,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 5,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Carlos Vives sheet music - Song: Carito",
-                Foto = "scoreCar2.jpg"
+                Description = "Carlos Vives bladmuziek - Song: Carito",
+                Foto = "scoreCar2.png"
 
             },
 
@@ -453,8 +453,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 6,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Elvis Crespo sheet music - Song: Suavemente",
-                Foto = "scoreElv1.jpg"
+                Description = "Elvis Crespo bladmuziek - Song: Suavemente",
+                Foto = "scoreElv1.png"
 
             },
 
@@ -467,8 +467,8 @@ namespace MaracasMusic.API.Data
                 GenreId = 6,
                 InstrumentTypeId = 1,
                 Price = 9.99m,
-                Description = "Elvis Crespo sheet music - Song: Pintame",
-                Foto = "scoreElv2.jpg"
+                Description = "Elvis Crespo bladmuziek - Song: Pintame",
+                Foto = "scoreElv2.png"
 
             });
 
