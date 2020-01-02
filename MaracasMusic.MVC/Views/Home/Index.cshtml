@@ -7,98 +7,117 @@
 <!-- Modal -->
 
 
-<article id="app">
+    <article id="app">
 
 
-    <header></header>
-    <nav class="col-md-9 navbar navbar-default">
-        <div class="navbar-fluid">
+        <header></header>
+        <nav class="col-md-9 navbar navbar-default">
+            <div class="navbar-fluid">
 
-            <ul class="nav navbar-nav" style="flex-direction: row;">
-                <li v-for="item in productTypes" v-on:click="fetchProducts(item.name)" style="cursor:pointer; margin-right: 50px">
-                    <span>{{item.nameForView}}</span>
-                </li>
-            </ul>
+                <ul class="nav navbar-nav" style="flex-direction: row;">
+                    <li v-for="item in productTypes" v-on:click="fetchProducts(item.name)" style="cursor:pointer; margin-right: 50px">
+                        <span>{{item.nameForView}}</span>
+                    </li>
+                    <li v-on:click="openBasket()" style="cursor:pointer" data-toggle="modal" data-target="#basketModal">Winkelmandje</li>
+                </ul>
+            </div>
+        </nav>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="fotos" v-for="product in products" style="cursor:pointer">
+                    <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
+
+                    <div class="productContent">
+                        <h3>{{ product.name}}</h3>
+                        <p>{{product.description}} -  {{product.artistName}}</p>
+
+                        <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
+                            Toon meer informatie
+                        </button>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </nav>
 
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="fotos" v-for="product in products" style="cursor:pointer">
-                <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 100%" role="document">
+                <div class="modal-content" style="width: 70%; margin: auto">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{selectedProduct.name}}</h5>
 
-                <div class="productContent">
-                    <h3>{{ product.name}}</h3>
-                    <p>{{product.description}} -  {{product.artistName}}</p>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            <li>Omschrijving:  {{selectedProduct.description}}</li>
+                            <li>Product categorie:  {{selectedProduct.productTypeName}}</li>
+                        </ul>
+                        <hr />
+                        <div class="productDetail" v-if="selectedProduct.productTypeId === 1">
+                            <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
 
-                    <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
-                        Toon meer informatie
-                    </button>
+                            <ul class="detailAlign">
+                                <li>Naam artiest  {{selectedProduct.artistName}}</li>
+                                <li>Genre:  {{selectedProduct.genreName}}</li>
+                                <li>Prijs:  {{selectedProduct.price}} euro</li>
+                            </ul>
+                        </div>
+
+                        <div class="productDetail" v-else-if="selectedProduct.productTypeId === 2">
+                            <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+
+                            <ul class="detailAlign">
+                                <li>Type instrument:  {{selectedProduct.instrumentTypeName}}</li>
+                                <li>Naam instrument:  {{selectedProduct.name}}</li>
+                                <li>Prijs:  {{selectedProduct.price}} euro</li>
+                            </ul>
+                        </div>
+
+                        <div class="productDetail" v-else>
+                            <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+
+                            <ul class="detailAlign">
+                                <li>Naam artiest:  {{selectedProduct.artistName}}</li>
+                                <li>Genre:  {{selectedProduct.genreName}}</li>
+                                <li>Name:   {{selectedProduct.name}}</li>
+                                <li>Prijs:  {{selectedProduct.price}} euro</li>
+                            </ul>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button class="basicbtn" data-dismiss="modal">Sluit</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
 
+        <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="basketlabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 100%" role="document">
+                <div class="modal-content" style="width: 70%; margin: auto">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="basketlabel"></h5>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" style="width: 100%" role="document">
-            <div class="modal-content" style="width: 70%; margin: auto">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{selectedProduct.name}}</h5>
-
-                    <button class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        <li>Omschrijving:  {{selectedProduct.description}}</li>
-                        <li>Product categorie:  {{selectedProduct.productTypeName}}</li>
-                    </ul>
-                    <hr />
-                    <div class="productDetail" v-if="selectedProduct.productTypeId === 1">
-                        <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
-
-                        <ul class="detailAlign">
-                            <li>Naam artiest  {{selectedProduct.artistName}}</li>
-                            <li>Genre:  {{selectedProduct.genreName}}</li>
-                            <li>Prijs:  {{selectedProduct.price}} euro</li>
-                        </ul>
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-
-                    <div class="productDetail" v-else-if="selectedProduct.productTypeId === 2">
-                        <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
-
-                        <ul class="detailAlign">
-                            <li>Type instrument:  {{selectedProduct.instrumentTypeName}}</li>
-                            <li>Naam instrument:  {{selectedProduct.name}}</li>
-                            <li>Prijs:  {{selectedProduct.price}} euro</li>
-                        </ul>
-                    </div>
-
-                    <div class="productDetail" v-else>
-                        <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
-
-                        <ul class="detailAlign">
-                            <li>Naam artiest:  {{selectedProduct.artistName}}</li>
-                            <li>Genre:  {{selectedProduct.genreName}}</li>
-                            <li>Name:   {{selectedProduct.name}}</li>
-                            <li>Prijs:  {{selectedProduct.price}} euro</li>
-                        </ul>
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button class="basicbtn" data-dismiss="modal">Sluit</button>
+                    <div class="modal-body">
+                       <p>basket</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</article>
+    </article>
 
 
 
@@ -139,7 +158,9 @@
                 productTypes: [{ "nameForView": "Alle Producten", "name": "product" },
                 { "nameForView": "Cds", "name": "Cd" },
                 { "nameForView": "Instrumenten", "name": "Instrument" },
-                { "nameForView": "Partituren", "name": "score" }],
+                    { "nameForView": "Partituren", "name": "score" }],
+
+                basket:  [],
 
             },
 
@@ -195,7 +216,13 @@
 
                 showModal: $('#myModal').on('shown.bs.modal', function () {
                     $('#myInput').trigger('focus').val()
-                })
+                }),
+
+                  openBasket: $('#basketModal').on('shown.bs.modal', function () {
+                    $('#myInput').trigger('focus').val()
+                }),
+               
+                    
 
             }
 
