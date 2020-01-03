@@ -32,24 +32,48 @@
         </nav>
 
 
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="fotos" v-for="product in products" style="cursor:pointer">
-                    <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
+        
+        
+        <div v-if="viewOrder === false">
+        <div id="products">
 
-                    <div class="productContent">
-                        <h3>{{ product.name}}</h3>
-                        <p>{{product.description}} -  {{product.artistName}}</p>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="fotos" v-for="product in products" style="cursor:pointer">
+                        <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
 
-                        <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
-                            meer informatie
-                        </button>
-                        <button v-on:click="addToBasket(product)" class="btn-success">Toevoegen aan winkelmandje</button>
+                        <div class="productContent">
+                            <h3>{{ product.name}}</h3>
+                            <p>{{product.description}} -  {{product.artistName}}</p>
+
+                            <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
+                                meer informatie
+                            </button>
+                            <button v-on:click="addToBasket(product)" class="btn-success">Toevoegen aan winkelmandje</button>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
+
         </div>
+        </div>
+
+        <div v-else>
+            <div id="makeOrder">
+
+                <p>make order</p>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
 
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -184,7 +208,7 @@
                             </div>
 
                             <div class="col-md-2 justify-content-end">
-                                <button class="btn-succes">Bestellen</button>
+                                <a v-on:click="viewOrder = true">naar order</a>
                             </div>
 
                         </div>
@@ -237,6 +261,7 @@
                 basket: [],
 
                 basketTotal: 0,
+                viewOrder: false,
 
             },
 

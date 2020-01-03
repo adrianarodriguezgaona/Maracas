@@ -82,7 +82,7 @@ namespace MaracasMusic.MVC
             }
             //Assign Admin role to the main User here we have given our newly registered 
             //login id for Admin management
-            IdentityUser user = await UserManager.FindByEmailAsync("adri_mrg@yahoo.com");
+            IdentityUser user = await UserManager.FindByEmailAsync("kennyzasada@icloud.com");
             var User = new IdentityUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }
