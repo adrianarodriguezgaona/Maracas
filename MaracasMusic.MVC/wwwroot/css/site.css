@@ -138,3 +138,8 @@ body {
     justify-content: center;
     flex-direction: column;
 }
+
+.nav.nav-tabs li {
+    background: none;
+    border: none;
+}
