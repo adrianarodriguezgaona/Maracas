@@ -8,7 +8,7 @@ namespace Maracas.Lib.Models
    public class Product : EntityBase
     {
         public string Description { get; set; }
-        public Decimal Price { get; set; }
+        public decimal Price { get; set; }
         public string Foto { get; set; }
         public int ProductTypeId { get; set; }
        

@@ -83,14 +83,14 @@ namespace MaracasMusic.API.Controllers
                 return NotFound();
             }
 
-            return CreatedAtAction("Get", new { Id = entity.Id }, entity);
+            return CreatedAtAction("Get", new { id = entity.Id }, entity);
 
         }
 
 
         // Delete API/T/Id
         [HttpDelete("{Id}")]
-        public virtual async Task<IActionResult> Delete([FromBody] T entity, [FromRoute] int Id)
+        public virtual async Task<IActionResult> Delete([FromRoute] int id)
 
         {
             if (!ModelState.IsValid)
@@ -98,14 +98,14 @@ namespace MaracasMusic.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            T entDelete = await repository.Delete(Id);
+            T entDelete = await repository.Delete(id);
 
             if (entDelete == null)
             {
                 return NotFound();
             }
 
-            return Ok(entity);
+            return Ok(entDelete);
 
         }
     }
