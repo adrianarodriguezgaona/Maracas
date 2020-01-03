@@ -4,5 +4,87 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>MakeOrder</h1>
+<h3>Plaats jouw bestelling</h3>
 
+<div class="wrapper wrapper-content" id="app" >
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox">
+                <form name="orderForm" class="form-horizontal" >
+                    @Html.AntiForgeryToken()
+
+                    <div class="ibox-content">
+                        <div class="row m-t-md">
+                            <div class="form-group" v-class="">
+                                <label class="control-label col-md-3">Klant nummer</label>
+                                <div class="col-md-8">
+                                    <input id="klantNummer" type="text" name="klantNummer" v-model="klantNummer" class="form-control" />
+                                </div>
+                                <p>{{klantNummer}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="hr-line-dashed"></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class=" col-md-offset-6 col-md-9">
+                                    <button type="button"  class="btn btn-primary">Bevestigen</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+
+    <script>
+
+    </script>
+    <script src="~/lib/vue/vue.js">
+    </script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.6.1/vue-cookies.js"></script>
+    <script>
+
+        var apiurl = 'https://localhost:44378/api/';
+
+        var app = new Vue({
+
+            el: '#app',
+            data: {
+
+                klantNummer: ''
+               
+            },
+
+
+            created: function () {
+                var self = this;
+               
+
+            },
+
+            methods: {
+                
+
+
+            }
+
+        });
+
+    </script>
+
+}
