@@ -50,6 +50,7 @@ namespace MaracasMusic.MVC
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentity<IdentityUser, IdentityRole>()
+                 .AddDefaultUI(UIFramework.Bootstrap4)
                  .AddEntityFrameworkStores<ApplicationDbContext>()
                  .AddDefaultTokenProviders();
 
@@ -58,7 +59,7 @@ namespace MaracasMusic.MVC
             services.Configure<IdentityOptions>(options =>
             {
                 //Sign-in settings
-                options.SignIn.RequireConfirmedEmail = true;
+                //options.SignIn.RequireConfirmedEmail = true;
             });
 
             //Configuratie e-mail ondersteuning        

@@ -22,6 +22,7 @@ namespace MaracasMusic.MVC.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult MakeOrder()
         {
             return View();
