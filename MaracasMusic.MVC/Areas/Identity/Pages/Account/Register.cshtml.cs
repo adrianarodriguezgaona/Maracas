@@ -77,13 +77,15 @@ namespace MaracasMusic.MVC.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new IdentityUser { UserName = Input.Name, Email = Input.Email };
-                var client = new Client { Name = user.UserName, Email = user.Email, UserId = Guid.Parse(user.Id) };
-                HttpResponseMessage response = await httpClient.PostAsJsonAsync(baseUri, client);
-
+               
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+
                     _logger.LogInformation("User created a new account with password.");
+
+                    var client = new Client { Name = user.UserName, Email = user.Email, UserId = Guid.Parse(user.Id) };
+                    HttpResponseMessage response = await httpClient.PostAsJsonAsync(baseUri, client);
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.Page(
