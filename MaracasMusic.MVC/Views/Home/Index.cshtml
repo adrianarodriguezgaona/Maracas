@@ -18,7 +18,15 @@
                     <li v-for="item in productTypes" v-on:click="fetchProducts(item.name)" style="cursor:pointer; margin-right: 50px">
                         <span>{{item.nameForView}}</span>
                     </li>
-                    <li v-on:click="openBasket()" style="cursor:pointer" data-toggle="modal" data-target="#basketModal">Winkelmandje</li>
+                    <li v-on:click="openBasket()" style="cursor:pointer" data-toggle="modal" data-target="#basketModal">
+
+                        <span>
+                            <img src="~/icons/basket.png" style="width:25px" />
+                            <span class="badge badge-pill badge-danger">{{basket.length}}</span>
+
+                        </span>
+
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -34,8 +42,9 @@
                         <p>{{product.description}} -  {{product.artistName}}</p>
 
                         <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
-                            Toon meer informatie
+                            meer informatie
                         </button>
+                        <button v-on:click="addToBasket(product)" class="btn-success">Toevoegen aan winkelmandje</button>
                     </div>
                 </div>
             </div>
@@ -104,14 +113,83 @@
             <div class="modal-dialog modal-dialog-centered" style="width: 100%" role="document">
                 <div class="modal-content" style="width: 70%; margin: auto">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="basketlabel"></h5>
+                        <h5 class="modal-title" id="basketlabel">Winkelmandje</h5>
 
                         <button class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                       <p>basket</p>
+
+
+                        <div class="row" style="border-bottom: 1px solid; margin-bottom: 10px">
+
+                            <div class="col-md-4"> Naam artikel</div>
+
+                            <div class="col-md-2"> prijs/stuk</div>
+
+                            <div class="col-md-2"> aantal</div>
+
+
+                            <div class="col-md-2">totaal</div>
+
+
+                        </div>
+
+
+                        <div class="row" v-for="product in basket">
+                            <div class="col-md-4">
+
+                                <p>{{product.name}}</p>
+
+                            </div>
+                            <div class="col-md-2">
+
+                                <p>{{product.price}} euro</p>   
+
+                            </div>
+
+                            <div class="col-md-2">
+                                <input v-on:keyup="updateCookie()" v-model="product.aantal" />
+                            </div>
+
+                            <div class="col-md-2">
+
+                                <p>{{product.aantal * product.price}} euro</p>
+
+                            </div>
+
+                            <div class="col-md-2">
+
+                                <button v-on:click="deleteFromBasket(product)">Verwijder</button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-end">
+
+                            <div class="col-md_4">
+                                <p>totaal: {{basketTotal}}</p>
+                            </div>
+
+                            <div class="col-md-2"></div>
+
+                        </div>
+
+                        <div class="row justify-content-end">
+
+                            <div class="col-md_10">
+                                
+                            </div>
+
+                            <div class="col-md-2 justify-content-end">
+                                <button class="btn-succes">Bestellen</button>
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -137,15 +215,11 @@
     <script src="https://unpkg.com/vue-cookies@1.6.1/vue-cookies.js"></script>
     <script>
 
-        Vue.$cookies.config('30d')
 
 
         var apiurl = 'https://localhost:44378/api/product';
 
-        var user = { id:1, name:'Journal',session:'25j_7Sl6xDq2Kc3ym0fmrSSk2xV2XkUkX' };
-        this.$cookies.set('user',user);
-// print user name
-        console.log(this.$cookies.get('user').name)
+     
 
         var app = new Vue({
 
@@ -160,7 +234,9 @@
                 { "nameForView": "Instrumenten", "name": "Instrument" },
                     { "nameForView": "Partituren", "name": "score" }],
 
-                basket:  [],
+                basket: [],
+
+                basketTotal: 0,
 
             },
 
@@ -168,6 +244,11 @@
             created: function () {
                 var self = this;
                 self.fetchProducts("product");
+                self.basket = JSON.parse(this.$cookies.get('basket'));
+                self.calculateTotalBasket(self.basket); 
+
+               
+
 
             },
 
@@ -214,20 +295,90 @@
 
                 },
 
+
+
                 showModal: $('#myModal').on('shown.bs.modal', function () {
                     $('#myInput').trigger('focus').val()
                 }),
 
                   openBasket: $('#basketModal').on('shown.bs.modal', function () {
-                    $('#myInput').trigger('focus').val()
-                }),
-               
-                    
+                      $('#myInput').trigger('focus').val()
+
+                  }),
+
+
+                addToBasket: function (product) {
+                    self = this;
+                    product.aantal = 1;
+                    self.basket.push(product);
+
+                    self.calculateTotalBasket(self.basket);
+
+                    Vue.$cookies.config('30d');
+
+                    var json = JSON.stringify(self.basket)
+
+                    this.$cookies.set('basket', json);
+
+                    var cookieobject = JSON.parse(this.$cookies.get('basket'));
+                    console.log(cookieobject)
+
+                },
+
+                deleteFromBasket: function (product) {
+                    console.log("binnen");
+
+                    self.basket.pop(product);
+                    this.calculateTotalBasket(self.basket)
+                      var json = JSON.stringify(self.basket)
+
+                    this.$cookies.set('basket', json);
+
+                },
+
+                updateCookie: function () {
+                    console.log("cookieupdate");
+
+                    var self = this;
+                    self.calculateTotalBasket(self.basket);
+
+                       var json = JSON.stringify(self.basket)
+
+                    this.$cookies.set('basket', json);
+                },
+
+
+                
+                calculateTotalBasket: 
+                   
+                    function (basket) {
+
+                        self = this;
+                        self.basketTotal = 0;
+                        basket.forEach(element => (self.calulatePriceArticle(element)));
+                            
+                    },
+
+                calulatePriceArticle:
+                    function (element) {
+
+                        console.log("binnen");
+                        var self = this;
+
+                        
+
+                        var total = element.price * element.aantal;
+                        self.basketTotal += total;
+                    }
+
+
+                
+
 
             }
 
         });
-
+        
     </script>
 
 }
