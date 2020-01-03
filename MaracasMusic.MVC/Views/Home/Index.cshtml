@@ -18,6 +18,7 @@
                     <li v-for="item in productTypes" v-on:click="fetchProducts(item.name)" style="cursor:pointer; margin-right: 50px">
                         <span>{{item.nameForView}}</span>
                     </li>
+                    <li v-on:click="openBasket()" style="cursor:pointer" data-toggle="modal" data-target="#basketModal">Winkelmandje</li>
                 </ul>
             </div>
         </nav>
@@ -27,15 +28,15 @@
             <div class="col-sm-12">
                 <div class="fotos" v-for="product in products" style="cursor:pointer">
                     <img :src="`https://localhost:44378/api/product/imagebyid/${product.id}`" class="fotosProduct" />
-                    
-                    <div class="productContent">
-                    <h3>{{ product.name}}</h3>
-                    <p>{{product.description}} -  {{product.artistName}}</p>
 
-                    <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
-                        Toon meer informatie
-                    </button>
-                        </div>
+                    <div class="productContent">
+                        <h3>{{ product.name}}</h3>
+                        <p>{{product.description}} -  {{product.artistName}}</p>
+
+                        <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
+                            Toon meer informatie
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -43,11 +44,11 @@
 
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" style="width: 100%"  role="document">
+            <div class="modal-dialog modal-dialog-centered" style="width: 100%" role="document">
                 <div class="modal-content" style="width: 70%; margin: auto">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">{{selectedProduct.name}}</h5>
-                       
+
                         <button class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -94,9 +95,27 @@
                             <button class="basicbtn" data-dismiss="modal">Sluit</button>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
+
+
+        <div class="modal fade" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="basketlabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="width: 100%" role="document">
+                <div class="modal-content" style="width: 70%; margin: auto">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="basketlabel"></h5>
+
+                        <button class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <p>basket</p>
+                    </div>
+                </div>
             </div>
+        </div>
 
     </article>
 
@@ -110,15 +129,24 @@
 @section scripts {
 
     <script>
-     
+
     </script>
     <script src="~/lib/vue/vue.js">
     </script>
-
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.6.1/vue-cookies.js"></script>
     <script>
+
+        Vue.$cookies.config('30d')
 
 
         var apiurl = 'https://localhost:44378/api/product';
+
+        var user = { id:1, name:'Journal',session:'25j_7Sl6xDq2Kc3ym0fmrSSk2xV2XkUkX' };
+        this.$cookies.set('user',user);
+// print user name
+        console.log(this.$cookies.get('user').name)
+
         var app = new Vue({
 
             el: '#app',
@@ -130,7 +158,9 @@
                 productTypes: [{ "nameForView": "Alle Producten", "name": "product" },
                 { "nameForView": "Cds", "name": "Cd" },
                 { "nameForView": "Instrumenten", "name": "Instrument" },
-                { "nameForView": "Partituren", "name": "score" }],
+                    { "nameForView": "Partituren", "name": "score" }],
+
+                basket:  [],
 
             },
 
@@ -184,9 +214,15 @@
 
                 },
 
-                showModal:    $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus').val()
-})
+                showModal: $('#myModal').on('shown.bs.modal', function () {
+                    $('#myInput').trigger('focus').val()
+                }),
+
+                  openBasket: $('#basketModal').on('shown.bs.modal', function () {
+                    $('#myInput').trigger('focus').val()
+                }),
+               
+                    
 
             }
 

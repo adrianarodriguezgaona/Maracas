@@ -111,7 +111,7 @@ body {
 }
 
 .modal-content {
-    width: 70%;
+    width: 40%;
     margin: auto;
 
 }
@@ -127,10 +127,14 @@ body {
     
 }
 
-.basicbtn {
-    background-color: none;
-    width: 170px;
 
+
+
+.btn-success, .basicbtn { width: 100px;
+                          height:60px;
+                          margin-bottom: 10px;
+                          line-height: 60px;
+                          text-align: center;
 }
 
 .detailAlign {
