@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaracasMusic.API.Migrations
 {
     [DbContext(typeof(MaracasContext))]
-    [Migration("20191223151656_NamesAdd")]
-    partial class NamesAdd
+    [Migration("20200103084806_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -100,13 +100,11 @@ namespace MaracasMusic.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address");
-
-                    b.Property<string>("City");
-
                     b.Property<string>("Email");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Password");
 
                     b.Property<Guid>("UserId");
 
@@ -201,6 +199,8 @@ namespace MaracasMusic.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address");
+
                     b.Property<int>("ClientId");
 
                     b.Property<DateTime>("DateOrder");
@@ -276,11 +276,11 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 1,
                             ArtistId = 2,
-                            Description = "CD (ALBUM) |1 disk |Engels|maart 2014",
+                            Description = "CD (ALBUM) |1 disk |Engels|maart 2014 -- Shakira",
                             Foto = "CdShakira1.jpg",
                             GenreId = 2,
                             InstrumentTypeId = 1,
-                            Name = "Shakira",
+                            Name = "El Dorado",
                             Price = 11m,
                             ProductTypeId = 1
                         },
@@ -288,11 +288,11 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 2,
                             ArtistId = 2,
-                            Description = "CD (ALBUM) |1 disk |Engels|mei 2017",
+                            Description = "CD (ALBUM) |1 disk |Engels|mei 2017 -- Shakira",
                             Foto = "CdShakira2.jpg",
                             GenreId = 2,
                             InstrumentTypeId = 1,
-                            Name = "El Dorado",
+                            Name = "Shakira",
                             Price = 10m,
                             ProductTypeId = 1
                         },
@@ -300,7 +300,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 3,
                             ArtistId = 3,
-                            Description = "CD (ALBUM) |1 disk |Spaans|september 2004",
+                            Description = "CD (ALBUM) |1 disk |Spaans|september 2004 -- Juanes",
                             Foto = "CdJuanes1.jpg",
                             GenreId = 2,
                             InstrumentTypeId = 1,
@@ -312,7 +312,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 4,
                             ArtistId = 3,
-                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2002",
+                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2002 -- Juanes",
                             Foto = "CdJuanes2.jpg",
                             GenreId = 2,
                             InstrumentTypeId = 1,
@@ -324,7 +324,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 5,
                             ArtistId = 4,
-                            Description = "CD (ALBUM) |1 disk |Spaans|juli 2013",
+                            Description = "CD (ALBUM) |1 disk |Spaans|juli 2013 -- Marc Anthony",
                             Foto = "CdMarcA1.jpg",
                             GenreId = 3,
                             InstrumentTypeId = 1,
@@ -336,7 +336,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 6,
                             ArtistId = 4,
-                            Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum",
+                            Description = "CD (ALBUM) |1 disk |Spaans|juli 2006 |Verzamelalbum -- Marc Anthony",
                             Foto = "CdMarcA2.jpg",
                             GenreId = 3,
                             InstrumentTypeId = 1,
@@ -348,7 +348,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 7,
                             ArtistId = 5,
-                            Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum",
+                            Description = "CD (ALBUM) |1 disk |Spaans|juni 1994  |Verzamelalbum -- Grupo Niche",
                             Foto = "CdGrupoN1.jpg",
                             GenreId = 3,
                             InstrumentTypeId = 1,
@@ -360,7 +360,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 8,
                             ArtistId = 5,
-                            Description = "CD (ALBUM) |1 disk |Spaans|november 2015 ",
+                            Description = "CD (ALBUM) |1 disk |Spaans|november 2015 -- Grupo Niche ",
                             Foto = "CdGrupoN2.jpg",
                             GenreId = 3,
                             InstrumentTypeId = 1,
@@ -372,7 +372,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 9,
                             ArtistId = 6,
-                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 ",
+                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2019 -- Maluma",
                             Foto = "CdMaluma1.jpg",
                             GenreId = 4,
                             InstrumentTypeId = 1,
@@ -384,7 +384,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 10,
                             ArtistId = 6,
-                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 ",
+                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2018 -- Maluma",
                             Foto = "CdMaluma2.jpg",
                             GenreId = 4,
                             InstrumentTypeId = 1,
@@ -396,7 +396,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 11,
                             ArtistId = 7,
-                            Description = "CD (ALBUM) |1 disk |Spaans|October 2011",
+                            Description = "CD (ALBUM) |1 disk |Spaans|October 2011 -- Chino y Nacho",
                             Foto = "CdChino1.jpg",
                             GenreId = 4,
                             InstrumentTypeId = 1,
@@ -408,7 +408,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 12,
                             ArtistId = 7,
-                            Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015",
+                            Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015 -- Chino y Nacho",
                             Foto = "CdChino2.jpg",
                             GenreId = 4,
                             InstrumentTypeId = 1,
@@ -420,7 +420,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 13,
                             ArtistId = 8,
-                            Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017",
+                            Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017 -- Carlos Vives",
                             Foto = "CdVives1.jpg",
                             GenreId = 5,
                             InstrumentTypeId = 1,
@@ -432,7 +432,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 14,
                             ArtistId = 8,
-                            Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014",
+                            Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014 -- Carlos Vives",
                             Foto = "CdVives2.jpg",
                             GenreId = 5,
                             InstrumentTypeId = 1,
@@ -444,8 +444,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 15,
                             ArtistId = 9,
-                            Description = "CD (ALBUM) |1 disk |Spaans|april 1998",
-                            Foto = "CdElvisC1.jpg",
+                            Description = "CD (ALBUM) |1 disk |Spaans|april 1998 -- Elvis Crespo",
+                            Foto = "CdElvis1.jpg",
                             GenreId = 6,
                             InstrumentTypeId = 1,
                             Name = "Suavemente",
@@ -456,8 +456,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 16,
                             ArtistId = 9,
-                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2012",
-                            Foto = "CdElvisC2.jpg",
+                            Description = "CD (ALBUM) |1 disk |Spaans|mei 2012 -- Elvis Crespo",
+                            Foto = "CdElvis2.jpg",
                             GenreId = 6,
                             InstrumentTypeId = 1,
                             Name = "Los Monsters",
@@ -468,11 +468,11 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 17,
                             ArtistId = 1,
-                            Description = "Finish: Natural - Siam Oak drum shell with natural head - Head: Ø 4.5' - Approx. 28 cm high - Mini Comfort Curve II Rims",
+                            Description = "INSTRUMENT | Finish: Natural - Siam Oak drum shell met natuurlijke bekleding - Top: Ø 4.5' - ongeveer 28 cm hoog - Mini Comfort Curve II Rims",
                             Foto = "instrumentPerc1.jpg",
                             GenreId = 1,
                             InstrumentTypeId = 2,
-                            Name = "LPM198 Mini Tuneable Conga",
+                            Name = "LPM198 Mini afstelbare conga",
                             Price = 60m,
                             ProductTypeId = 2
                         },
@@ -480,11 +480,11 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 18,
                             ArtistId = 1,
-                            Description = "Simple wooden percussion instrument, deliverd in pairs",
+                            Description = "INSTRUMENT | Eenvoudig houten percussieinstrument. - Wordt geleverd in paren.",
                             Foto = "instrumentPerc2.jpg",
                             GenreId = 1,
                             InstrumentTypeId = 2,
-                            Name = "Large Wooden Maracas",
+                            Name = "Grote houten Maracas",
                             Price = 20m,
                             ProductTypeId = 2
                         },
@@ -492,7 +492,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 19,
                             ArtistId = 1,
-                            Description = "",
+                            Description = "INSTRUMENT |",
                             Foto = "instrumentString1.jpg",
                             GenreId = 1,
                             InstrumentTypeId = 3,
@@ -504,7 +504,7 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 20,
                             ArtistId = 1,
-                            Description = "RoseWood back, glossy finish, hand crafted",
+                            Description = "INSTRUMENT | RoseWood houten rug, glossy finish, handgemaakt",
                             Foto = "instrumentString2.jpg",
                             GenreId = 1,
                             InstrumentTypeId = 3,
@@ -516,8 +516,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 21,
                             ArtistId = 1,
-                            Description = "Hand crafted, made of Bamboo, pure tuning",
-                            Foto = "instrumentWind1",
+                            Description = "INSTRUMENT | Handgemaakt, vervaardigd uit bamboe Hand crafted, precisie afstemming,",
+                            Foto = "instrumentWind1.jpg",
                             GenreId = 1,
                             InstrumentTypeId = 4,
                             Name = "Gewa Pan Pipe",
@@ -528,11 +528,11 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 22,
                             ArtistId = 1,
-                            Description = "Hand crafted, made of plum wood",
-                            Foto = "instrumentWind2",
+                            Description = "INSTRUMENT | Handgemaakt, vervaardigd uit zacht hout",
+                            Foto = "instrumentWind2.jpg",
                             GenreId = 1,
                             InstrumentTypeId = 4,
-                            Name = "Quena Flute",
+                            Name = "Quena pamfluit",
                             Price = 45m,
                             ProductTypeId = 2
                         },
@@ -540,8 +540,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 23,
                             ArtistId = 2,
-                            Description = "Shakira sheet music - Song: Whenever, Wherever",
-                            Foto = "scoreSha1.jpg",
+                            Description = "PARTITUUR | Shakira bladmuziek - Nummer: Whenever, Wherever",
+                            Foto = "scoreSha1.png",
                             GenreId = 2,
                             InstrumentTypeId = 1,
                             Name = "Whenever, wherever",
@@ -552,8 +552,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 24,
                             ArtistId = 2,
-                            Description = "Shakira sheet music - Song: Hips don't Lie",
-                            Foto = "scoreSha2.jpg",
+                            Description = "PARTITUUR | Shakira bladmuziek - Nummer: Hips don't Lie",
+                            Foto = "scoreSha2.png",
                             GenreId = 2,
                             InstrumentTypeId = 1,
                             Name = "Hips don't Lie",
@@ -564,8 +564,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 25,
                             ArtistId = 3,
-                            Description = "Juanes sheet music - Song: La Camisa Negra",
-                            Foto = "scoreJua1.jpg",
+                            Description = "PARTITUUR | Juanes bladmuziek - Nummer: La Camisa Negra",
+                            Foto = "scoreJua1.png",
                             GenreId = 2,
                             InstrumentTypeId = 1,
                             Name = "La Camisa Negra",
@@ -576,8 +576,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 26,
                             ArtistId = 3,
-                            Description = "Juanes sheet music - Song: Juntos",
-                            Foto = "scoreJua2.jpg",
+                            Description = "PARTITUUR | Juanes bladmuziek - Nummer: Juntos",
+                            Foto = "scoreJua2.png",
                             GenreId = 2,
                             InstrumentTypeId = 1,
                             Name = "Juntos",
@@ -588,8 +588,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 27,
                             ArtistId = 4,
-                            Description = "Marc Anthony sheet music - Song: Vivir mi Vida",
-                            Foto = "scoreMar1.jpg",
+                            Description = "PARTITUUR | Marc Anthony sheet music - Nummer: Vivir mi Vida",
+                            Foto = "scoreMar1.png",
                             GenreId = 3,
                             InstrumentTypeId = 1,
                             Name = "Vivir mi Vida",
@@ -600,8 +600,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 28,
                             ArtistId = 4,
-                            Description = "Marc Anthony sheet music - Song: Te Conozco Bien",
-                            Foto = "scoreMar2.jpg",
+                            Description = "Marc Anthony bladmuziek - Nummer: Te Conozco Bien",
+                            Foto = "scoreMar2.png",
                             GenreId = 3,
                             InstrumentTypeId = 1,
                             Name = "Te Conozco Bien",
@@ -612,8 +612,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 29,
                             ArtistId = 5,
-                            Description = "Grupo Niche sheet music - Song: Tapanco El Hueco",
-                            Foto = "scoreGru1.jpg",
+                            Description = "Grupo Niche bladmuziek - Nummer: Tapanco El Hueco",
+                            Foto = "scoreGru1.png",
                             GenreId = 3,
                             InstrumentTypeId = 1,
                             Name = "Tapanco El Hueco",
@@ -624,8 +624,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 30,
                             ArtistId = 5,
-                            Description = "Grupo Niche - Song: El Amor Vendra",
-                            Foto = "scoreGru2.jpg",
+                            Description = "Grupo Niche - Nummer: El Amor Vendra",
+                            Foto = "scoreGru2.png",
                             GenreId = 3,
                             InstrumentTypeId = 1,
                             Name = "El Amor Vendra",
@@ -636,8 +636,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 31,
                             ArtistId = 6,
-                            Description = "Maluma sheet music - Song: Felices los 4",
-                            Foto = "scoreMal1.jpg",
+                            Description = "Maluma bladmuziek - Nummer: Felices los 4",
+                            Foto = "scoreMal1.png",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Felices Los 4",
@@ -648,8 +648,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 32,
                             ArtistId = 6,
-                            Description = "Maluma sheet music - Song: Corazòn",
-                            Foto = "scoreMal2.jpg",
+                            Description = "Maluma bladmuziek - Nummer: Corazòn",
+                            Foto = "scoreMal2.png",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Corazòn",
@@ -660,8 +660,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 33,
                             ArtistId = 7,
-                            Description = "Chino y Nacho sheet music - Song: Andas en mi Cabeza",
-                            Foto = "scoreChi1.jpg",
+                            Description = "Chino y Nacho bladmuziek - Nummer: Andas en mi Cabeza",
+                            Foto = "scoreChi1.png",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Andas en mi Cabeza",
@@ -672,8 +672,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 34,
                             ArtistId = 7,
-                            Description = "Chino y Nacho sheet music - Song: Mi Niña Bonita",
-                            Foto = "scoreChi2.jpg",
+                            Description = "Chino y Nacho bladmuziek - Nummer: Mi Niña Bonita",
+                            Foto = "scoreChi2.png",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Mi Niña Bonita",
@@ -684,8 +684,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 35,
                             ArtistId = 8,
-                            Description = "Carlos Vives - Song: Déjame Entrar",
-                            Foto = "scoreCar1.jpg",
+                            Description = "Carlos Vives - Nummer: Déjame Entrar",
+                            Foto = "scoreCar1.png",
                             GenreId = 5,
                             InstrumentTypeId = 1,
                             Name = "Déjame Entrar",
@@ -696,8 +696,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 36,
                             ArtistId = 8,
-                            Description = "Carlos Vives sheet music - Song: Carito",
-                            Foto = "scoreCar2.jpg",
+                            Description = "Carlos Vives bladmuziek - Nummer: Carito",
+                            Foto = "scoreCar2.png",
                             GenreId = 5,
                             InstrumentTypeId = 1,
                             Name = "Carito",
@@ -708,8 +708,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 37,
                             ArtistId = 9,
-                            Description = "Elvis Crespo sheet music - Song: Suavemente",
-                            Foto = "scoreElv1.jpg",
+                            Description = "Elvis Crespo bladmuziek - Nummer: Suavemente",
+                            Foto = "scoreElv1.png",
                             GenreId = 6,
                             InstrumentTypeId = 1,
                             Name = "Suavemente",
@@ -720,8 +720,8 @@ namespace MaracasMusic.API.Migrations
                         {
                             Id = 38,
                             ArtistId = 9,
-                            Description = "Elvis Crespo sheet music - Song: Pintame",
-                            Foto = "scoreElv2.jpg",
+                            Description = "Elvis Crespo bladmuziek - Nummer: Pintame",
+                            Foto = "scoreElv2.png",
                             GenreId = 6,
                             InstrumentTypeId = 1,
                             Name = "Pintame",

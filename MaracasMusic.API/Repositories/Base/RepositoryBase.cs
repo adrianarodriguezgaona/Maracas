@@ -49,7 +49,10 @@ namespace MaracasMusic.API.Repositories
         public async Task<T> Delete(int id)
         {
             var entity = await GetById(id);
-            if (entity == null) return null;
+            if (entity == null)
+            {
+                return null;
+            }
             return await Delete(entity);
         }
 
