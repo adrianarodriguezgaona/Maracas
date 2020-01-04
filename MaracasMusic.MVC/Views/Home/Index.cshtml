@@ -11,7 +11,8 @@
 
 
     <header></header>
-    <nav class="col-md-9 navbar navbar-default">
+    
+    <nav class="col-md-12 navbar navbar-default sticky-top" style="background-color:white; border-bottom:1px solid rgba(222, 226, 232, 1)">
         <div class="navbar-fluid">
 
             <ul class="nav navbar-nav" style="flex-direction: row;">
@@ -30,7 +31,6 @@
             </ul>
         </div>
     </nav>
-
 
 
 
@@ -65,12 +65,32 @@
 
         @if (SignInManager.IsSignedIn(User))
         {
-            <div id="makeOrder">
+            <h3>Plaats jouw bestelling</h3>
 
-                <p>make order</p>
-
+            <div class="row">
+                <div class="col-md-4">
+                    <p>{{client.id}}</p>
+                </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input v-model="order.dateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
+                </div>
+            </div>
+
+
+            <button>Bestelling bevestigen</button>
+
         }
+
         else
         {
             <p> Je moet ingelogd zijn om te kunnen bestellen </p>
@@ -210,8 +230,8 @@
                         </div>
 
                         <div class="col-md-2 justify-content-end">
-                            <a v-on:click="viewOrder = true">Naar order</a>
-                            
+                            <a v-on:click="goToOrder()">Naar order</a>
+
                         </div>
 
                     </div>
@@ -239,10 +259,11 @@
     <script src="~/lib/vue/vue.js">
     </script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <script src="https://unpkg.com/vue-cookies@1.6.1/vue-cookies.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.6.1/vue-cookies.js"></script>
     <script>
-       
+
         var apiurl = 'https://localhost:44378/api/product';
+        var clientApi = 'https://localhost:44378/api/client';
 
 
         var app = new Vue({
@@ -263,13 +284,21 @@
                 basketTotal: 0,
                 viewOrder: false,
 
+                order: {
+                    clientId: null,
+                    address: null,
+                    dateOrder: null,
+                },
+
+                client: {},
+
             },
 
 
             created: function () {
                 var self = this;
                 self.fetchProducts("product");
-                //self.basket = JSON.parse(this.$cookies.get('basket'));
+                self.cookieCheck();
                 self.calculateTotalBasket(self.basket);
 
             },
@@ -278,6 +307,8 @@
                 fetchProducts: function (type) {
 
                     self = this;
+                    self.viewOrder = false;
+
                     if (type == "product") {
                         fetch(`${apiurl}`)
                             .then(res => res.json())
@@ -285,6 +316,7 @@
                                 self.products = products;
                             })
                             .catch(error => console.log(error))
+
                     }
                     else
                         fetch(`${apiurl}/detailByType/${type}`)
@@ -384,7 +416,40 @@
                     var self = this;
                     var total = element.price * element.aantal;
                     self.basketTotal += total;
+                },
+
+                GetUserInfo: function (clientId) {
+                    fetch(`${clientApi}/getbyemail/@User.Identity.Name`)
+                        .then(res => res.json())
+                        .then(json => this.client = json)
+
+                },
+
+                GetCurrentDate: function () {
+                    var today = new Date();
+                    this.order.dateOrder = today;
+                },
+
+                goToOrder: function () {
+
+                  $('#basketModal').modal('hide');
+                    this.viewOrder = true;
+                    this.GetUserInfo();
+                    this.GetCurrentDate();
+
+
+
+                },
+
+                cookieCheck: function () {
+                    if (this.$cookies.get('basket') != null) {
+
+                  this.basket = JSON.parse(this.$cookies.get('basket'));
+
+                    }
+
                 }
+
 
 
             }

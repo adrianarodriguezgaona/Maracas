@@ -67,7 +67,7 @@ namespace MaracasMusic.MVC
             services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
-        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        private async Task CreateUserRoles( IServiceProvider serviceProvider )
         {
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
@@ -82,14 +82,14 @@ namespace MaracasMusic.MVC
             }
             //Assign Admin role to the main User here we have given our newly registered 
             //login id for Admin management
-            IdentityUser user = await UserManager.FindByEmailAsync("adri_mrg@yahoo.com");
+            IdentityUser user = await UserManager.FindByEmailAsync("kenny.zasada@gmail.com");
             var User = new IdentityUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure( IApplicationBuilder app, IHostingEnvironment env , IServiceProvider services)
+        public void Configure( IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services )
         {
             if (env.IsDevelopment())
             {
@@ -121,7 +121,7 @@ namespace MaracasMusic.MVC
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            CreateUserRoles(services).Wait();
+            //CreateUserRoles(services).Wait();
         }
     }
 }
