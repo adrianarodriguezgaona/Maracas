@@ -13,12 +13,24 @@ namespace MaracasMusic.API.Controllers
     [ApiController]
     public class ClientController : ControllerCrudBase<Client, ClientRepository>
     {
+        private ClientRepository _clientRepository;
 
-        public ClientController(ClientRepository clientRepository) : base(clientRepository)
+        public ClientController( ClientRepository clientRepository ) : base(clientRepository)
         {
 
+            _clientRepository = clientRepository;
+
         }
-      
-      
+
+
+        [HttpGet]
+        [Route("GetByEmail/{Email}")]
+
+
+        public virtual async Task<IActionResult> GetByClientEmail( string email )
+
+        {
+            return Ok(await _clientRepository.GetClientByEmail(email));
+        }
     }
 }

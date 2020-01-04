@@ -65,12 +65,32 @@
 
         @if (SignInManager.IsSignedIn(User))
         {
-            <div id="makeOrder">
+            <h3>Plaats jouw bestelling</h3>
 
-                <p>make order</p>
-
+            <div class="row">
+                <div class="col-md-4">
+                    <p>{{client.id}}</p>
+                </div>
             </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input v-model="order.dateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <input disabled="disabled" id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
+                </div>
+            </div>
+
+
+            <button>Bestelling bevestigen</button>
+
         }
+
         else
         {
             <p> Je moet ingelogd zijn om te kunnen bestellen </p>
@@ -210,8 +230,8 @@
                         </div>
 
                         <div class="col-md-2 justify-content-end">
-                            <a v-on:click="viewOrder = true">Naar order</a>
-                            
+                            <a v-on:click="goToOrder()">Naar order</a>
+
                         </div>
 
                     </div>
@@ -239,10 +259,11 @@
     <script src="~/lib/vue/vue.js">
     </script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <script src="https://unpkg.com/vue-cookies@1.6.1/vue-cookies.js"></script>
+    <script src="https://unpkg.com/vue-cookies@1.6.1/vue-cookies.js"></script>
     <script>
-       
+
         var apiurl = 'https://localhost:44378/api/product';
+        var clientApi = 'https://localhost:44378/api/client';
 
 
         var app = new Vue({
@@ -262,6 +283,14 @@
 
                 basketTotal: 0,
                 viewOrder: false,
+
+                order: {
+                    clientId: null,
+                    address: null,
+                    dateOrder: null,
+                },
+
+                client: {},
 
             },
 
@@ -384,7 +413,27 @@
                     var self = this;
                     var total = element.price * element.aantal;
                     self.basketTotal += total;
+                },
+
+                GetUserInfo: function (clientId) {
+                    fetch(`${clientApi}/getbyemail/@User.Identity.Name`)
+                        .then(res => res.json())
+                        .then(json => this.client = json)
+
+                },
+
+                GetCurrentDate: function () {
+                    var today = new Date();
+                    this.order.dateOrder = today;
+                },
+
+                goToOrder: function () {
+                    this.viewOrder = true;
+                    this.GetUserInfo();
+                    this.GetCurrentDate();
+
                 }
+
 
 
             }
