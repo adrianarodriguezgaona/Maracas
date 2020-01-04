@@ -11,7 +11,8 @@
 
 
     <header></header>
-    <nav class="col-md-9 navbar navbar-default">
+    
+    <nav class="col-md-12 navbar navbar-default sticky-top" style="background-color:white; border-bottom:1px solid rgba(222, 226, 232, 1)">
         <div class="navbar-fluid">
 
             <ul class="nav navbar-nav" style="flex-direction: row;">
@@ -30,7 +31,6 @@
             </ul>
         </div>
     </nav>
-
 
 
 
@@ -82,7 +82,7 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <input disabled="disabled" id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
+                    <input id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
                 </div>
             </div>
 
@@ -298,7 +298,7 @@
             created: function () {
                 var self = this;
                 self.fetchProducts("product");
-                //self.basket = JSON.parse(this.$cookies.get('basket'));
+                self.cookieCheck();
                 self.calculateTotalBasket(self.basket);
 
             },
@@ -307,6 +307,8 @@
                 fetchProducts: function (type) {
 
                     self = this;
+                    self.viewOrder = false;
+
                     if (type == "product") {
                         fetch(`${apiurl}`)
                             .then(res => res.json())
@@ -314,6 +316,7 @@
                                 self.products = products;
                             })
                             .catch(error => console.log(error))
+
                     }
                     else
                         fetch(`${apiurl}/detailByType/${type}`)
@@ -428,9 +431,22 @@
                 },
 
                 goToOrder: function () {
+
+                  $('#basketModal').modal('hide');
                     this.viewOrder = true;
                     this.GetUserInfo();
                     this.GetCurrentDate();
+
+
+
+                },
+
+                cookieCheck: function () {
+                    if (this.$cookies.get('basket') != null) {
+
+                  this.basket = JSON.parse(this.$cookies.get('basket'));
+
+                    }
 
                 }
 
