@@ -46,18 +46,18 @@
                             <h3>{{ product.name}}</h3>
                             <p>{{product.description}} -  {{product.artistName}}</p>
 
-                            <div style="display:flex; flex-direction:row" >
+                            <div style="display:flex; flex-direction:row">
 
                                 <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
                                     meer informatie
                                 </button>
 
-                                <button  style="margin-left: 10px; width: 60px; background-color:#d39e00" v-on:click="addToBasket(product)" class="basicbtn">
+                                <button style="margin-left: 10px; width: 60px; background-color:#d39e00" v-on:click="addToBasket(product)" class="basicbtn">
                                     <img src="~/icons/basket.png" style="width:25px" /><span>+</span>
                                 </button>
                             </div>
 
-                           
+
                         </div>
                     </div>
                 </div>
@@ -112,8 +112,10 @@
                         verstuurd naar {{order.Address}}
                     </p>
 
-                    <p>Gelieve het bedrag van: {{order.TotalOrder}} over te schrijven naar volgend rekeningnummer: <br />
-                      BE578-5546-4534-4434 met volgende mededeling: {{client.name}}_{{order_Id}}</p>
+                    <p>
+                        Gelieve het bedrag van: {{order.TotalOrder}} euro over te schrijven naar volgend rekeningnummer: <br />
+                        BE578-5546-4534-4434 met volgende mededeling: {{client.name}}_{{order_Id}}
+                    </p>
 
 
 
@@ -156,13 +158,13 @@
                     </ul>
                     <hr />
                     <div class="productDetail" v-if="selectedProduct.productTypeId === 1">
-                       <div>
-                        <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
-                       </div>
-                       
+                        <div>
+                            <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
+                        </div>
+
                         <div style="border-top:1px solid">
-                        <p style="border-bottom: 1px solid">Details product</p>
-                       </div>
+                            <p style="border-bottom: 1px solid">Details product</p>
+                        </div>
                         <ul class="detailAlign">
                             <li>Naam artiest  {{selectedProduct.artistName}}</li>
                             <li>Genre:  {{selectedProduct.genreName}}</li>
@@ -262,7 +264,7 @@
                     <div class="row justify-content-end">
 
                         <div class="col-md_4">
-                            <p>totaal: {{basketTotal}}</p>
+                            <p>totaal: {{basketTotal}} euro</p>
                         </div>
 
                         <div class="col-md-2"></div>
@@ -510,7 +512,7 @@
                     var self = this;
                     var hasError = false;
                     self.order.ClientId = self.client.id;
-                    
+
 
 
                     self.order.TotalOrder = self.basketTotal;
