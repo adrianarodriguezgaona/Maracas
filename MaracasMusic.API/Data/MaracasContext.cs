@@ -10,12 +10,12 @@ namespace MaracasMusic.API.Data
     public class MaracasContext : DbContext
     {
 
-        public MaracasContext(DbContextOptions<MaracasContext> options) : base(options)
+        public MaracasContext( DbContextOptions<MaracasContext> options ) : base(options)
         {
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        protected override void OnModelCreating( ModelBuilder modelbuilder )
         {
 
             modelbuilder.Entity<Genre>()
@@ -70,14 +70,14 @@ namespace MaracasMusic.API.Data
                  },
 
                 new Artist
-               {
-                   Id = 2,
-                   Name = "Shakira",
-                   GenreId = 2
-               },
+                {
+                    Id = 2,
+                    Name = "Shakira",
+                    GenreId = 2
+                },
                new Artist
                {
-                Id = 3,
+                   Id = 3,
                    Name = "Juanes",
                    GenreId = 2
                },
@@ -145,7 +145,7 @@ namespace MaracasMusic.API.Data
             modelbuilder.Entity<Product>()
                 .ToTable("Products")
                 .HasData(
-                    new Product { Id = 1, Name = "El Dorado", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Engels|maart 2014 -- Shakira", Price = 11, Foto = "CdShakira1.jpg" },
+                    new Product { Id = 1, Name = "El Dorado", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|maart 2014 -- Shakira", Price = 11, Foto = "CdShakira1.jpg" },
                     new Product { Id = 2, Name = "Shakira", ProductTypeId = 1, ArtistId = 2, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Engels|mei 2017 -- Shakira", Price = 10, Foto = "CdShakira2.jpg" },
                     new Product { Id = 3, Name = "Mi sangre", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|september 2004 -- Juanes", Price = 11, Foto = "CdJuanes1.jpg" },
                     new Product { Id = 4, Name = "Un dia normal", ProductTypeId = 1, ArtistId = 3, GenreId = 2, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2002 -- Juanes", Price = 9, Foto = "CdJuanes2.jpg" },
@@ -159,7 +159,7 @@ namespace MaracasMusic.API.Data
                     new Product { Id = 12, Name = "Radio universo", ProductTypeId = 1, ArtistId = 7, GenreId = 4, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|June 23, 2015 -- Chino y Nacho", Price = 18, Foto = "CdChino2.jpg" },
                     new Product { Id = 13, Name = "VIVES", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|Nov 10, 2017 -- Carlos Vives", Price = 18, Foto = "CdVives1.jpg" },
                     new Product { Id = 14, Name = "Más + Corazón Profundo", ProductTypeId = 1, ArtistId = 8, GenreId = 5, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|May 13, 2014 -- Carlos Vives", Price = 18, Foto = "CdVives2.jpg" },
-                    new Product { Id = 15, Name = "Suavemente", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1,  Description = "CD (ALBUM) |1 disk |Spaans|april 1998 -- Elvis Crespo", Price = 18, Foto = "CdElvis1.jpg" },
+                    new Product { Id = 15, Name = "Suavemente", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|april 1998 -- Elvis Crespo", Price = 18, Foto = "CdElvis1.jpg" },
                     new Product { Id = 16, Name = "Los Monsters", ProductTypeId = 1, ArtistId = 9, GenreId = 6, InstrumentTypeId = 1, Description = "CD (ALBUM) |1 disk |Spaans|mei 2012 -- Elvis Crespo", Price = 20, Foto = "CdElvis2.jpg" },
 
 
@@ -310,7 +310,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "PARTITUUR | Marc Anthony sheet music - Nummer: Vivir mi Vida",
-                Foto = "scoreMar1.png"
+                Foto = "scoreMar1.gif"
 
             },
 
@@ -324,7 +324,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "Marc Anthony bladmuziek - Nummer: Te Conozco Bien",
-                Foto = "scoreMar2.png"
+                Foto = "scoreMar2.gif"
 
             },
 
@@ -338,7 +338,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "Grupo Niche bladmuziek - Nummer: Tapanco El Hueco",
-                Foto = "scoreGru1.png"
+                Foto = "CdGrupoN1.jpg"
 
 
             },
@@ -369,7 +369,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "Maluma bladmuziek - Nummer: Felices los 4",
-                Foto = "scoreMal1.png"
+                Foto = "scoreMal1.jpeg"
 
             },
 
@@ -397,7 +397,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "Chino y Nacho bladmuziek - Nummer: Andas en mi Cabeza",
-                Foto = "scoreChi1.png"
+                Foto = "scoreChi1.jpg"
 
 
             },
@@ -412,7 +412,7 @@ namespace MaracasMusic.API.Data
                 InstrumentTypeId = 1,
                 Price = 9.99m,
                 Description = "Chino y Nacho bladmuziek - Nummer: Mi Niña Bonita",
-                Foto = "scoreChi2.png"
+                Foto = "scoreChi2.jpeg"
 
             },
 
@@ -472,18 +472,42 @@ namespace MaracasMusic.API.Data
 
             });
 
-           
+
         }
 
 
-        public DbSet<Artist> Artists { get; set; }
-        public DbSet<Genre> Genres { get; set; }
-        public DbSet<Client> Clients { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<InstrumentType> InstrumentTypes { get; set; }
-        public DbSet<ProductType> ProductTypes { get; set; }
-        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Artist> Artists
+        {
+            get; set;
+        }
+        public DbSet<Genre> Genres
+        {
+            get; set;
+        }
+        public DbSet<Client> Clients
+        {
+            get; set;
+        }
+        public DbSet<Order> Orders
+        {
+            get; set;
+        }
+        public DbSet<Product> Products
+        {
+            get; set;
+        }
+        public DbSet<InstrumentType> InstrumentTypes
+        {
+            get; set;
+        }
+        public DbSet<ProductType> ProductTypes
+        {
+            get; set;
+        }
+        public DbSet<OrderDetails> OrderDetails
+        {
+            get; set;
+        }
 
 
     }

@@ -4,14 +4,16 @@ using MaracasMusic.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MaracasMusic.API.Migrations
 {
     [DbContext(typeof(MaracasContext))]
-    partial class MaracasContextModelSnapshot : ModelSnapshot
+    [Migration("20200105112838_fotolinkchange")]
+    partial class fotolinkchange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -637,7 +639,7 @@ namespace MaracasMusic.API.Migrations
                             Id = 31,
                             ArtistId = 6,
                             Description = "Maluma bladmuziek - Nummer: Felices los 4",
-                            Foto = "scoreMal1.jpeg",
+                            Foto = "scoreMal1.png",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Felices Los 4",
@@ -661,7 +663,7 @@ namespace MaracasMusic.API.Migrations
                             Id = 33,
                             ArtistId = 7,
                             Description = "Chino y Nacho bladmuziek - Nummer: Andas en mi Cabeza",
-                            Foto = "scoreChi1.jpg",
+                            Foto = "scoreChi1.png",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Andas en mi Cabeza",
@@ -673,7 +675,7 @@ namespace MaracasMusic.API.Migrations
                             Id = 34,
                             ArtistId = 7,
                             Description = "Chino y Nacho bladmuziek - Nummer: Mi Niña Bonita",
-                            Foto = "scoreChi2.jpeg",
+                            Foto = "scoreChi2.png",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Mi Niña Bonita",
