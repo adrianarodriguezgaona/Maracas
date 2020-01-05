@@ -76,7 +76,7 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <input v-model="order.dateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
+                    <input v-model="order.DateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
                 </div>
             </div>
 
@@ -87,7 +87,7 @@
             </div>
 
 
-            <button>Bestelling bevestigen</button>
+            <button v-on:click="submitOrder()">Bestelling bevestigen</button>
 
         }
 
@@ -264,6 +264,8 @@
 
         var apiurl = 'https://localhost:44378/api/product';
         var clientApi = 'https://localhost:44378/api/client';
+        var orderApi = 'https://localhost:44378/api/orders';
+        var orderDetailApi = 'https://localhost:44378/api/orderdetails';
 
 
         var app = new Vue({
@@ -285,12 +287,15 @@
                 viewOrder: false,
 
                 order: {
-                    clientId: null,
-                    address: null,
-                    dateOrder: null,
+                    ClientId: 0,
+                    Address: null,
+                    DateOrder: null,
+                  
                 },
 
                 client: {},
+                order_Id: 0,
+              
 
             },
 
@@ -427,7 +432,7 @@
 
                 GetCurrentDate: function () {
                     var today = new Date();
-                    this.order.dateOrder = today;
+                    this.order.DateOrder = today;
                 },
 
                 goToOrder: function () {
@@ -448,12 +453,73 @@
 
                     }
 
+                },
+
+                submitOrder: function () {
+                    var self = this;
+                    self.order.ClientId = self.client.id;
+
+                    
+
+                    fetch(`${orderApi}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(self.order),
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            self.order_Id = data.id;
+                            console.log('Success:', data);
+
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+
+                    var orderDetailsToSend = null;
+                    setTimeout(function () {
+
+
+                     self.basket.forEach(element => {
+
+                        orderDetailsToSend = {
+
+                            ProductId: element.id,
+                            Aantal: element.aantal,
+                            OrderId: self.order_Id,
+                            Name: element.name,
+                        }
+                        console.log(orderDetailsToSend)
+                    })
+                    }, 3000);
+                   
+
+
+                    setTimeout(function () {
+
+                            fetch(`${orderDetailApi}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(orderDetailsToSend),
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                console.log('Success:', data);
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                    });
+                    }, 5000)
+                    
+
+                  
+
                 }
-
-
-
-            }
-
+            },
         });
 
     </script>
