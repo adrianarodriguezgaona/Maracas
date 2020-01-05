@@ -22,7 +22,7 @@
                                                    data-toggle="tab" aria-expanded="false">Products</a>
                                             </li>
                                             <li>
-                                                <a v-on:click="$event.preventDefault()"  href="#panel-clients"
+                                                <a v-on:click="$event.preventDefault()" href="#panel-clients"
                                                    role="tab"
                                                    data-toggle="tab" aria-expanded="false">Klanten</a>
                                             </li>
@@ -30,6 +30,11 @@
                                                 <a v-on:click="" href="#panel-orders"
                                                    role="tab"
                                                    data-toggle="tab" aria-expanded="false">Bestellingen</a>
+                                            </li>
+                                            <li>
+                                                <a v-on:click="" href="#panel-orderDetails"
+                                                   role="tab"
+                                                   data-toggle="tab" aria-expanded="false">Details bestellingen </a>
                                             </li>
 
                                         </ul>
@@ -128,7 +133,7 @@
                                             <div class="tab-pane" id="panel-clients">
                                                 <div class="row">
                                                     <header class="col-md-4">
-                                                       
+
                                                         <h3>{{messageClientForm}}</h3>
                                                         <nav>
                                                             <ul class="list-group">
@@ -154,7 +159,7 @@
                                                                     <input type="text" class="form-control" v-model="currentClient.email" :readonly="isReadOnly">
                                                                 </div>
                                                             </div>
-                                                           
+
                                                             <button v-on:click="toEditClientMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             @*<button v-on:click="toEditClientMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>*@
                                                             <button v-on:click="deleteClient()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
@@ -169,7 +174,7 @@
                                             <div class="tab-pane" id="panel-orders">
                                                 <div class="row">
                                                     <header class="col-md-4">
-                                                       
+
                                                         <h3>{{message}}</h3>
                                                         <nav>
                                                             <ul class="list-group">
@@ -201,6 +206,26 @@
                                                                     <input type="text" class="form-control" v-model="currentOrder.dateOrder" :readonly="isReadOnly">
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Totaal bestelling</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentOrder.totalOrder" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-4 control-label small">Product</label>
+                                                                <div class="col-sm-8">
+                                                                    <p>{{orderDetails.name}}</p>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-4 control-label small">Aantal</label>
+                                                                <div class="col-sm-8">
+                                                                    <p>{{orderDetails.amount}}</p>
+                                                                </div>
+                                                            </div>
 
                                                             <button v-on:click="toEditOrderMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             @*<button v-on:click="toEditOrderMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>*@
@@ -212,6 +237,61 @@
                                                 </div>
 
                                             </div>
+
+                                            <div class="tab-pane" id="panel-orderDetails">
+                                                <div class="row">
+                                                    <header class="col-md-4">
+
+                                                        <h3>{{messageDetail}}</h3>
+                                                        <nav>
+                                                            <ul class="list-group">
+                                                                <li v-for="detail in orderDetails" v-on:click="fetchOrderDetailDetails(detail)" :class="getOrderDetailClass(detail)" style="cursor:pointer">
+                                                                    <span class="orderDetailName">{{detail.id}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </header>
+                                                    <div v-if="currentOrder" class="col-md-4">
+                                                        <h3>Details order</h3>
+                                                        <div class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Klant nummer</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentOrder.clientId" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Adres</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentOrder.address" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Datum bestelling</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentOrder.dateOrder" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Totaal bestelling</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentOrder.totalOrder" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <button v-on:click="toEditOrderMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
+                                                            @*<button v-on:click="toEditOrderMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>*@
+                                                            <button v-on:click="deleteOrder()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="saveOrder" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
+                                                            <button v-on:click="cancelForOrderForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
 
 
                                         </div>
@@ -248,7 +328,8 @@
                 instrumentTypes: null,
                 productTypes: null,
                 clients: null,
-                orders:null,
+                orders: null,
+                orderDetails: null,
                 currentClient: null,
                 currentProduct: null,
                 currentOrder: null,
@@ -265,6 +346,8 @@
                 self.fetchProductTypes();
                 self.fetchClients();
                 self.fetchOrders();
+                self.fetchOrderDetails();
+
           },
           methods: {
                 fetchProducts: function () {
@@ -580,20 +663,33 @@
                         //.then(function (test) {console.log(test)})
                         .then(function (res) {
                             self.currentOrder = res;
+                            self.fetchOrderDetailsByorderId(currentOrder.id)
                             self.makeOrderActive(order.id);
                         })
                         .catch(err => console.error('Fout: ' + err));
+              },
+
+                fetchOrderDetailsByorderId: function (orderId) {
+                  self = this;
+                  fetch(`${apiUri}OrderDetails/GetByOrderId/${orderId}`)           
+                   .then(res => res.json())
+                            .then(function (res) {
+                                self.orderDetails = res;
+                            })
+                            .catch(error => console.log(error))
                 },
+
                 makeOrderActive: function (orderId) {
                     self.orders.forEach(function (order) {
                         order.isActive = order.id === orderId ? true : false;
                     });
-              },
+                },
 
                   getOrderClass: function (order) {
                       if (order.isActive) return 'list-group-item active';
                       return 'list-group-item';
                    },
+
 
                    
                 toEditOrderMode: function (isEdit) {
@@ -601,7 +697,7 @@
                     self.isReadOnly = false;
                     self.isEdit = isEdit;
                     if (!isEdit) {
-                        self.currentOrder = { "name": "", "address": "", "dateOrder": "", "clientId": "",  "orderDetails": [] };
+                        self.currentOrder = { "name": "", "address": "", "dateOrder": "", "clientId": "", "totalOrder":"", "orderDetails": [] };
                     }
                 },
                 saveOrder: function () {
@@ -675,6 +771,132 @@
                         })
                         .catch(err => console.error('Fout: ' + err));
                 },
+
+
+                //OrderDetails:
+
+                 fetchOrderDetails: function () {
+                    self = this;
+                    fetch(`${apiUri}OrderDetails`)
+                        .then(res => res.json())
+                        .then(function (orderDetails) {
+                            orderDetails.forEach(function (detail, i) {
+                                detail.isActive = false;
+                            });
+                            self.orderDetails = orderDetails;
+                            self.message = 'Overzicht';
+                            if (self.orderDetails.length > 0) {
+                                self.fetchOrderDetailDetails(self.orderDetails[0]);
+                            }
+                        })
+
+                        .catch(err => console.error('Fout: ' + err));
+                },
+                fetchOrderDetailDetails: function (order) {
+                    self = this;
+                    if (!self.isReadOnly) return;
+                    fetch(`${apiUri}OrderDetails/${order.id}`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (res) {
+                            self.currentOrderDetail = res;
+                            self.makeOrderDetailActive(detail.id);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+                makeOrderDetailActive: function (orderDetailId) {
+                    self.orderDetails.forEach(function (detail) {
+                        detail.isActive = detail.id === orderDetailId ? true : false;
+                    });
+              },
+
+                  getOrderDetailClass: function (detail) {
+                      if (detail.isActive) return 'list-group-item active';
+                      return 'list-group-item';
+                   },
+
+                   
+                toEditOrderDetailMode: function (isEdit) {
+                    self = this;
+                    self.isReadOnly = false;
+                    self.isEdit = isEdit;
+                    if (!isEdit) {
+                        self.currentOrderDetail = { "name": "", "ProductId": "", "clientId": "", "amount":""  };
+                    }
+                },
+                saveOrderDetails: function () {
+                    var self = this;
+                    var ajaxHeaders = new Headers();
+                    ajaxHeaders.append("Content-Type", "application/json");
+                    var ajaxConfig = {
+                        method: 'PUT',
+                        body: JSON.stringify(self.currentOrderDetail),
+                        headers: ajaxHeaders
+                    };
+
+                    if (self.isEdit) {
+                        let myRequest = new Request(`${apiUri}OrderDetails/${self.currentOrderDetail.id}`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.updateOrderDetailList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    else {
+                        ajaxConfig.method = 'POST';
+                        let myRequest = new Request(`${apiUri}OrderDetails/`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.addOrderDetailToList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    self.isEdit = false;
+                    self.isReadOnly = true;
+                },
+
+                 addOrderDetailToList: function (detail) {
+
+                    self.currentDetail.id = detail.id;
+                    self.orderDetails.push(detail);
+                    self.fetchOrderDetailDetails(self.orderDetails[self.orderDetails.length - 1]);
+                },
+                updateOrderDetailList: function (detail) {
+
+                    var updatedOrderDetail = self.orderDetails.filter(od => od.id === detail.id)[0];
+                    // antes estaba .name
+                    updatedOrderDetail.id = detail.id;
+                },
+                cancelForOrderDetailForm: function () {
+                    var self = this;
+                    self.isReadOnly = true;
+                    self.isEdit = false;
+                    if (self.isEdit) {
+                        self.fetchOrderDetailDetails(self.currentOrderDetail);
+                    } else {
+                        self.fetchOrderDetailDetails(self.orderDetails[0]);
+                    }
+                },
+                deleteOrderDetail: function () {
+                    self = this;
+                    fetch(`${apiUri}OrderDetails/${self.currentOrderDetail.id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.orderDetails.forEach(function (detail, i) {
+                                if (detail.id === self.currentOrderDetail.id) {
+                                    self.orderDetails.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            if (self.orderDetails.length > 0)
+                                self.fetchOrderDetailDetails(self.orderDetails[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+
+
           }
 
 
