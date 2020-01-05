@@ -11,7 +11,7 @@
 
 
     <header></header>
-    
+
     <nav class="col-md-12 navbar navbar-default sticky-top" style="background-color:white; border-bottom:1px solid rgba(222, 226, 232, 1)">
         <div class="navbar-fluid">
 
@@ -63,31 +63,59 @@
 
     <div v-else style="border-right:1px solid rgba(222, 226, 232, 1); width:500px">
 
+
         @if (SignInManager.IsSignedIn(User))
         {
-            <h3>Plaats jouw bestelling</h3>
+            <div v-if="orderOutcome === false">
+                <h3>Plaats jouw bestelling</h3>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <p>Klant identificatienummer: {{client.id}}</p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p>Klant identificatienummer: {{client.id}}</p>
+                    </div>
                 </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <span>Datum bestelling: </span>  <input v-model="order.DateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:15px">
+                    <div class="col-md-6">
+                        <span>Uw adres</span> <input placeholder="straat, huisnummer en postcode" id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
+                    </div>
+                </div>
+
+
+                <button v-on:click="submitOrder()">Bestelling bevestigen</button>
+
             </div>
 
+            <div v-else>
 
-            <div class="row">
-                <div class="col-md-4">
-                  <span>Datum bestelling: </span>  <input v-model="order.DateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
+                <div v-if="this.orderSuccess === true">
+
+                    <div class="alert alert-success" role="alert">
+                        Order succesvol vezonden!!
+                    </div>
+                    <p>Order wordt verstuurd naar</p>
+
+                 
+
+
                 </div>
-            </div>
+                <div v-else>
 
-            <div class="row" style="margin-top:15px">
-                <div class="col-md-6">
-                   <span>Uw adres</span> <input placeholder="straat, huisnummer en postcode" id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
+                    <div class="alert alert-danger" role="alert">
+                        Er is iets foutgelopen, probeer het later opnieuw!!
+                    </div>
+
                 </div>
+
+
             </div>
-
-
-            <button v-on:click="submitOrder()">Bestelling bevestigen</button>
 
         }
 
@@ -290,12 +318,15 @@
                     ClientId: 0,
                     Address: null,
                     DateOrder: null,
-                  
+
                 },
 
                 client: {},
                 order_Id: 0,
-              
+
+                orderOutcome: false,
+                orderSuccess: false,
+
 
             },
 
@@ -441,6 +472,7 @@
                     this.viewOrder = true;
                     this.GetUserInfo();
                     this.GetCurrentDate();
+                    this.orderOutcome = false;
 
 
 
@@ -457,9 +489,11 @@
 
                 submitOrder: function () {
                     var self = this;
+                    var hasError = false;
                     self.order.ClientId = self.client.id;
 
-                    
+
+
 
                     fetch(`${orderApi}`, {
                         method: 'POST',
@@ -476,48 +510,59 @@
                         })
                         .catch((error) => {
                             console.error('Error:', error);
+                            hasError = true;
                         });
 
                     var orderDetailsToSend = null;
                     setTimeout(function () {
 
 
-                     self.basket.forEach(element => {
+                        self.basket.forEach(element => {
+                            if (hasError === false) {
+                                orderDetailsToSend = {
 
-                        orderDetailsToSend = {
+                                    ProductId: element.id,
+                                    Aantal: element.aantal,
+                                    OrderId: self.order_Id,
+                                    Name: element.name,
+                                }
+                                console.log(orderDetailsToSend)
 
-                            ProductId: element.id,
-                            Aantal: element.aantal,
-                            OrderId: self.order_Id,
-                            Name: element.name,
-                        }
-                         console.log(orderDetailsToSend)
+                                fetch(`${orderDetailApi}`, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    body: JSON.stringify(orderDetailsToSend),
+                                })
+                                    .then((response) => response.json())
+                                    .then((data) => {
+                                        console.log('Success:', data);
 
-                            fetch(`${orderDetailApi}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(orderDetailsToSend),
+                                    })
+                                    .catch((error) => {
+                                        console.error('Error:', error);
+                                        hasError = true;
+                                    });
+
+                            }
                         })
-                            .then((response) => response.json())
-                            .then((data) => {
-                                console.log('Success:', data);
-                            })
-                            .catch((error) => {
-                                console.error('Error:', error);
-                    });
-                   
-                    })
-                    }, 3000);
-                   
+
+                        self.orderOutcome = true;
+
+                        if (hasError === false) {
+                            self.orderSuccess = true;
+                            self.basket = [];
+
+                        }
+
+                        else self.orderSuccess = false;
+
+                    }, 3000)
+
+;
 
 
-                  
-                         
-                    
-
-                  
 
                 }
             },
