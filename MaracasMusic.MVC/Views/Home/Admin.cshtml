@@ -107,6 +107,10 @@
                                                                     <input type="text" class="form-control" v-model="currentProduct.foto" :readonly="isReadOnly">
                                                                 </div>
                                                             </div>
+                                                            <div class="form-group">
+                                                                <input type="file" v-on:change="onFileSelected" />
+                                                                <button v-on:click="onUpload">Opslaan</button>
+                                                            </div>
 
                                                             <div class="form-group">
                                                                 <label class="col-sm-2 control-label small">Prijs</label>
@@ -114,6 +118,7 @@
                                                                     <input type="text" class="form-control" v-model="currentProduct.price" :readonly="isReadOnly">
                                                                 </div>
                                                             </div>
+
                                                             <button v-on:click="toEditMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             <button v-on:click="toEditMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
                                                             <button v-on:click="deleteProduct()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
@@ -170,7 +175,7 @@
                                                 <div class="row">
                                                     <header class="col-md-4">
 
-                                                        <h3>{{message}}</h3>
+                                                        <h3>{{messageOrdersForm}}</h3>
                                                         <nav>
                                                             <ul class="list-group">
                                                                 <li v-for="order in orders" v-on:click="fetchOrderDetails(order)" :class="getOrderClass(order)" style="cursor:pointer">
@@ -272,6 +277,7 @@
           data: {
                 message: 'Loading page...',
                 messageClientForm: '',
+                messageOrdersForm: '',
                 products: null,
                 artists: null,
                 genres: null,
@@ -284,7 +290,8 @@
                 currentProduct: null,
                 currentOrder: null,
                 isReadOnly: true,
-                isEdit: false
+                isEdit: false,
+                selectedFile: null
           },
 
           created: function () {
@@ -597,7 +604,7 @@
                                 order.isActive = false;
                             });
                             self.orders = orders;
-                            self.message = 'Overzicht';
+                            self.messageOrdersForm = 'Bestelling Id';
                             if (self.orders.length > 0) {
                                 self.fetchOrderDetails(self.orders[0]);
                             }
@@ -696,7 +703,6 @@
                 updateOrderList: function (order) {
 
                     var updatedOrder = self.orders.filter(o => o.id === order.id)[0];
-                    // antes estaba .name
                     updatedOrder.id = order.id;
                 },
                 cancelForOrderForm: function () {
@@ -726,133 +732,27 @@
                         .catch(err => console.error('Fout: ' + err));
                 },
 
+                // image
+              onFileSelected(event) {
+                  self.selectedFile = event.target.files[0]
+              },
 
-                //OrderDetails:
-
-              //   fetchOrderDetails: function () {
-              //      self = this;
-              //      fetch(`${apiUri}OrderDetails`)
-              //          .then(res => res.json())
-              //          .then(function (orderDetails) {
-              //              orderDetails.forEach(function (detail, i) {
-              //                  detail.isActive = false;
-              //              });
-              //              self.orderDetails = orderDetails;
-              //              self.message = 'Overzicht';
-              //              if (self.orderDetails.length > 0) {
-              //                  self.fetchOrderDetailDetails(self.orderDetails[0]);
-              //              }
-              //          })
-
-              //          .catch(err => console.error('Fout: ' + err));
-              //  },
-              //  fetchOrderDetailDetails: function (order) {
-              //      self = this;
-              //      if (!self.isReadOnly) return;
-              //      fetch(`${apiUri}OrderDetails/${order.id}`)
-              //          .then(res => res.json())
-              //          //.then(function (test) {console.log(test)})
-              //          .then(function (res) {
-              //              self.currentOrderDetail = res;
-              //              self.makeOrderDetailActive(detail.id);
-              //          })
-              //          .catch(err => console.error('Fout: ' + err));
-              //  },
-              //  makeOrderDetailActive: function (orderDetailId) {
-              //      self.orderDetails.forEach(function (detail) {
-              //          detail.isActive = detail.id === orderDetailId ? true : false;
-              //      });
-              //},
-
-              //    getOrderDetailClass: function (detail) {
-              //        if (detail.isActive) return 'list-group-item active';
-              //        return 'list-group-item';
-              //     },
-
-                   
-              //  toEditOrderDetailMode: function (isEdit) {
-              //      self = this;
-              //      self.isReadOnly = false;
-              //      self.isEdit = isEdit;
-              //      if (!isEdit) {
-              //          self.currentOrderDetail = { "name": "", "ProductId": "", "clientId": "", "amount":""  };
-              //      }
-              //  },
-              //  saveOrderDetails: function () {
-              //      var self = this;
-              //      var ajaxHeaders = new Headers();
-              //      ajaxHeaders.append("Content-Type", "application/json");
-              //      var ajaxConfig = {
-              //          method: 'PUT',
-              //          body: JSON.stringify(self.currentOrderDetail),
-              //          headers: ajaxHeaders
-              //      };
-
-              //      if (self.isEdit) {
-              //          let myRequest = new Request(`${apiUri}OrderDetails/${self.currentOrderDetail.id}`, ajaxConfig);
-              //          fetch(myRequest)
-              //              .then(res => res.json())
-              //              .then(res => {
-              //                  self.updateOrderDetailList(res);
-              //              })
-              //              .catch(err => console.error('Fout: ' + err));
-              //      }
-              //      else {
-              //          ajaxConfig.method = 'POST';
-              //          let myRequest = new Request(`${apiUri}OrderDetails/`, ajaxConfig);
-              //          fetch(myRequest)
-              //              .then(res => res.json())
-              //              .then(res => {
-              //                  self.addOrderDetailToList(res);
-              //              })
-              //              .catch(err => console.error('Fout: ' + err));
-              //      }
-              //      self.isEdit = false;
-              //      self.isReadOnly = true;
-              //  },
-
-              //   addOrderDetailToList: function (detail) {
-
-              //      self.currentDetail.id = detail.id;
-              //      self.orderDetails.push(detail);
-              //      self.fetchOrderDetailDetails(self.orderDetails[self.orderDetails.length - 1]);
-              //  },
-              //  updateOrderDetailList: function (detail) {
-
-              //      var updatedOrderDetail = self.orderDetails.filter(od => od.id === detail.id)[0];
-              //      // antes estaba .name
-              //      updatedOrderDetail.id = detail.id;
-              //  },
-              //  cancelForOrderDetailForm: function () {
-              //      var self = this;
-              //      self.isReadOnly = true;
-              //      self.isEdit = false;
-              //      if (self.isEdit) {
-              //          self.fetchOrderDetailDetails(self.currentOrderDetail);
-              //      } else {
-              //          self.fetchOrderDetailDetails(self.orderDetails[0]);
-              //      }
-              //  },
-              //  deleteOrderDetail: function () {
-              //      self = this;
-              //      fetch(`${apiUri}OrderDetails/${self.currentOrderDetail.id}`, { method: 'DELETE' })
-              //          .then(res => res.json())
-              //          .then(function (res) {
-              //              self.orderDetails.forEach(function (detail, i) {
-              //                  if (detail.id === self.currentOrderDetail.id) {
-              //                      self.orderDetails.splice(i, 1);
-              //                      return;
-              //                  }
-              //              });
-              //              if (self.orderDetails.length > 0)
-              //                  self.fetchOrderDetailDetails(self.orderDetails[0]);
-              //          })
-              //          .catch(err => console.error('Fout: ' + err));
-              //  },
-
-
+              onUpload: function () {
+                  self = this;
+                  const fd = new FormData();
+                  fd.append('formFile', self.selectedFile, self.selectedFile.name)
+                  var ajaxConfig = {
+                      method: 'POST',
+                      body: fd,
+                  };
+                  let myRequest = new Request(`${apiUri}product/image`, ajaxConfig);
+                  fetch(myRequest)                 
+                      .then(res => {
+                          console.log(res)
+                      });
+              },
+              
           }
-
 
       });
     </script>
