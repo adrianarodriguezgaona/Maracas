@@ -491,13 +491,7 @@
                             OrderId: self.order_Id,
                             Name: element.name,
                         }
-                        console.log(orderDetailsToSend)
-                    })
-                    }, 3000);
-                   
-
-
-                    setTimeout(function () {
+                         console.log(orderDetailsToSend)
 
                             fetch(`${orderDetailApi}`, {
                             method: 'POST',
@@ -513,7 +507,14 @@
                             .catch((error) => {
                                 console.error('Error:', error);
                     });
-                    }, 5000)
+                   
+                    })
+                    }, 3000);
+                   
+
+
+                  
+                         
                     
 
                   
