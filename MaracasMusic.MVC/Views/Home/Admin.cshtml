@@ -208,21 +208,27 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div v-for="detail in orderDetails"  >
-                                                                <div class="form-group">
-                                                                    <label class="col-sm-4 control-label small">Product</label>
-                                                                    <div class="col-sm-8">
-                                                                        <p>{{detail.name}}</p>
-                                                                    </div>
-                                                                </div>
+                                                           <h4>Details Bestelling:</h4>
 
-                                                                <div class="form-group">
-                                                                    <label class="col-sm-4 control-label small">Aantal</label>
-                                                                    <div class="col-sm-8">
-                                                                        <p>{{detail.amount}}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col">Id</th>
+                                                                        <th scope="col">Product</th>
+                                                                        <th scope="col">Aantal</th>
+                                                                       
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr  v-for="detail in orderDetails" >
+                                                                        <th scope="row">{{detail.id}}</th>
+                                                                        <td>{{detail.name}}</td>
+                                                                        <td>{{detail.amount}}</td>
+                                                                       
+                                                                    </tr>
+                                                                   
+                                                                </tbody>
+                                                            </table>
 
 
                                                             <button v-on:click="toEditOrderMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
