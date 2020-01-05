@@ -129,7 +129,7 @@
                                                 <div class="row">
                                                     <header class="col-md-4">
                                                        
-                                                        <h3>{{message}}</h3>
+                                                        <h3>{{messageClientForm}}</h3>
                                                         <nav>
                                                             <ul class="list-group">
                                                                 <li v-for="client in clients" v-on:click="fetchClientDetails(client)" :class="getClientClass(client)" style="cursor:pointer">
@@ -154,16 +154,9 @@
                                                                     <input type="text" class="form-control" v-model="currentClient.email" :readonly="isReadOnly">
                                                                 </div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label class="col-sm-2 control-label small">Gebruiker Id</label>
-                                                                <div class="col-sm-10">
-                                                                    <input type="text" class="form-control" v-model="currentClient.userId" :readonly="isReadOnly">
-                                                                </div>
-                                                            </div>
-
-
+                                                           
                                                             <button v-on:click="toEditClientMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
-                                                            <button v-on:click="toEditClientMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
+                                                            @*<button v-on:click="toEditClientMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>*@
                                                             <button v-on:click="deleteClient()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="saveClient" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancelForClientForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
@@ -247,7 +240,8 @@
       var app = new Vue({
           el: '#app',
           data: {
-            message: 'Loading page...',
+                message: 'Loading page...',
+                messageClientForm: '',
                 products: null,
                 artists: null,
                 genres: null,
@@ -446,7 +440,7 @@
                                 client.isActive = false;
                             });
                             self.clients = clients;
-                            self.message = 'Overview';
+                            self.messageClientForm = 'Overzicht klanten per Id';
                             if (self.clients.length > 0) {
                                 self.fetchClientDetails(self.clients[0]);
                             }
@@ -570,7 +564,7 @@
                                 order.isActive = false;
                             });
                             self.orders = orders;
-                            self.message = 'Overview';
+                            self.message = 'Overzicht';
                             if (self.orders.length > 0) {
                                 self.fetchOrderDetails(self.orders[0]);
                             }
