@@ -7,6 +7,9 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+
+ul {list-style-type:none;}
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -176,6 +179,12 @@ body {
         font-style: italic;
         color:white;
     }
+
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid rgba(222, 226, 232, 1);
+}
 
 .nav li{
 padding:8px;
