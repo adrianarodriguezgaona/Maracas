@@ -12,7 +12,7 @@
 
     <header></header>
 
-    <nav class="col-md-12 navbar navbar-default sticky-top" style="background-color:white; border-bottom:1px solid rgba(222, 226, 232, 1)">
+    <nav class="col-md-12 navbar navbar-default sticky-top">
         <div class="navbar-fluid">
 
             <ul class="nav navbar-nav" style="flex-direction: row;">
@@ -46,11 +46,18 @@
                             <h3>{{ product.name}}</h3>
                             <p>{{product.description}} -  {{product.artistName}}</p>
 
-                            <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
-                                meer informatie
-                            </button>
+                            <div style="display:flex; flex-direction:row" >
 
-                            <button v-on:click="addToBasket(product)" class="btn-success">Toevoegen aan winkelmandje</button>
+                                <button v-on:click="getSelectedProduct(product.id)" type="button" class="basicbtn" data-toggle="modal" data-target="#exampleModal">
+                                    meer informatie
+                                </button>
+
+                                <button  style="margin-left: 10px; width: 60px; background-color:#d39e00" v-on:click="addToBasket(product)" class="basicbtn">
+                                    <img src="~/icons/basket.png" style="width:25px" /><span>+</span>
+                                </button>
+                            </div>
+
+                           
                         </div>
                     </div>
                 </div>
@@ -134,7 +141,7 @@
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" style="width: 100%" role="document">
-            <div class="modal-content" style="width: 70%; margin: auto">
+            <div class="modal-content" style="margin: auto">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{selectedProduct.name}}</h5>
 
@@ -149,8 +156,13 @@
                     </ul>
                     <hr />
                     <div class="productDetail" v-if="selectedProduct.productTypeId === 1">
+                       <div>
                         <img :src="`https://localhost:44378/api/product/imagebyid/${selectedProduct.id}`" class="fotosProduct" />
-
+                       </div>
+                       
+                        <div style="border-top:1px solid">
+                        <p style="border-bottom: 1px solid">Details product</p>
+                       </div>
                         <ul class="detailAlign">
                             <li>Naam artiest  {{selectedProduct.artistName}}</li>
                             <li>Genre:  {{selectedProduct.genreName}}</li>
@@ -230,12 +242,12 @@
                         </div>
 
                         <div class="col-md-2">
-                            <input v-on:keyup="updateCookie()" v-model="product.aantal" />
+                            <input v-on:keyup="updateCookie()" v-model="product.amount" />
                         </div>
 
                         <div class="col-md-2">
 
-                            <p>{{product.aantal * product.price}} euro</p>
+                            <p>{{product.amount * product.price}} euro</p>
 
                         </div>
 
@@ -406,7 +418,7 @@
 
                 addToBasket: function (product) {
                     self = this;
-                    product.aantal = 1;
+                    product.amount = 1;
                     self.basket.push(product);
 
                     self.calculateTotalBasket(self.basket);
@@ -457,7 +469,7 @@
                 calulatePriceArticle: function (element) {
                     console.log("binnen");
                     var self = this;
-                    var total = element.price * element.aantal;
+                    var total = element.price * element.amount;
                     self.basketTotal += total;
                 },
 
@@ -530,7 +542,7 @@
                                 orderDetailsToSend = {
 
                                     ProductId: element.id,
-                                    Aantal: element.aantal,
+                                    Amount: element.amount,
                                     OrderId: self.order_Id,
                                     Name: element.name,
                                 }
