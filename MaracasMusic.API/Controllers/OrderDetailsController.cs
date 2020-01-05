@@ -16,5 +16,15 @@ namespace MaracasMusic.API.Controllers
         {
 
         }
+
+        [HttpGet]
+        [Route("GetByOrderId/{OrderId}")]
+
+
+        public virtual async Task<IActionResult> GetByOrderId(int orderId)
+
+        {
+            return Ok(await repository.GetOrderDetailByorderId(orderId));
+        }
     }
 }

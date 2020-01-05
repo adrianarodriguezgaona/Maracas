@@ -17,12 +17,13 @@ namespace MaracasMusic.API.Controllers
     [ApiController]
     public class ProductController : ControllerCrudBase<Product, ProductRepository>
     {
-        private ProductRepository _productRepository;
+       
         private readonly IHostingEnvironment _hostingEnvironment;
 
         public ProductController(ProductRepository productRepository, IHostingEnvironment hostingEnvironment) : base(productRepository)
 
-        { _productRepository = productRepository; _hostingEnvironment = hostingEnvironment;
+        {
+            _hostingEnvironment = hostingEnvironment;
         }
 
 
@@ -32,7 +33,7 @@ namespace MaracasMusic.API.Controllers
         public virtual async Task<IActionResult> GetBasic()
 
         {
-            return Ok(await _productRepository.ListBasic());
+            return Ok(await repository.ListBasic());
         }
 
         //GET:api/Product/Detail/2
@@ -41,7 +42,7 @@ namespace MaracasMusic.API.Controllers
         
         public virtual async Task<IActionResult> GetDetailById(int id)
         {
-            return Ok(await _productRepository.GetDetailById(id));
+            return Ok(await repository.GetDetailById(id));
         }
 
         [HttpGet]
@@ -49,7 +50,7 @@ namespace MaracasMusic.API.Controllers
 
         public virtual async Task<IActionResult> GetDetailByProductTypeName(string typeName)
         {
-            return Ok(await _productRepository.GetDetailByProductTypeName(typeName));
+            return Ok(await repository.GetDetailByProductTypeName(typeName));
         }
 
         // GET: api/product/imagebyname/shakira.jpg
