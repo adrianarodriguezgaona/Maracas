@@ -14,6 +14,6 @@ namespace Maracas.Lib.Models
         public int ProductId { get; set; }
         [JsonIgnore]
         public Product Product { get; set; }
-        public int Aantal { get; set; }
+        public int Amount { get; set; }
     }
 }
