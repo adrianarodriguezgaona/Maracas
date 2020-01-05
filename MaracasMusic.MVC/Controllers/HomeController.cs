@@ -23,10 +23,6 @@ namespace MaracasMusic.MVC.Controllers
         }
 
        
-        public IActionResult MakeOrder()
-        {
-            return View();
-        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
