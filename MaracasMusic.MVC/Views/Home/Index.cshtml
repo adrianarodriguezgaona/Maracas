@@ -61,7 +61,7 @@
         </div>
     </div>
 
-    <div v-else>
+    <div v-else style="border-right:1px solid rgba(222, 226, 232, 1); width:500px">
 
         @if (SignInManager.IsSignedIn(User))
         {
@@ -69,20 +69,20 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <p>{{client.id}}</p>
+                    <p>Klant identificatienummer: {{client.id}}</p>
                 </div>
             </div>
 
 
             <div class="row">
                 <div class="col-md-4">
-                    <input v-model="order.DateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
+                  <span>Datum bestelling: </span>  <input v-model="order.DateOrder" disabled="disabled" style="background-color:white; border: 0px none" />
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-4">
-                    <input id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
+            <div class="row" style="margin-top:15px">
+                <div class="col-md-6">
+                   <span>Uw adres</span> <input placeholder="straat, huisnummer en postcode" id="Address" type="text" name="Address" v-model="order.Address" class="form-control" />
                 </div>
             </div>
 
