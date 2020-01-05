@@ -16,11 +16,11 @@ namespace MaracasMusic.API.Repositories
 
         }
 
-        public async Task<OrderDetails> GetOrderDetailByorderId(int orderId)
+        public async Task<List<OrderDetails>> GetOrderDetailByorderId(int orderId)
         {
             return await _maracasContext.OrderDetails
-
-              .FirstOrDefaultAsync(od => od.OrderId == orderId);
+              .Where(od => od.OrderId == orderId)
+              .ToListAsync();
 
         }
     }
