@@ -82,7 +82,8 @@ namespace MaracasMusic.MVC
             }
             //Assign Admin role to the main User here we have given our newly registered 
             //login id for Admin management
-            IdentityUser user = await UserManager.FindByEmailAsync("email.user.togetAdminRole@example.com");
+            //Change email for email user you want to give Admin role!!
+            IdentityUser user = await UserManager.FindByEmailAsync("email.user.to.Add.AdminRole@example.com");
             var User = new IdentityUser();
             await UserManager.AddToRoleAsync(user, "Admin");
         }
@@ -121,7 +122,9 @@ namespace MaracasMusic.MVC
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            
+            // CreateUserRoles(services).Wait() HERE BELOW in comment to prevent issue if you start without a registered user with email , first register,
+            // change email and then you can use CreateUserRoles(services).Wait() to give that user  admin role.
+
 
             //CreateUserRoles(services).Wait();
         }
