@@ -4,14 +4,16 @@ using MaracasMusic.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MaracasMusic.API.Migrations
 {
     [DbContext(typeof(MaracasContext))]
-    partial class MaracasContextModelSnapshot : ModelSnapshot
+    [Migration("20200105115334_fotolinkchange2")]
+    partial class fotolinkchange2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -637,7 +639,7 @@ namespace MaracasMusic.API.Migrations
                             Id = 31,
                             ArtistId = 6,
                             Description = "Maluma bladmuziek - Nummer: Felices los 4",
-                            Foto = "scoreMal1.jpeg",
+                            Foto = "scoreMal1.jpg",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Felices Los 4",
@@ -673,7 +675,7 @@ namespace MaracasMusic.API.Migrations
                             Id = 34,
                             ArtistId = 7,
                             Description = "Chino y Nacho bladmuziek - Nummer: Mi Niña Bonita",
-                            Foto = "scoreChi2.jpeg",
+                            Foto = "scoreChi2.jpg",
                             GenreId = 4,
                             InstrumentTypeId = 1,
                             Name = "Mi Niña Bonita",

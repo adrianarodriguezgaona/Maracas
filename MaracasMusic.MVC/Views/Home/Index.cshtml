@@ -100,9 +100,15 @@
                     <div class="alert alert-success" role="alert">
                         Order succesvol vezonden!!
                     </div>
-                    <p>Order wordt verstuurd naar</p>
+                    <p>
+                        Order wordt zodra we de betaling ontvangen hebben
+                        verstuurd naar {{order.Address}}
+                    </p>
 
-                 
+                    <p>Gelieve het bedrag van: {{order.TotalOrder}} over te schrijven naar volgend rekeningnummer: <br />
+                      BE578-5546-4534-4434 met volgende mededeling: {{client.name}}_{{order_Id}}</p>
+
+
 
 
                 </div>
@@ -258,7 +264,7 @@
                         </div>
 
                         <div class="col-md-2 justify-content-end">
-                            <a v-on:click="goToOrder()">Naar order</a>
+                            <a style="cursor:pointer" v-on:click="goToOrder()">Naar order</a>
 
                         </div>
 
@@ -313,6 +319,7 @@
 
                 basketTotal: 0,
                 viewOrder: false,
+
 
                 order: {
                     ClientId: 0,
@@ -491,9 +498,10 @@
                     var self = this;
                     var hasError = false;
                     self.order.ClientId = self.client.id;
+                    
 
 
-
+                    self.order.TotalOrder = self.basketTotal;
 
                     fetch(`${orderApi}`, {
                         method: 'POST',
@@ -553,7 +561,8 @@
                         if (hasError === false) {
                             self.orderSuccess = true;
                             self.basket = [];
-
+                            self.basketTotal = 0;
+                        this.$cookies.remove("basket");
                         }
 
                         else self.orderSuccess = false;
