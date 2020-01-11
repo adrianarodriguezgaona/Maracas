@@ -31,8 +31,28 @@
                                                    role="tab"
                                                    data-toggle="tab" aria-expanded="false">Bestellingen</a>
                                             </li>
-                                          
+                                            <li>
+                                                <a v-on:click="" href="#panel-categories"
+                                                   role="tab"
+                                                   data-toggle="tab" aria-expanded="false">Categories</a>
+                                            </li>
+                                            <li>
+                                                <a v-on:click="" href="#panel-instrumentTypes"
+                                                   role="tab"
+                                                   data-toggle="tab" aria-expanded="false">Instrument types</a>
+                                            </li>
+                                            <li>
+                                                <a v-on:click="" href="#panel-artists"
+                                                   role="tab"
+                                                   data-toggle="tab" aria-expanded="false"> Artiesten</a>
+                                            </li>
+                                            <li>
+                                                <a v-on:click="" href="#panel-genres"
+                                                   role="tab"
+                                                   data-toggle="tab" aria-expanded="false"> Genres</a>
+                                            </li>
                                         </ul>
+
                                     </div>
                                     <div class="panel-body">
                                         <div class="tab-content">
@@ -89,7 +109,7 @@
                                                                 <div class="col-sm-10">
                                                                     <input type="text" class="form-control" :value="currentProduct.productType.name" v-if="isReadOnly" :readonly="isReadOnly">
                                                                     <select v-model="currentProduct.productType" class="form-control" v-if="!isReadOnly">
-                                                                        <option v-for="productType in productTypes" :value="productType">{{ productType.name }}</option>
+                                                                        <option v-for="productType in categories" :value="productType">{{ productType.name }}</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -213,7 +233,7 @@
                                                                 </div>
                                                             </div>
 
-                                                           <h4>Details Bestelling:</h4>
+                                                            <h4>Details Bestelling:</h4>
 
                                                             <table class="table">
                                                                 <thead>
@@ -221,17 +241,17 @@
                                                                         <th scope="col">Id</th>
                                                                         <th scope="col">Product</th>
                                                                         <th scope="col">Aantal</th>
-                                                                       
+
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr  v-for="detail in orderDetails" >
+                                                                    <tr v-for="detail in orderDetails">
                                                                         <th scope="row">{{detail.id}}</th>
                                                                         <td>{{detail.name}}</td>
                                                                         <td>{{detail.amount}}</td>
-                                                                       
+
                                                                     </tr>
-                                                                   
+
                                                                 </tbody>
                                                             </table>
 
@@ -247,7 +267,161 @@
 
                                             </div>
 
-                                          
+                                            <div class="tab-pane" id="panel-categories">
+                                                <div class="row">
+                                                    <header class="col-md-4">
+
+                                                        <h3>{{messageCategoriesForm}}</h3>
+                                                        <nav>
+                                                            <ul class="list-group">
+                                                                <li v-for="categorie in categories" v-on:click="fetchCategorieDetails(categorie)" :class="getCategorieClass(categorie)" style="cursor:pointer">
+                                                                    <span class="categorieName">{{categorie.id}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </header>
+                                                    <div v-if="currentCategorie" class="col-md-4">
+                                                        <h3>Details categorie</h3>
+                                                        <div class="form-horizontal">
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Naam</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentCategorie.name" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <button v-on:click="toEditCategorieMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
+                                                            <button v-on:click="toEditCategorieMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
+                                                            <button v-on:click="deleteCategorie()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="saveCategorie" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
+                                                            <button v-on:click="cancelForCategorieForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="panel-instrumentTypes">
+                                                <div class="row">
+                                                    <header class="col-md-4">
+
+                                                        <h3>{{messageForm}}</h3>
+                                                        <nav>
+                                                            <ul class="list-group">
+                                                                <li v-for="type in instrumentTypes" v-on:click="fetchInstrumentTypeDetails(type)" :class="getInstrumentTypeClass(type)" style="cursor:pointer">
+                                                                    <span class="instrumentTypeName">{{type.id}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </header>
+                                                    <div v-if="currentInstrumentType" class="col-md-4">
+                                                        <h3>Details instrument type</h3>
+                                                        <div class="form-horizontal">
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Naam</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentInstrumentType.name" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+
+
+                                                            <button v-on:click="toEditInstrumentTypeMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
+                                                            <button v-on:click="toEditInstrumentTypeMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
+                                                            <button v-on:click="deleteInstrumentType()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="saveInstrumentType" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
+                                                            <button v-on:click="cancelForInstrumentTypeForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="tab-pane" id="panel-artists">
+                                                <div class="row">
+                                                    <header class="col-md-4">
+
+                                                        <h3>{{messageForm}}</h3>
+                                                        <nav>
+                                                            <ul class="list-group">
+                                                                <li v-for="artist in artists" v-on:click="fetchArtistDetails(artist)" :class="getArtistClass(artist)" style="cursor:pointer">
+                                                                    <span class="artistName">{{artist.id}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </header>
+                                                    <div v-if="currentArtist" class="col-md-4">
+                                                        <h3>Details artiest</h3>
+                                                        <div class="form-horizontal">
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Naam</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentArtist.name" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Genre</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" :value="currentArtist.genre.name" v-if="isReadOnly" :readonly="isReadOnly">
+                                                                    <select v-model="currentArtist.genre" class="form-control" v-if="!isReadOnly">
+                                                                        <option v-for="genre in genres" :value="genre">{{ genre.name }}</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <button v-on:click="toEditArtistMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
+                                                            <button v-on:click="toEditArtistMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
+                                                            <button v-on:click="deleteArtist()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="saveArtist" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
+                                                            <button v-on:click="cancelForArtistForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="tab-pane" id="panel-genres">
+                                                <div class="row">
+                                                    <header class="col-md-4">
+
+                                                        <h3>{{messageForm}}</h3>
+                                                        <nav>
+                                                            <ul class="list-group">
+                                                                <li v-for="genre in genres" v-on:click="fetchGenreDetails(genre)" :class="getGenreClass(genre)" style="cursor:pointer">
+                                                                    <span class="genreName">{{genre.id}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </nav>
+                                                    </header>
+                                                    <div v-if="currentGenre" class="col-md-4">
+                                                        <h3>Details artiest</h3>
+                                                        <div class="form-horizontal">
+
+                                                            <div class="form-group">
+                                                                <label class="col-sm-2 control-label small">Naam</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control" v-model="currentGenre.name" :readonly="isReadOnly">
+                                                                </div>
+                                                            </div>
+                                                           
+
+                                                            <button v-on:click="toEditGenreMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
+                                                            <button v-on:click="toEditGenreMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
+                                                            <button v-on:click="deleteGenre()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="saveGenre" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
+                                                            <button v-on:click="cancelForGenreForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
 
                                         </div>
                                     </div>
@@ -278,17 +452,24 @@
                 message: 'Loading page...',
                 messageClientForm: '',
                 messageOrdersForm: '',
+                messageCategoriesForm: '',
+                messageForm :'',
                 products: null,
                 artists: null,
                 genres: null,
                 instrumentTypes: null,
-                productTypes: null,
                 clients: null,
                 orders: null,
                 orderDetails: null,
+                categories: null,
+                instrumentTypes: null,
                 currentClient: null,
                 currentProduct: null,
                 currentOrder: null,
+                currentCategorie: null,
+                currentInstrumentType: null,
+                currentArtist: null,
+                currentGenre: null,
                 isReadOnly: true,
                 isEdit: false,
                 selectedFile: null
@@ -346,45 +527,7 @@
                     if (product.isActive) return 'list-group-item active';
                     return 'list-group-item';
                 },
-                fetchArtists: function () {
-                    self = this;
-                    fetch(`${apiUri}Artists`)
-                        .then(res => res.json())
-                        //.then(function (test) {console.log(test)})
-                        .then(function (res) {
-                            self.artists = res;
-                        })
-                        .catch(err => console.error('Fout: ' + err));
-                },
-                fetchGenres: function () {
-                    self = this;
-                    fetch(`${apiUri}Genres`)
-                        .then(res => res.json())
-                        .then(function (res) {
-                            self.genres = res;
-                        })
-                        .catch(err => console.error('Fout: ' + err));
-                },
-
-                 fetchInstrumentTypes: function () {
-                    self = this;
-                    fetch(`${apiUri}InstrumentTypes`)
-                        .then(res => res.json())
-                        .then(function (res) {
-                            self.instrumentTypes = res;
-                        })
-                        .catch(err => console.error('Fout: ' + err));
-                },
-                   fetchProductTypes: function () {
-                    self = this;
-                    fetch(`${apiUri}ProductTypes`)
-                        .then(res => res.json())
-                        .then(function (res) {
-                            self.productTypes = res;
-                        })
-                        .catch(err => console.error('Fout: ' + err));
-                },
-
+              
 
                 toEditMode: function (isEdit) {
                     self = this;
@@ -611,7 +754,8 @@
                         })
 
                         .catch(err => console.error('Fout: ' + err));
-                },
+                 },
+
                 fetchOrderDetails: function (order) {
                     self = this;
                     if (!self.isReadOnly) return;
@@ -624,10 +768,7 @@
                             self.makeOrderActive(order.id);
                         })
                         .catch(err => console.error('Fout: ' + err));
-              },
-
-
-
+                },
 
                 fetchOrderDetailsByOrderId: function (orderId) {
                   self = this;
@@ -732,7 +873,7 @@
                         .catch(err => console.error('Fout: ' + err));
                 },
 
-                // image
+                // image for products
               onFileSelected(event) {
                   self.selectedFile = event.target.files[0]
               },
@@ -751,7 +892,518 @@
                           console.log(res)
                       });
               },
-              
+
+              //categories
+
+                fetchProductTypes: function () {
+                    self = this;
+                    fetch(`${apiUri}ProductTypes`)
+                        .then(res => res.json())
+                        .then(function (categories) {
+                            categories.forEach(function (categorie, i) {
+                                categorie.isActive = false;
+                            });
+                            self.categories = categories;
+                            self.messageCategoriesForm = 'Overzicht categories per Id';
+                            if (self.categories.length > 0) {
+                                self.fetchCategorieDetails(self.categories[0]);
+                            }
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                 },
+
+                  fetchCategorieDetails: function (categorie) {
+                    self = this;
+                    if (!self.isReadOnly) return;
+                    fetch(`${apiUri}ProductTypes/${categorie.id}`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (res) {
+                            self.currentCategorie = res;
+                            self.makeCategorieActive(categorie.id);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                  },
+
+                   makeCategorieActive: function (categorieId) {
+                    self.categories.forEach(function (categorie) {
+                        categorie.isActive = categorie.id === categorieId ? true : false;
+                    });
+                   },
+
+                   getCategorieClass: function (categorie) {
+                      if (categorie.isActive) return 'list-group-item active';
+                      return 'list-group-item';
+                   },
+
+                   
+                toEditCategorieMode: function (isEdit) {
+                    self = this;
+                    self.isReadOnly = false;
+                    self.isEdit = isEdit;
+                    if (!isEdit) {
+                        self.currentCategorie = { "name": ""};
+                    }
+                },
+                saveCategorie: function () {
+                    var self = this;
+                   
+
+                    var ajaxHeaders = new Headers();
+                    ajaxHeaders.append("Content-Type", "application/json");
+                    var ajaxConfig = {
+                        method: 'PUT',
+                        body: JSON.stringify(self.currentCategorie),
+                        headers: ajaxHeaders
+                    };
+
+                    if (self.isEdit) {
+                        let myRequest = new Request(`${apiUri}ProductTypes/${self.currentCategorie.id}`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.updateCategorieList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    else {
+                        ajaxConfig.method = 'POST';
+                        let myRequest = new Request(`${apiUri}ProductTypes/`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.addCategorieToList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    self.isEdit = false;
+                    self.isReadOnly = true;
+                },
+
+                  addCategorieToList: function (categorie) {
+
+                    self.currentCategorie.id = categorie.id;
+                    self.categories.push(categorie);
+                    self.fetchCategorieDetails(self.categories[self.categories.length - 1]);
+                },
+                updateCategorieList: function (categorie) {
+
+                    var updatedCategorie = self.categories.filter(c => c.id === categorie.id)[0];
+                    updatedCategorie.name = categorie.name;
+                },
+                cancelForCategorieForm: function () {
+                    var self = this;
+                    self.isReadOnly = true;
+                    self.isEdit = false;
+                    if (self.isEdit) {
+                        self.fetchCategorieDetails(self.currentCategorie);
+                    } else {
+                        self.fetchCategorieDetails(self.categories[0]);
+                    }
+                },
+                deleteCategorie: function () {
+                    self = this;
+                    fetch(`${apiUri}ProductTypes/${self.currentCategorie.id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.categories.forEach(function (categorie, i) {
+                                if (categorie.id === self.currentCategorie.id) {
+                                    self.categories.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            if (self.categories.length > 0)
+                                self.fetchCategorieDetails(self.categories[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                 },
+
+                //instrumentTypes
+
+                  fetchInstrumentTypes: function () {
+                    self = this;
+                    fetch(`${apiUri}InstrumentTypes`)
+                        .then(res => res.json())
+                        .then(function (instrumentTypes) {
+                            instrumentTypes.forEach(function (instrumentType, i) {
+                                instrumentType.isActive = false;
+                            });
+                            self.instrumentTypes = instrumentTypes;
+                            self.messageForm = 'Overzicht per Id';
+                            if (self.instrumentTypes.length > 0) {
+                                self.fetchInstrumentTypeDetails(self.instrumentTypes[0]);
+                            }
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                 },
+
+                  fetchInstrumentTypeDetails: function (instrumentType) {
+                    self = this;
+                    if (!self.isReadOnly) return;
+                    fetch(`${apiUri}InstrumentTypes/${instrumentType.id}`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (res) {
+                            self.currentInstrumentType = res;
+                            self.makeInstrumentTypeActive(instrumentType.id);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                  },
+
+                   makeInstrumentTypeActive: function (instrumentTypeId) {
+                    self.instrumentTypes.forEach(function (instrumentType) {
+                        instrumentType.isActive = instrumentType.id === instrumentTypeId ? true : false;
+                    });
+                   },
+
+                   getInstrumentTypeClass: function (instrumentType) {
+                      if (instrumentType.isActive) return 'list-group-item active';
+                      return 'list-group-item';
+                   },
+
+                   
+                toEditInstrumentTypeMode: function (isEdit) {
+                    self = this;
+                    self.isReadOnly = false;
+                    self.isEdit = isEdit;
+                    if (!isEdit) {
+                        self.currentInstrumentType = { "name": ""};
+                    }
+                },
+                saveInstrumentType: function () {
+                    var self = this;
+                   
+
+                    var ajaxHeaders = new Headers();
+                    ajaxHeaders.append("Content-Type", "application/json");
+                    var ajaxConfig = {
+                        method: 'PUT',
+                        body: JSON.stringify(self.currentInstrumentType),
+                        headers: ajaxHeaders
+                    };
+
+                    if (self.isEdit) {
+                        let myRequest = new Request(`${apiUri}InstrumentTypes/${self.currentInstrumentType.id}`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.updateInstrumentTypeList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    else {
+                        ajaxConfig.method = 'POST';
+                        let myRequest = new Request(`${apiUri}InstrumentTypes/`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.addInstrumentTypeToList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    self.isEdit = false;
+                    self.isReadOnly = true;
+                },
+
+                  addInstrumentTypeToList: function (instrumentType) {
+
+                    self.currentInstrumentType.id = instrumentType.id;
+                    self.instrumentTypes.push(instrumentType);
+                    self.fetchInstrumentTypeDetails(self.instrumentTypes[self.instrumentTypes.length - 1]);
+                },
+                updateInstrumentTypeList: function (instrumentType) {
+
+                    var updatedInstrumentType = self.instrumentTypes.filter(it => it.id === instrumentType.id)[0];
+                    updatedInstrumentType.name = instrumentType.name;
+                },
+                cancelForInstrumentTypeForm: function () {
+                    var self = this;
+                    self.isReadOnly = true;
+                    self.isEdit = false;
+                    if (self.isEdit) {
+                        self.fetchInstrumentTypeDetails(self.currentInstrumentType);
+                    } else {
+                        self.fetchInstrumentTypeDetails(self.instrumentTypes[0]);
+                    }
+                },
+                deleteInstrumentType: function () {
+                    self = this;
+                    fetch(`${apiUri}InstrumentTypes/${self.currentInstrumentType.id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.instrumentTypes.forEach(function (instrumentType, i) {
+                                if (instrumentType.id === self.currentInstrumentType.id) {
+                                    self.instrumentTypes.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            if (self.instrumentTypes.length > 0)
+                                self.fetchInstrumentTypeDetails(self.instrumentTypes[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+
+                // artists
+
+                  fetchArtists: function () {
+                    self = this;
+                    fetch(`${apiUri}Artists`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (artists) {
+                                artists.forEach(function (artist, i) {
+                                artist.isActive = false;
+                            });
+
+                            self.artists = artists;
+                            self.messageForm = 'Overzicht per Id';
+                            if (self.artists.length > 0) {
+                                self.fetchArtistDetails(self.artists[0]);
+                            }
+
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                   },
+                
+
+                  fetchArtistDetails: function (artist) {
+                    self = this;
+                    if (!self.isReadOnly) return;
+                    fetch(`${apiUri}Artists/${artist.id}`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (res) {
+                            self.currentArtist = res;
+                            self.makeArtistActive(artist.id);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                  },
+
+                   makeArtistActive: function (artistId) {
+                    self.artists.forEach(function (artist) {
+                        artist.isActive = artist.id === artistId ? true : false;
+                    });
+                   },
+
+                   getArtistClass: function (artist) {
+                      if (artist.isActive) return 'list-group-item active';
+                      return 'list-group-item';
+                   },
+
+                   
+                toEditArtistMode: function (isEdit) {
+                    self = this;
+                    self.isReadOnly = false;
+                    self.isEdit = isEdit;
+                    if (!isEdit) {
+                        self.currentArtist = { "name": "", "genreId": 0, "genre": { "name": "",  "id": 0 }};
+                    }
+                },
+                saveArtist: function () {
+                    var self = this;
+                    self.currentArtist.genreId = self.currentArtist.genre.id;
+                   
+                    var ajaxHeaders = new Headers();
+                    ajaxHeaders.append("Content-Type", "application/json");
+                    var ajaxConfig = {
+                        method: 'PUT',
+                        body: JSON.stringify(self.currentArtist),
+                        headers: ajaxHeaders
+                    };
+
+                    if (self.isEdit) {
+                        let myRequest = new Request(`${apiUri}Artists/${self.currentArtist.id}`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.updateArtistList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    else {
+                        ajaxConfig.method = 'POST';
+                        let myRequest = new Request(`${apiUri}artists/`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.addArtistToList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    self.isEdit = false;
+                    self.isReadOnly = true;
+                },
+
+                  addArtistToList: function (artist) {
+
+                    self.currentArtist.id = artist.id;
+                    self.artists.push(artist);
+                    self.fetchArtistDetails(self.artists[self.artists.length - 1]);
+                },
+                updateArtistList: function (artist) {
+
+                    var updatedArtist = self.artists.filter(a => a.id === artist.id)[0];
+                    updatedArtist.name = artist.name;
+                },
+                cancelForArtistForm: function () {
+                    var self = this;
+                    self.isReadOnly = true;
+                    self.isEdit = false;
+                    if (self.isEdit) {
+                        self.fetchArtistDetails(self.currentArtist);
+                    } else {
+                        self.fetchArtistDetails(self.artists[0]);
+                    }
+                },
+                deleteArtist: function () {
+                    self = this;
+                    fetch(`${apiUri}artists/${self.currentArtist.id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.artists.forEach(function (artist, i) {
+                                if (artist.id === self.currentArtist.id) {
+                                    self.artists.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            if (self.artists.length > 0)
+                                self.fetchArtistDetails(self.artists[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+
+
+                // genres
+                
+                  fetchGenres: function () {
+                    self = this;
+                    fetch(`${apiUri}Genres`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (genres) {
+                                genres.forEach(function (genre, i) {
+                                genre.isActive = false;
+                            });
+
+                            self.genres = genres;
+                            self.messageForm = 'Overzicht per Id';
+                            if (self.genres.length > 0) {
+                                self.fetchGenreDetails(self.genres[0]);
+                            }
+
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                   },
+                
+
+                  fetchGenreDetails: function (genre) {
+                    self = this;
+                    if (!self.isReadOnly) return;
+                    fetch(`${apiUri}genres/${genre.id}`)
+                        .then(res => res.json())
+                        //.then(function (test) {console.log(test)})
+                        .then(function (res) {
+                            self.currentGenre = res;
+                            self.makeGenreActive(genre.id);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                  },
+
+                   makeGenreActive: function (genreId) {
+                    self.genres.forEach(function (genre) {
+                        genre.isActive = genre.id === genreId ? true : false;
+                    });
+                   },
+
+                   getGenreClass: function (genre) {
+                      if (genre.isActive) return 'list-group-item active';
+                      return 'list-group-item';
+                   },
+
+                   
+                toEditGenreMode: function (isEdit) {
+                    self = this;
+                    self.isReadOnly = false;
+                    self.isEdit = isEdit;
+                    if (!isEdit) {
+                        self.currentGenre = { "name": ""};
+                    }
+                },
+                saveGenre: function () {
+                    var self = this;
+                                   
+                    var ajaxHeaders = new Headers();
+                    ajaxHeaders.append("Content-Type", "application/json");
+                    var ajaxConfig = {
+                        method: 'PUT',
+                        body: JSON.stringify(self.currentGenre),
+                        headers: ajaxHeaders
+                    };
+
+                    if (self.isEdit) {
+                        let myRequest = new Request(`${apiUri}Genres/${self.currentGenre.id}`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.updateGenreList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    else {
+                        ajaxConfig.method = 'POST';
+                        let myRequest = new Request(`${apiUri}genres/`, ajaxConfig);
+                        fetch(myRequest)
+                            .then(res => res.json())
+                            .then(res => {
+                                self.addGenreToList(res);
+                            })
+                            .catch(err => console.error('Fout: ' + err));
+                    }
+                    self.isEdit = false;
+                    self.isReadOnly = true;
+                },
+
+                  addGenreToList: function (genre) {
+
+                    self.currentGenre.id = genre.id;
+                    self.genres.push(genre);
+                    self.fetchGenreDetails(self.genres[self.genres.length - 1]);
+                },
+                updateGenreList: function (genre) {
+
+                    var updatedGenre = self.genres.filter(g => g.id === genre.id)[0];
+                    updatedGenre.name = genre.name;
+                },
+                cancelForGenreForm: function () {
+                    var self = this;
+                    self.isReadOnly = true;
+                    self.isEdit = false;
+                    if (self.isEdit) {
+                        self.fetchGenreDetails(self.currentGenre);
+                    } else {
+                        self.fetchGenreDetails(self.genres[0]);
+                    }
+                },
+                deleteGenre: function () {
+                    self = this;
+                    fetch(`${apiUri}genres/${self.currentGenre.id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.genres.forEach(function (genre, i) {
+                                if (genre.id === self.currentGenre.id) {
+                                    self.genres.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            if (self.genres.length > 0)
+                                self.fetchGenreDetails(self.genres[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+
+
+
+
           }
 
       });
