@@ -18,6 +18,15 @@ namespace MaracasMusic.API.Controllers
         {
            
         }
-       
+
+        [HttpPost]
+        public override async Task<IActionResult> Post([FromBody] Artist artist)
+        {           
+            artist.Genre = null;
+
+            return await base.Post(artist);
+        }
+
+
     }
 }
