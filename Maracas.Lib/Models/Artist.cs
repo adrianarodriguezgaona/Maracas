@@ -8,7 +8,6 @@ namespace Maracas.Lib.Models
     public class Artist : EntityBase
     {
         public int GenreId { get; set; }    
-        [JsonIgnore]
         public Genre Genre { get; set; }
         public List<Product> Products { get; set; }
 
