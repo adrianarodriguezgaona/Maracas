@@ -141,7 +141,7 @@
 
                                                             <button v-on:click="toEditMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             <button v-on:click="toEditMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
-                                                            <button v-on:click="deleteProduct()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="confirmDeleteProduct()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="save" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancel" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
                                                         </div>
@@ -182,11 +182,12 @@
 
                                                             <button v-on:click="toEditClientMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             @*<button v-on:click="toEditClientMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>*@
-                                                            <button v-on:click="deleteClient()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="confirmDeleteClient()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="saveClient" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancelForClientForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
                                                         </div>
                                                     </div>
+
                                                 </div>
 
                                             </div>
@@ -258,7 +259,7 @@
 
                                                             <button v-on:click="toEditOrderMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             @*<button v-on:click="toEditOrderMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>*@
-                                                            <button v-on:click="deleteOrder()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="confirmDeleteOrder()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="saveOrder" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancelForOrderForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
                                                         </div>
@@ -294,7 +295,7 @@
 
                                                             <button v-on:click="toEditCategorieMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             <button v-on:click="toEditCategorieMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
-                                                            <button v-on:click="deleteCategorie()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="confirmDeleteCategory()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="saveCategorie" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancelForCategorieForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
                                                         </div>
@@ -330,7 +331,7 @@
 
                                                             <button v-on:click="toEditInstrumentTypeMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             <button v-on:click="toEditInstrumentTypeMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
-                                                            <button v-on:click="deleteInstrumentType()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="confirmDeleteInstrumentType()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="saveInstrumentType" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancelForInstrumentTypeForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
                                                         </div>
@@ -375,7 +376,7 @@
 
                                                             <button v-on:click="toEditArtistMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             <button v-on:click="toEditArtistMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
-                                                            <button v-on:click="deleteArtist()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="confirmDeleteArtist()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="saveArtist" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancelForArtistForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
                                                         </div>
@@ -411,7 +412,7 @@
 
                                                             <button v-on:click="toEditGenreMode(true)" v-if="isReadOnly" class="btn btn-primary">Editeren</button>
                                                             <button v-on:click="toEditGenreMode(false)" v-if="isReadOnly" class="btn btn-warning">Nieuw</button>
-                                                            <button v-on:click="deleteGenre()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
+                                                            <button v-on:click="confirmDeleteGenre()" v-if="isReadOnly" class="btn btn-danger">Verwijderen</button>
                                                             <button v-on:click="saveGenre" v-if="!isReadOnly" class="btn btn-primary">Opslaan</button>
                                                             <button v-on:click="cancelForGenreForm" v-if="!isReadOnly" class="btn btn-default">Annuleren</button>
                                                         </div>
@@ -1001,7 +1002,7 @@
                         self.fetchCategorieDetails(self.categories[0]);
                     }
                 },
-                deleteCategorie: function () {
+                deleteCategory: function () {
                     self = this;
                     fetch(`${apiUri}ProductTypes/${self.currentCategorie.id}`, { method: 'DELETE' })
                         .then(res => res.json())
@@ -1399,8 +1400,79 @@
                                 self.fetchGenreDetails(self.genres[0]);
                         })
                         .catch(err => console.error('Fout: ' + err));
+              },
+
+                // confirm 
+
+              confirmDeleteCategory: function () {
+                var self = this;
+             
+                var choice = confirm("Wil je het echt verwijderen?");
+                  if (choice == true)
+                  {
+                    self.deleteCategory();
+                  }                                       
+              },
+
+               confirmDeleteProduct: function () {
+                var self = this;
+             
+                var choice = confirm("Wil je het echt verwijderen?");
+                  if (choice == true)
+                  {
+                    self.deleteProduct();
+                  }                                       
+              },
+
+                confirmDeleteArtist: function () {
+                var self = this;
+             
+                var choice = confirm("Wil je het echt verwijderen?");
+                  if (choice == true)
+                  {
+                    self.deleteArtist();
+                  }                                       
                 },
 
+                 confirmDeleteGenre: function () {
+                var self = this;
+             
+                var choice = confirm("Wil je het echt verwijderen?");
+                  if (choice == true)
+                  {
+                    self.deleteGenre();
+                  }                                       
+                 },
+
+                  confirmDeleteInstrumentType: function () {
+                  var self = this;
+             
+                  var choice = confirm("Wil je het echt verwijderen?");
+                  if (choice == true)
+                  {
+                    self.deleteInstrumentType();
+                  }                                       
+                  },
+
+                  confirmDeleteOrder: function () {
+                  var self = this;
+             
+                  var choice = confirm("Wil je het echt verwijderen?");
+                  if (choice == true)
+                    {
+                    self.deleteOrder();
+                     }                                       
+              },
+
+                   confirmDeleteClient: function () {
+                  var self = this;
+             
+                  var choice = confirm("Wil je het echt verwijderen?");
+                  if (choice == true)
+                    {
+                    self.deleteClient();
+                     }                                       
+              },
 
 
 
