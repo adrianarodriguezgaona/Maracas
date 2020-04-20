@@ -1,0 +1,18 @@
+﻿@using  Maracas.Lib.Models
+@model List<Artist>
+
+<h1>Artiesten</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <ul class="list-group">
+            @foreach (var artist in Model)
+            {
+                <li class="list-group-item">
+                    <a asp-area="" asp-controller="Artist" asp-action="Detail" asp-route-id="@artist.Id">@artist.Name</a>
+                </li>
+            }
+        </ul>
+        <a class="btn btn-warning" asp-area="" asp-controller="Artist" asp-action="Insert">Insert new Artist</a>
+    </div>
+</div>

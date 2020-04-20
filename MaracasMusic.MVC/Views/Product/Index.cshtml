@@ -1,0 +1,21 @@
+﻿@using Maracas.Lib.DTO
+@model List<ProductBasicDto>
+
+
+<h1>Onze producten</h1>
+
+<div class="row">
+    <div class="col-4">
+        <ul class="list-group">
+            @foreach (var product in Model)
+            {
+                <li class="list-group-item @(product.Name.Contains("Shakira") ? "list-group-item-success" : "")">
+                    <a asp-area="" asp-controller="Product" asp-action="Detail" asp-route-id="@product.Id">
+                        @product.Name
+                    </a> <em>(@product.Id)</em>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

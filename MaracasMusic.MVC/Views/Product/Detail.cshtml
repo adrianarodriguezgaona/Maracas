@@ -1,0 +1,29 @@
+﻿@using MaracasMusic.MVC.ViewModels
+@model ProductDetailExtraViewModel
+
+
+
+<h1>Detail</h1>
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Model.ProductDetail.Name</div>
+    <div class="panel-body">
+        <ul>
+            <li>@Model.ProductDetail.Price</li>
+            <li>
+                @Model.ProductDetail.ArtistName <br />
+               
+            </li>
+            <li><small>@Model.ProductDetail.GenreName</small></li>
+        </ul>
+        <img src="https://localhost:44378/api/product/imagebyname/@Model.ProductDetail.Foto" alt="De afbeelding van dit product" />
+        <p>
+            Summary: <br />
+            <small><i>@Model.ProductSummary</i></small>
+        </p>
+        
+    </div>
+    <div class="panel-footer">
+        <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Back to list</a>
+    </div>
+</div>

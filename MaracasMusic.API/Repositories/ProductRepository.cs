@@ -33,6 +33,7 @@ namespace MaracasMusic.API.Repositories
         {
             return await _maracasContext.Products
               .ProjectTo<ProductBasicDto>(_mapper.ConfigurationProvider)
+              .OrderBy(p => p.Name)
               .ToListAsync();
 
         }
